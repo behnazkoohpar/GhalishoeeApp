@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu"
+    android:gravity="right"
+    android:layoutDirection="rtl"
+    android:layout_gravity="right">
+
+    <group
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:color="@color/colorPrimaryDark">
+
+        <item
+            android:id="@+id/nav_setting"
+            app:actionLayout="@layout/menu_setting"
+            android:title="" />
+    </group>
+    <group
+        android:layout_gravity="right"
+        android:gravity="right">
+        <item
+            android:id="@+id/nav_about_us"
+            app:actionLayout="@layout/menu_about_us"
+            android:title="" />
+    </group>
+
+    <group
+        android:layout_gravity="right"
+        android:gravity="right">
+        <item
+            android:id="@+id/nav_exit"
+            app:actionLayout="@layout/menu_exit"
+            android:title="" />
+
+    </group>
+</menu>

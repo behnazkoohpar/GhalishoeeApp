@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/backgroundPage"
+    tools:Context="com.koohpar.oghli.ui.signUpCustomer.SignUpCustomerActivity">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.koohpar.oghli.ui.signUpCustomer.SignUpCustomerViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/main_header_selector">
+
+            <ImageView
+                android:id="@+id/imgCard"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:padding="@dimen/padding_common"
+                android:src="@drawable/search"
+                android:tint="@color/white" />
+
+            <TextView
+                style="@style/AppTheme.font"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imgCard"
+                android:text="@string/signUpCustomer"
+                android:textColor="@color/white" />
+
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small"
+                    android:background="@drawable/bg_white">
+
+                    <TextView
+                        style="@style/AppTheme.TextViewDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/margin_small"
+                        android:text="شعبه:" />
+
+                    <TextView
+                        android:id="@+id/typeOrder"
+                        style="@style/AppTheme.TextViewDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="name" />
+
+                    <ImageView
+                        android:id="@+id/typeArrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_normal"
+                        android:src="@drawable/ic_arrow_drop_down" />
+                </RelativeLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textLayoutUserName"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:fontFamily="@font/iran_sans"
+                    android:hint="@string/nameAndFamily"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="50"
+                    app:errorEnabled="false"
+                    app:helperTextEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/userName"
+                        style="@style/AppTheme.TextViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="50"
+                        android:textAlignment="center" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textLayoutArea"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:fontFamily="@font/iran_sans"
+                    android:hint="@string/area"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="2"
+                    app:errorEnabled="false"
+                    app:helperTextEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/area"
+                        style="@style/AppTheme.TextViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:textAlignment="center" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textLayoutDesc"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="4dp"
+                    android:fontFamily="@font/iran_sans"
+                    android:hint="@string/description"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="2"
+                    app:errorEnabled="false"
+                    app:helperTextEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/desc"
+                        style="@style/AppTheme.TextViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLength="200"
+                        android:textAlignment="center" />
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_green"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextViewDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:gravity="center"
+                        android:text="@string/infoSum" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textLayoutTel"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:fontFamily="@font/iran_sans"
+                        android:hint="@string/tel_mobile_number"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:counterEnabled="false"
+                        app:counterMaxLength="11"
+                        app:errorEnabled="false"
+                        app:helperTextEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/tel"
+                            style="@style/AppTheme.TextViewTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="11"
+                            android:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textLayoutTelHome"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:fontFamily="@font/iran_sans"
+                        android:hint="@string/tel_home"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:counterEnabled="false"
+                        app:counterMaxLength="11"
+                        app:errorEnabled="false"
+                        app:helperTextEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/telHome"
+                            style="@style/AppTheme.TextViewTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="11"
+                            android:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textLayoutAddress"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="@dimen/margin_normal"
+                        android:fontFamily="@font/iran_sans"
+                        android:hint="@string/address"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:counterEnabled="false"
+                        app:counterMaxLength="200"
+                        app:errorEnabled="false"
+                        app:helperTextEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/address"
+                            style="@style/AppTheme.TextViewTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="200"
+                            android:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:background="@drawable/bg_btn_green"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/AppTheme.TextViewDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:gravity="center"
+                        android:text="@string/infoDistribute" />
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textLayoutTelD"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:fontFamily="@font/iran_sans"
+                        android:hint="@string/tel_mobile_number"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:counterEnabled="false"
+                        app:counterMaxLength="11"
+                        app:errorEnabled="false"
+                        app:helperTextEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/telD"
+                            style="@style/AppTheme.TextViewTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="11"
+                            android:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textLayoutTelHomeD"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="4dp"
+                        android:fontFamily="@font/iran_sans"
+                        android:hint="@string/tel_home"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:counterEnabled="false"
+                        app:counterMaxLength="11"
+                        app:errorEnabled="false"
+                        app:helperTextEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/telHomeD"
+                            style="@style/AppTheme.TextViewTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="11"
+                            android:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:id="@+id/textLayoutAddressD"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_marginBottom="@dimen/margin_normal"
+                        android:fontFamily="@font/iran_sans"
+                        android:hint="@string/address"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="@color/colorPrimary"
+                        app:counterEnabled="false"
+                        app:counterMaxLength="200"
+                        app:errorEnabled="false"
+                        app:helperTextEnabled="true">
+
+                        <android.support.design.widget.TextInputEditText
+                            android:id="@+id/addressD"
+                            style="@style/AppTheme.TextViewTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:maxLength="200"
+                            android:textAlignment="center" />
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <Button
+                    style="@style/AppTheme.ButtonPrimary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="@dimen/margin_xlarge"
+                    android:text="جستجوی مشتری" />
+
+            </LinearLayout>
+
+        </ScrollView>
+    </LinearLayout>
+</layout>
