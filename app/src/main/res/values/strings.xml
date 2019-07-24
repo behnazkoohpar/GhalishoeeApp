@@ -204,5 +204,11 @@
     <string name="address">آدرس</string>
     <string name="infoDistribute">اطلاعات پخش</string>
     <string name="list_sum">لیست جمع</string>
+    <string name="validation_name">نام و نام خانوادگی خود را وارد کنید</string>
+    <string name="validation_telhome">شماره تلفن منزل را به درستی وارد کنید</string>
+    <string name="number">تلفن همراه</string>
+    <string name="numberhome">تلفن ثابت</string>
+    <string name="list_pakhsh">لیست پخش</string>
+    <string name="info_order">اطلاعات سفارش</string>
 
 </resources>

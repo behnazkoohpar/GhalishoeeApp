@@ -17,6 +17,7 @@ import com.koohpar.oghli.data.DataManager;
 import com.koohpar.oghli.databinding.ActivityMainBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
 import com.koohpar.oghli.ui.listCustomer.ListCustomerActivity;
+import com.koohpar.oghli.ui.listPakhsh.ListPakhshActivity;
 import com.koohpar.oghli.ui.listSum.ListSumActivity;
 import com.koohpar.oghli.ui.login.LoginActivity;
 import com.koohpar.oghli.ui.searchCustomer.SearchCustomerActivity;
@@ -174,6 +175,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void openDistribute() {
-        startActivity(ListCustomerActivity.getStartIntent(MainActivity.this));
+        startActivity(ListPakhshActivity.getStartIntent(MainActivity.this));
     }
 }

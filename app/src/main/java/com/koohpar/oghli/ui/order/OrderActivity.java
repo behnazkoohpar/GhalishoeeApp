@@ -8,6 +8,7 @@ import android.view.WindowManager;
 
 import com.koohpar.oghli.BR;
 import com.koohpar.oghli.R;
+import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.databinding.ActivityOrderBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
 import com.koohpar.oghli.utils.AppConstants;
@@ -18,7 +19,6 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
 
     @Inject
     OrderViewModel mOrderViewModel;
-
     ActivityOrderBinding mActivityOrderBinding;
 
     @Override
@@ -28,7 +28,6 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
             mActivityOrderBinding = getViewDataBinding();
             mOrderViewModel.setNavigator(this);
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,4 +51,6 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
     public int getLayoutId() {
         return R.layout.activity_order;
     }
+
+
 }

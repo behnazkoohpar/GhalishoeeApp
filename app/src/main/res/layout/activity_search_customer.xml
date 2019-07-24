@@ -92,7 +92,7 @@
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/colorPrimary"
                 app:counterEnabled="false"
-                app:counterMaxLength="60"
+                app:counterMaxLength="10"
                 app:errorEnabled="false"
                 app:helperTextEnabled="true">
 
@@ -103,7 +103,7 @@
                     android:layout_height="50dp"
                     android:imeOptions="actionNext"
                     android:inputType="number"
-                    android:maxLength="11"
+                    android:maxLength="10"
                     android:textAlignment="center" />
             </android.support.design.widget.TextInputLayout>
 
@@ -118,7 +118,7 @@
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/colorPrimary"
                 app:counterEnabled="false"
-                app:counterMaxLength="12"
+                app:counterMaxLength="10"
                 app:errorEnabled="false"
                 app:helperTextEnabled="true">
 
@@ -129,7 +129,7 @@
                     android:layout_height="50dp"
                     android:imeOptions="actionNext"
                     android:inputType="number"
-                    android:maxLength="12"
+                    android:maxLength="10"
                     android:textAlignment="center" />
             </android.support.design.widget.TextInputLayout>
 

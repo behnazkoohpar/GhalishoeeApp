@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 public interface AppConstants {
     //10.1.7.31:8280
 //    String BASE_URL = "https://service.sepehrnet.com:8243";
-    String BASE_URL = "http://91.99.232.24:8004/CWService/";
+    String BASE_URL = "http://91.98.51.254:8004/CWService/";
     //188.75.127.132:8243
 
     @SuppressLint("SimpleDateFormat")

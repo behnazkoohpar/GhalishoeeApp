@@ -29,7 +29,9 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.listSum.ListSumActivity"></activity>
+        <activity android:name=".ui.showOrder.ShowOrderActivity"></activity>
+        <activity android:name=".ui.listPakhsh.ListPakhshActivity" />
+        <activity android:name=".ui.listSum.ListSumActivity" />
         <activity android:name=".ui.order.OrderActivity" />
         <activity android:name=".ui.listCustomer.ListCustomerActivity" />
         <activity android:name=".ui.searchCustomer.SearchCustomerActivity" />

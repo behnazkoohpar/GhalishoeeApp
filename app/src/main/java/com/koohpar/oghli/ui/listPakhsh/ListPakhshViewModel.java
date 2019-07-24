@@ -1,14 +1,13 @@
-package com.koohpar.oghli.ui.listSum;
+package com.koohpar.oghli.ui.listPakhsh;
 
 import android.arch.lifecycle.MutableLiveData;
 
 import com.koohpar.oghli.api.RestManager;
 import com.koohpar.oghli.data.DataManager;
-import com.koohpar.oghli.data.model.api.BaseResponse;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
-import com.koohpar.oghli.data.model.api.TokenResponse;
 import com.koohpar.oghli.di.module.RxRetrofitErrorConsumer;
 import com.koohpar.oghli.ui.base.BaseViewModel;
+import com.koohpar.oghli.ui.listSum.ListSumRequestBody;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.rx.SchedulersFacade;
 import com.koohpar.oghli.utils.rx.SingleLiveData;
@@ -19,7 +18,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import timber.log.Timber;
 
-public class ListSumViewModel extends BaseViewModel<ListSumNavigator> implements AppConstants {
+public class ListPakhshViewModel extends BaseViewModel<ListPakhshNavigator> implements AppConstants {
 
     private final MutableLiveData<List<OrderMissionDetailModel>> orderMissionDetailModelMutableLiveData = new SingleLiveData<>();
 
@@ -27,13 +26,13 @@ public class ListSumViewModel extends BaseViewModel<ListSumNavigator> implements
         return orderMissionDetailModelMutableLiveData;
     }
 
-    public ListSumViewModel(DataManager dataManager, RestManager mRestManager, SchedulersFacade mSchedulersFacade, SingleLiveData<Integer> mToastLiveData, CompositeDisposable mCompositeDisposable) {
+    public ListPakhshViewModel(DataManager dataManager, RestManager mRestManager, SchedulersFacade mSchedulersFacade, SingleLiveData<Integer> mToastLiveData, CompositeDisposable mCompositeDisposable) {
         super(dataManager, mRestManager, mSchedulersFacade, mToastLiveData, mCompositeDisposable);
     }
 
 
-    public void callListSum(String serviceManID, String jamDate, String ooghli) {
-        Disposable disposable = mRestManager.listJam(new ListSumRequestBody(serviceManID, jamDate, ooghli))
+    public void callListPakhsh(String serviceManID, String jamDate, String ooghli) {
+        Disposable disposable = mRestManager.listPakhsh(new ListSumRequestBody(serviceManID, jamDate, ooghli))
                 .subscribeOn(mSchedulersFacade.io())
                 .observeOn(mSchedulersFacade.ui())
                 .subscribe(r -> {
