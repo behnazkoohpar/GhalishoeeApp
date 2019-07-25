@@ -1,7 +1,7 @@
 package com.koohpar.oghli.data.model.api;
 
 public class CustomerModel {
-    
+
     private String CustomerID;
     private String CustomerGroupID;
     private String CustomerGroupName;
@@ -44,11 +44,12 @@ public class CustomerModel {
     private String CrmIndustryTitle;
     private byte CustTypeCode;
     private String _CustTypeName;
-//    public String CustTypeName
-//    {
-//        get { return CustTypeCode == 1 ? "مشتری بالقوه" : "مشتری بالفعل"; }
-//        set { _CustTypeName = value; }
-//    }
+
+    public String getCustTypeName() {
+        return CustTypeCode == 1 ? "مشتری بالقوه" : "مشتری بالفعل";
+
+    }
+
     private String CreatedBy;
     private String CreatedDate;
     private String LastUpdatedBy;
@@ -70,7 +71,7 @@ public class CustomerModel {
     private String BranchID;
     private String RegisterDate;
     private String _RegisterDateTime;
-//    public String RegisterDateTime
+    //    public String RegisterDateTime
 //    {
 //        get { return FarsiLibrary.Utils.PersianDateConverter.ToPersianDate(RegisterDate).ToString(); }
 //        set { _RegisterDateTime = value; }
@@ -415,10 +416,6 @@ public class CustomerModel {
 
     public void setCustTypeCode(byte custTypeCode) {
         CustTypeCode = custTypeCode;
-    }
-
-    public String get_CustTypeName() {
-        return _CustTypeName;
     }
 
     public void set_CustTypeName(String _CustTypeName) {

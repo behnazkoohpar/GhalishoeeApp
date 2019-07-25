@@ -7,13 +7,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.koohpar.oghli.R;
-import com.koohpar.oghli.data.model.api.CityResponse;
+import com.koohpar.oghli.data.model.api.MantagheResponse;
 
 import java.util.List;
 
-public class CityAdapter extends RecyclerView.Adapter<CityAdapter.MyViewHolder> {
+public class MantagheAdapter extends RecyclerView.Adapter<MantagheAdapter.MyViewHolder> {
 
-    private List<CityResponse> cityList;
+    private List<MantagheResponse> cityList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView title;
@@ -24,7 +24,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.MyViewHolder> 
         }
     }
 
-    public CityAdapter(List<CityResponse> cityList) {
+    public MantagheAdapter(List<MantagheResponse> cityList) {
         this.cityList = cityList;
     }
 
@@ -38,7 +38,7 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        CityResponse city = cityList.get(position);
+        MantagheResponse city = cityList.get(position);
         holder.title.setText(city.getTitle());
     }
 

@@ -67,7 +67,7 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
         try {
 
             mListSumViewModel.callListSum(
-                    "8dd7df03-3f2b-449e-bf0f-12b781deefd9", "1398/04/28", AppConstants.REQUEST_OOGHLI);
+                    mListSumViewModel.getDataManager().getServiceManId(), "1398/04/28", AppConstants.REQUEST_OOGHLI);
             mListSumViewModel.getOrderMissionDetailModelMutableLiveData().observe(this, this::receivedData);
 
         } catch (Exception e) {
@@ -94,6 +94,7 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
             @Override
             public void onOpenClick(int position) {
                 ShowOrderActivity.orderId = data.get(position).getOrderID();
+                ShowOrderActivity.name = data.get(position).getCustName();
                 startActivity(ShowOrderActivity.getStartIntent(ListSumActivity.this));
             }
 

@@ -6,9 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_mini_mini_small"
-    card_view:cardCornerRadius="0dp"
+    card_view:cardCornerRadius="5dp"
     card_view:cardUseCompatPadding="true"
-    card_view:contentPadding="-5dp">
+    card_view:contentPadding="5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,24 +18,19 @@
         android:gravity="right"
         android:orientation="vertical">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/name"
-                style="@style/AppTheme.TextViewDetail"
+                style="@style/AppTheme.TextViewDetailLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginRight="@dimen/margin_large"
+                android:layout_centerInParent="true"
                 android:padding="@dimen/padding_common"
                 android:text="@string/name" />
-        </LinearLayout>
+        </RelativeLayout>
 
         <View
             android:layout_width="match_parent"
@@ -54,7 +49,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_small"
                 android:text="@string/number" />
 
             <TextView
@@ -64,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_small"
                 android:layout_toLeftOf="@+id/txtnumber"
                 android:text="@string/number" />
 
@@ -74,11 +69,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/margin_large"
+                android:layout_marginLeft="@dimen/margin_small"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginRight="@dimen/margin_large"
                 android:layout_toRightOf="@+id/numberhome"
-                android:text="@string/number" />
+                android:text="@string/numberhome" />
 
             <TextView
                 android:id="@+id/numberhome"
@@ -104,7 +99,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_small"
                 android:text="@string/address" />
 
             <TextView
@@ -114,7 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_marginRight="@dimen/margin_large"
+                android:layout_marginRight="@dimen/margin_small"
                 android:layout_toLeftOf="@+id/taddress"
                 android:text="@string/address" />
         </RelativeLayout>

@@ -2,13 +2,11 @@ package com.koohpar.oghli.ui.order;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 
 import com.koohpar.oghli.BR;
 import com.koohpar.oghli.R;
-import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.databinding.ActivityOrderBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
 import com.koohpar.oghli.utils.AppConstants;

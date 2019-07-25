@@ -2,40 +2,20 @@ package com.koohpar.oghli.ui.searchCustomer;
 
 public class SearchCustomerRequestBody {
 
-    private String Mobile;
-    private String Phone;
-    private String CustomerName;
+    private String CustPhone;
     private String OouoOGhla;
 
-    public SearchCustomerRequestBody(String mobile, String phone, String customerName, String oouoOGhla) {
-        Mobile = mobile;
-        Phone = phone;
-        CustomerName = customerName;
+    public SearchCustomerRequestBody(String mobile,  String oouoOGhla) {
+        CustPhone = mobile;
         OouoOGhla = oouoOGhla;
     }
 
-    public String getMobile() {
-        return Mobile;
+    public String getCustPhone() {
+        return CustPhone;
     }
 
-    public void setMobile(String mobile) {
-        Mobile = mobile;
-    }
-
-    public String getPhone() {
-        return Phone;
-    }
-
-    public void setPhone(String phone) {
-        Phone = phone;
-    }
-
-    public String getCustomerName() {
-        return CustomerName;
-    }
-
-    public void setCustomerName(String customerName) {
-        CustomerName = customerName;
+    public void setCustPhone(String custPhone) {
+        CustPhone = custPhone;
     }
 
     public String getOouoOGhla() {

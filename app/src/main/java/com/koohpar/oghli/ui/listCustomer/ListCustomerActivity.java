@@ -10,14 +10,12 @@ import android.view.WindowManager;
 
 import com.koohpar.oghli.BR;
 import com.koohpar.oghli.R;
-import com.koohpar.oghli.data.model.api.CustomerModel;
 import com.koohpar.oghli.databinding.ActivityListCustomerBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
 import com.koohpar.oghli.ui.order.OrderActivity;
 import com.koohpar.oghli.ui.searchCustomer.SearchCustomerActivity;
+import com.koohpar.oghli.ui.signUpCustomer.SignUpCustomerActivity;
 import com.koohpar.oghli.utils.AppConstants;
-
-import java.util.List;
 
 import javax.inject.Inject;
 
@@ -93,7 +91,7 @@ public class ListCustomerActivity  extends BaseActivity<ActivityListCustomerBind
     }
 
     @Override
-    public void openOrder() {
-        startActivity(OrderActivity.getStartIntent(ListCustomerActivity.this));
+    public void onCreateNewCustomer() {
+        startActivity(SignUpCustomerActivity.getStartIntent(ListCustomerActivity.this));
     }
 }

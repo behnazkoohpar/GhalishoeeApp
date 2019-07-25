@@ -2,16 +2,21 @@ package com.koohpar.oghli.ui.showOrder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.WindowManager;
 
 import com.koohpar.oghli.BR;
 import com.koohpar.oghli.R;
+import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrdersModel;
 import com.koohpar.oghli.databinding.ActivityShowOrderBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
+import com.koohpar.oghli.ui.listSum.ListOrderMissionDetailModelAdapter;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
 
@@ -23,8 +28,11 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
 
     @Inject
     ShowOrderViewModel mShowOrderViewModel;
-    public static String orderId;
+    public static String orderId, name;
     ActivityShowOrderBinding mActivityShowOrderBinding;
+    private RecyclerView recyclerViewListOrderMissionDetailModel;
+    private LinearLayoutManager layoutOrderMissionDetailModel;
+    private ListOrderDetailModelAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +79,7 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         }
     }
 
-    private void receivedData(OrdersModel data) {
+    private void receivedData(List<OrderDetailModel> data) {
         if (data != null) {
             setParameter(data);
         } else {
@@ -79,14 +87,16 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         }
     }
 
-    private void setParameter(OrdersModel ordersModel) {
-        if (ordersModel != null) {
-            mActivityShowOrderBinding.name.setText(ordersModel.getCustName());
-            mActivityShowOrderBinding.factorNumber.setText(ordersModel.getOrdersNo());
-            mActivityShowOrderBinding.typeOrder.setText(ordersModel.getServiceName());
-            mActivityShowOrderBinding.price.setText(String.valueOf(ordersModel.getOrderServicePrice()));
-            mActivityShowOrderBinding.numberOrder.setText(String.valueOf(ordersModel.getOrdersCount()));
+    private void setParameter(List<OrderDetailModel> ordersModels) {
+
+        if (ordersModels != null)
+            mActivityShowOrderBinding.name.setText(name);
+            recyclerViewListOrderMissionDetailModel = mActivityShowOrderBinding.list;
+            layoutOrderMissionDetailModel = new LinearLayoutManager(this);
+            recyclerViewListOrderMissionDetailModel.setLayoutManager(layoutOrderMissionDetailModel);
+            mAdapter = new ListOrderDetailModelAdapter(ordersModels);
+            recyclerViewListOrderMissionDetailModel.setAdapter(mAdapter);
+
         }
     }
-}
 

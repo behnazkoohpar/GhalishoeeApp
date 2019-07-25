@@ -68,7 +68,7 @@ public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, 
         try {
 
             mListPakhshViewModel.callListPakhsh(
-                    "8dd7df03-3f2b-449e-bf0f-12b781deefd9", "1398/04/31", AppConstants.REQUEST_OOGHLI);
+                    mListPakhshViewModel.getDataManager().getServiceManId(), "1398/04/31", AppConstants.REQUEST_OOGHLI);
             mListPakhshViewModel.getOrderMissionDetailModelMutableLiveData().observe(this, this::receivedData);
 
         } catch (Exception e) {
@@ -95,6 +95,7 @@ public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, 
             @Override
             public void onOpenClick(int position) {
                 ShowOrderActivity.orderId = data.get(position).getOrderID();
+                ShowOrderActivity.name = data.get(position).getCustName();
                 startActivity(ShowOrderActivity.getStartIntent(ListPakhshActivity.this));
             }
 

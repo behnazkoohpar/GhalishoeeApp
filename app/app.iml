@@ -252,5 +252,9 @@
     <orderEntry type="library" scope="TEST" name="Gradle: org.mockito:mockito-core:2.8.9@jar" level="project" />
     <orderEntry type="module" module-name="MaterialDatePicker" />
     <orderEntry type="module" module-name="ScrollingPagerIndicator" />
+    <orderEntry type="module" module-name="MaterialDatePicker" />
+    <orderEntry type="module" module-name="ScrollingPagerIndicator" />
+    <orderEntry type="module" module-name="MaterialDatePicker" />
+    <orderEntry type="module" module-name="ScrollingPagerIndicator" />
   </component>
 </module>

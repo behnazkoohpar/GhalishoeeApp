@@ -96,9 +96,10 @@ public class ListCustomerModelAdapter extends RecyclerView.Adapter<ListCustomerM
     @Override
     public void onBindViewHolder(final ListCustomerModelAdapter.ViewHolder viewHolder, final int position) {
 
-//        viewHolder.cartonnumber.setText(stList.get(position).getUnitPrice());
-//        viewHolder.sumprice.setText(stList.get(position).getSumPrice());
-//        viewHolder.sale.setText(stList.get(position).getConsumerPrice());
+        viewHolder.name.setText(stList.get(position).getCustName());
+        viewHolder.telnumber.setText(stList.get(position).getCollectMobile());
+        viewHolder.numberhome.setText(stList.get(position).getCollectPhone());
+        viewHolder.address.setText(stList.get(position).getCollectAddress());
     }
 
     public int getItemCount() {

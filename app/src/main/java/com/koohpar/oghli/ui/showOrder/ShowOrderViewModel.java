@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData;
 
 import com.koohpar.oghli.api.RestManager;
 import com.koohpar.oghli.data.DataManager;
+import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrdersModel;
 import com.koohpar.oghli.di.module.RxRetrofitErrorConsumer;
 import com.koohpar.oghli.ui.base.BaseViewModel;
@@ -23,9 +24,9 @@ public class ShowOrderViewModel  extends BaseViewModel<ShowOrderNavigator> imple
         super(dataManager, mRestManager, mSchedulersFacade, mToastLiveData, mCompositeDisposable);
     }
 
-    private final MutableLiveData<OrdersModel> ordersModelMutableLiveData = new SingleLiveData<>();
+    private final MutableLiveData<List<OrderDetailModel>> ordersModelMutableLiveData = new SingleLiveData<>();
 
-    public MutableLiveData<OrdersModel> getOrdersModelMutableLiveData() {
+    public MutableLiveData<List<OrderDetailModel>> getOrdersModelMutableLiveData() {
         return ordersModelMutableLiveData;
     }
 

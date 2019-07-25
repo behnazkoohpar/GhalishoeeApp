@@ -2,11 +2,11 @@ package com.koohpar.oghli.data.model.api;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CityResponse {
-    @SerializedName("title")
+public class MantagheResponse {
+    @SerializedName("MantagheName")
     private String title;
 
-    @SerializedName("id")
+    @SerializedName("MantagheID")
     private String id;
 
     public String getTitle() {

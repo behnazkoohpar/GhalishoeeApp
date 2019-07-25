@@ -1,6 +1,9 @@
 package com.koohpar.oghli.api;
 
+import com.koohpar.oghli.data.model.api.BranchResponse;
 import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.MantagheResponse;
+import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrdersModel;
 import com.koohpar.oghli.data.model.api.UserModel;
@@ -8,6 +11,8 @@ import com.koohpar.oghli.ui.listSum.ListSumRequestBody;
 import com.koohpar.oghli.ui.login.LoginRequestBody;
 import com.koohpar.oghli.ui.searchCustomer.SearchCustomerRequestBody;
 import com.koohpar.oghli.ui.showOrder.ShowOrdersRequestBody;
+import com.koohpar.oghli.ui.signUpCustomer.AddCustomerRequestBody;
+import com.koohpar.oghli.ui.signUpCustomer.ListBaseRequestBody;
 
 import java.util.List;
 
@@ -24,6 +29,12 @@ public interface RestManager {
 
     Observable<List<OrderMissionDetailModel>> listPakhsh(ListSumRequestBody listSumRequestBody);
 
-    Observable<OrdersModel> showOrdersDetail(ShowOrdersRequestBody showOrdersRequestBody);
+    Observable<List<OrderDetailModel>> showOrdersDetail(ShowOrdersRequestBody showOrdersRequestBody);
+
+    Observable<List<MantagheResponse>> listMantaghe(ListBaseRequestBody listBaseRequestBody);
+
+    Observable<List<BranchResponse>> listBranch(ListBaseRequestBody listBaseRequestBody);
+
+    Observable<String> addCustomer(AddCustomerRequestBody addCustomerRequestBody);
 
 }

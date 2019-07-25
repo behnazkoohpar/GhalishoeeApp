@@ -1,8 +1,8 @@
 package com.koohpar.oghli.data.model.api;
 
 public class OrderDetailModel {
-    
-    private String OrderDetailID;
+
+
     private String OrdersID;
     private String ServiceID;
     private String ServiceCode;
@@ -20,8 +20,14 @@ public class OrderDetailModel {
     private int LakeDetailStatusCode;
     private String LakeDetailStatusName;
     private float Lenght;
+    private String OrderDetailID;
     private float Width;
     private float Quantity;
+    private String RofuAttrib1ID;
+    private String RofuAttrib1Name;
+    private String RofuAttrib2ID;
+    private String RofuAttrib2Name;
+    private String RofuDesc;
     private float UnitPrice;
     private float UnitPrice2;
     private boolean IsRofu;
@@ -29,18 +35,86 @@ public class OrderDetailModel {
     private float DiscountPercent;
     private float DiscountPrice;
     private float _OrderPrice;
-//    public float OrderPrice
-//    {
-//        get
-//        {
-//            return Quantity * UnitPrice + RofuPrice - DiscountPrice;
-//        }
-//        set
-//        {
-//            _OrderPrice = value;
-//        }
-//    }
 
+    public float getOrderPrice() {
+        return Quantity * UnitPrice + RofuPrice - DiscountPrice;
+    }
+
+
+    public OrderDetailModel(String ordersID, String serviceID, String serviceCode, String serviceName, String serviceAttrib1ID, String serviceAttrib1Name, String serviceAttrib2ID, String serviceAttrib2Name, String serviceAttrib3ID, String serviceAttrib3Name, String serviceAttrib4ID, String serviceAttrib4Name, int orderStatusID, String orderStatusName, int lakeDetailStatusCode, String lakeDetailStatusName, float lenght, String orderDetailID, float width, float quantity, String rofuAttrib1ID, String rofuAttrib1Name, String rofuAttrib2ID, String rofuAttrib2Name, String rofuDesc, float unitPrice, float unitPrice2, boolean isRofu, float rofuPrice, float discountPercent, float discountPrice, float _OrderPrice) {
+        OrdersID = ordersID;
+        ServiceID = serviceID;
+        ServiceCode = serviceCode;
+        ServiceName = serviceName;
+        ServiceAttrib1ID = serviceAttrib1ID;
+        ServiceAttrib1Name = serviceAttrib1Name;
+        ServiceAttrib2ID = serviceAttrib2ID;
+        ServiceAttrib2Name = serviceAttrib2Name;
+        ServiceAttrib3ID = serviceAttrib3ID;
+        ServiceAttrib3Name = serviceAttrib3Name;
+        ServiceAttrib4ID = serviceAttrib4ID;
+        ServiceAttrib4Name = serviceAttrib4Name;
+        OrderStatusID = orderStatusID;
+        OrderStatusName = orderStatusName;
+        LakeDetailStatusCode = lakeDetailStatusCode;
+        LakeDetailStatusName = lakeDetailStatusName;
+        Lenght = lenght;
+        OrderDetailID = orderDetailID;
+        Width = width;
+        Quantity = quantity;
+        RofuAttrib1ID = rofuAttrib1ID;
+        RofuAttrib1Name = rofuAttrib1Name;
+        RofuAttrib2ID = rofuAttrib2ID;
+        RofuAttrib2Name = rofuAttrib2Name;
+        RofuDesc = rofuDesc;
+        UnitPrice = unitPrice;
+        UnitPrice2 = unitPrice2;
+        IsRofu = isRofu;
+        RofuPrice = rofuPrice;
+        DiscountPercent = discountPercent;
+        DiscountPrice = discountPrice;
+        this._OrderPrice = _OrderPrice;
+    }
+
+    public String getRofuAttrib1ID() {
+        return RofuAttrib1ID;
+    }
+
+    public void setRofuAttrib1ID(String rofuAttrib1ID) {
+        RofuAttrib1ID = rofuAttrib1ID;
+    }
+
+    public String getRofuAttrib1Name() {
+        return RofuAttrib1Name;
+    }
+
+    public void setRofuAttrib1Name(String rofuAttrib1Name) {
+        RofuAttrib1Name = rofuAttrib1Name;
+    }
+
+    public String getRofuAttrib2ID() {
+        return RofuAttrib2ID;
+    }
+
+    public void setRofuAttrib2ID(String rofuAttrib2ID) {
+        RofuAttrib2ID = rofuAttrib2ID;
+    }
+
+    public String getRofuAttrib2Name() {
+        return RofuAttrib2Name;
+    }
+
+    public void setRofuAttrib2Name(String rofuAttrib2Name) {
+        RofuAttrib2Name = rofuAttrib2Name;
+    }
+
+    public String getRofuDesc() {
+        return RofuDesc;
+    }
+
+    public void setRofuDesc(String rofuDesc) {
+        RofuDesc = rofuDesc;
+    }
 
     public String getOrderDetailID() {
         return OrderDetailID;
@@ -248,10 +322,6 @@ public class OrderDetailModel {
 
     public void setDiscountPrice(float discountPrice) {
         DiscountPrice = discountPrice;
-    }
-
-    public float get_OrderPrice() {
-        return _OrderPrice;
     }
 
     public void set_OrderPrice(float _OrderPrice) {

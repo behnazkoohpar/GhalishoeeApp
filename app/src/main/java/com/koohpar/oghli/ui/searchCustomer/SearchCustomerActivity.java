@@ -63,9 +63,8 @@ public class SearchCustomerActivity extends BaseActivity<ActivitySearchCustomerB
     public void onCallSearch() {
         if (validateInfo()) {
             try {
-                mSearchCustomerViewModel.searchCustomer(mActivitySearchCustomerBinding.userName.getText().toString(),
-                        mActivitySearchCustomerBinding.tel.getText().toString(),
-                        mActivitySearchCustomerBinding.telHome.getText().toString(), AppConstants.REQUEST_OOGHLI);
+                mSearchCustomerViewModel.searchCustomer(mActivitySearchCustomerBinding.tel.getText().toString(),
+                        AppConstants.REQUEST_OOGHLI);
                 mSearchCustomerViewModel.getCustomerModelMutableLiveData().observe(this, this::receivedData);
 
             } catch (Exception e) {
@@ -86,21 +85,21 @@ public class SearchCustomerActivity extends BaseActivity<ActivitySearchCustomerB
     }
 
     private boolean validateInfo() {
-        if (mActivitySearchCustomerBinding.userName.getText().toString().trim().isEmpty() ||
-                mActivitySearchCustomerBinding.userName.getText().toString().length() < 10) {
-            mActivitySearchCustomerBinding.textLayoutUserName.setError(wrapInCustomfont(getString(R.string.validation_name)));
-            mActivitySearchCustomerBinding.userName.requestFocus();
-            return false;
-        } else {
-            mActivitySearchCustomerBinding.textLayoutUserName.setErrorEnabled(false);
-        }
-        if (mActivitySearchCustomerBinding.telHome.getText().toString().length() < 10) {
-            mActivitySearchCustomerBinding.textLayoutTelHome.setError(wrapInCustomfont(getString(R.string.validation_telhome)));
-            mActivitySearchCustomerBinding.telHome.requestFocus();
-            return false;
-        } else {
-            mActivitySearchCustomerBinding.textLayoutTelHome.setErrorEnabled(false);
-        }
+//        if (mActivitySearchCustomerBinding.userName.getText().toString().trim().isEmpty() ||
+//                mActivitySearchCustomerBinding.userName.getText().toString().length() < 10) {
+//            mActivitySearchCustomerBinding.textLayoutUserName.setError(wrapInCustomfont(getString(R.string.validation_name)));
+//            mActivitySearchCustomerBinding.userName.requestFocus();
+//            return false;
+//        } else {
+//            mActivitySearchCustomerBinding.textLayoutUserName.setErrorEnabled(false);
+//        }
+//        if (mActivitySearchCustomerBinding.telHome.getText().toString().length() < 10) {
+//            mActivitySearchCustomerBinding.textLayoutTelHome.setError(wrapInCustomfont(getString(R.string.validation_telhome)));
+//            mActivitySearchCustomerBinding.telHome.requestFocus();
+//            return false;
+//        } else {
+//            mActivitySearchCustomerBinding.textLayoutTelHome.setErrorEnabled(false);
+//        }
         if (mActivitySearchCustomerBinding.tel.getText().toString().trim().isEmpty() ||
                 mActivitySearchCustomerBinding.tel.getText().toString().length() < 10) {
             mActivitySearchCustomerBinding.textLayoutTel.setError(wrapInCustomfont(getString(R.string.validation_phonenumber)));

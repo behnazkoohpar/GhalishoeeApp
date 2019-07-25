@@ -17,7 +17,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="@{()->viewModel.openOrder()}"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -54,6 +53,17 @@
             android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
+
+        <Button
+            style="@style/AppTheme.ButtonPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:onClick="@{() -> viewModel.onCreateNewCustomer()}"
+            android:text="ثبت مشتری جدید" />
 
     </LinearLayout>
 

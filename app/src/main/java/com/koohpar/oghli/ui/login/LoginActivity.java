@@ -102,6 +102,8 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding, LoginViewM
         mLoginViewModel.getDataManager().setCurrentUserLoggedInMode(DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER);
         mLoginViewModel.getDataManager().updateUserInfo(
                 DataManager.LoggedInMode.LOGGED_IN_MODE_SERVER,
+                userModel.getServiceManID(),
+                userModel.getServiceManName(),
                 userModel.getUserId(),
                 userModel.getUserName(),
                 userModel.getPassword(),

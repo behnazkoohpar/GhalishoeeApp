@@ -1,7 +1,10 @@
 package com.koohpar.oghli.api;
 
 import com.koohpar.oghli.data.model.api.BaseResponse;
+import com.koohpar.oghli.data.model.api.BranchResponse;
 import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.MantagheResponse;
+import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrdersModel;
 import com.koohpar.oghli.data.model.api.TokenResponse;
@@ -10,6 +13,8 @@ import com.koohpar.oghli.ui.listSum.ListSumRequestBody;
 import com.koohpar.oghli.ui.login.LoginRequestBody;
 import com.koohpar.oghli.ui.searchCustomer.SearchCustomerRequestBody;
 import com.koohpar.oghli.ui.showOrder.ShowOrdersRequestBody;
+import com.koohpar.oghli.ui.signUpCustomer.AddCustomerRequestBody;
+import com.koohpar.oghli.ui.signUpCustomer.ListBaseRequestBody;
 
 import java.util.List;
 
@@ -51,7 +56,22 @@ public class AppRestManager implements RestManager {
     }
 
     @Override
-    public Observable<OrdersModel> showOrdersDetail(ShowOrdersRequestBody showOrdersRequestBody) {
+    public Observable<List<OrderDetailModel>> showOrdersDetail(ShowOrdersRequestBody showOrdersRequestBody) {
         return iCallApi.showOrderDetail(showOrdersRequestBody);
+    }
+
+    @Override
+    public Observable<List<MantagheResponse>> listMantaghe(ListBaseRequestBody listBaseRequestBody) {
+        return iCallApi.mantaghe(listBaseRequestBody);
+    }
+
+    @Override
+    public Observable<List<BranchResponse>> listBranch(ListBaseRequestBody listBaseRequestBody) {
+        return iCallApi.branch(listBaseRequestBody);
+    }
+
+    @Override
+    public Observable addCustomer(AddCustomerRequestBody addCustomerRequestBody) {
+        return iCallApi.addCustomer(addCustomerRequestBody);
     }
 }

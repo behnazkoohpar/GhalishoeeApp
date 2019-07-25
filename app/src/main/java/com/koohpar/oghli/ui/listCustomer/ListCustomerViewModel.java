@@ -25,7 +25,8 @@ public class ListCustomerViewModel extends BaseViewModel<ListCustomerNavigator> 
         super(dataManager, mRestManager, mSchedulersFacade, mToastLiveData, mCompositeDisposable);
     }
 
-    public void openOrder(){
-        getNavigator().openOrder();
+
+    public void onCreateNewCustomer(){
+        getNavigator().onCreateNewCustomer();
     }
 }

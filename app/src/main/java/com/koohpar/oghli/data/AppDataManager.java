@@ -41,8 +41,28 @@ public class AppDataManager implements DataManager {
     }
 
     @Override
+    public String getServiceManId() {
+        return mPreferencesHelper.getServiceManId();
+    }
+
+    @Override
+    public String getServiceManName() {
+        return mPreferencesHelper.getServiceManName();
+    }
+
+    @Override
     public void setUserId(String userId) {
         mPreferencesHelper.setUserId(userId);
+    }
+
+    @Override
+    public void setServiceManId(String serviceManId) {
+        mPreferencesHelper.setServiceManId(serviceManId);
+    }
+
+    @Override
+    public void setServiceManName(String serviceManName) {
+        mPreferencesHelper.setServiceManName(serviceManName);
     }
 
     @Override
@@ -189,12 +209,16 @@ public class AppDataManager implements DataManager {
     @Override
     public void updateUserInfo(
             LoggedInMode loggedInMode,
+            String serviceManId,
+            String serviceManName,
             String userId,
             String vUserName,
             String vPassword,
             String vName,
             byte[] image) {
         setCurrentUserLoggedInMode(loggedInMode);
+        setServiceManId(serviceManId);
+        setServiceManName(serviceManName);
         setUserId(userId);
         setUsername(vUserName);
         setPassword(vPassword);
@@ -206,6 +230,8 @@ public class AppDataManager implements DataManager {
     public void setUserAsLoggedOut() {
         updateUserInfo(
                 DataManager.LoggedInMode.LOGGED_IN_MODE_LOGGED_OUT,
+                "",
+                "",
                 "",
                 "",
                 "",

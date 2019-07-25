@@ -37,8 +37,8 @@ public class SearchCustomerViewModel extends BaseViewModel<SearchCustomerNavigat
     }
 
 
-    public void searchCustomer(String name, String tel, String telHome, String ooghli) {
-        Disposable disposable = mRestManager.searchCustomer(new SearchCustomerRequestBody(tel, telHome,name, ooghli))
+    public void searchCustomer( String tel,String ooghli) {
+        Disposable disposable = mRestManager.searchCustomer(new SearchCustomerRequestBody(tel, ooghli))
                 .subscribeOn(mSchedulersFacade.io())
                 .observeOn(mSchedulersFacade.ui())
                 .subscribe(r -> {

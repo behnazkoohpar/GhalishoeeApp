@@ -13,9 +13,10 @@
             type="com.koohpar.oghli.ui.showOrder.ShowOrderViewModel" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <RelativeLayout
             android:id="@+id/toolbar"
@@ -31,7 +32,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/margin_normal"
                 android:padding="@dimen/padding_common"
-                android:src="@drawable/info"
+                android:src="@drawable/search"
                 android:tint="@color/white" />
 
             <TextView
@@ -42,143 +43,25 @@
                 android:layout_toLeftOf="@+id/imgCard"
                 android:text="@string/info_order"
                 android:textColor="@color/white" />
-
-
         </RelativeLayout>
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar"
-            android:layout_marginLeft="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:layout_marginRight="@dimen/margin_normal"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/name"
-                    style="@style/AppTheme.TextViewDetailLarge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="name" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/name"
+                style="@style/AppTheme.TextViewDetailLarge"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:background="@drawable/bg_white">
-
-                <TextView
-                    style="@style/AppTheme.TextViewWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_small"
-                    android:text="شماره فاکتور:" />
-
-                <TextView
-                    android:id="@+id/factorNumber"
-                    style="@style/AppTheme.TextViewDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/margin_normal"
-                    android:text="123456" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:background="@drawable/bg_white">
-
-                <TextView
-                    style="@style/AppTheme.TextViewWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_small"
-                    android:text="نوع خدمت:" />
-
-                <TextView
-                    android:id="@+id/typeOrder"
-                    style="@style/AppTheme.TextViewDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="name" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:background="@drawable/bg_white">
-
-                <TextView
-                    style="@style/AppTheme.TextViewWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_small"
-                    android:text="تعداد سفارش:" />
-
-                <TextView
-                    android:id="@+id/numberOrder"
-                    style="@style/AppTheme.TextViewDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="name" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_small"
-                android:background="@drawable/bg_white">
-
-                <TextView
-                    android:id="@+id/tPrice"
-                    style="@style/AppTheme.TextViewWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_margin="@dimen/margin_small"
-                    android:text="قیمت:" />
-
-                <TextView
-                    android:id="@+id/price"
-                    style="@style/AppTheme.TextViewDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="name" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <Button
-            style="@style/AppTheme.ButtonPrimary"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin_small"
+                android:text="name" />
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_margin="15dp"
-            android:text="@string/set_order" />
+            android:layout_height="wrap_content">
 
-    </RelativeLayout>
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
 </layout>

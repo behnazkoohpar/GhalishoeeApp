@@ -13,6 +13,7 @@
     <color name="statusBar">#0D1F61</color>
     <color name="background">#ffffff</color>
     <color name="backgroundPage">#ecebe7</color>
+    <color name="backgroundPage2">#F5F5F5</color>
     <color name="backgroundPageLogin">#dcdcdc</color>
     <color name="backPicture">#ffcccc</color>
     <color name="divider">#b1b1b1</color>

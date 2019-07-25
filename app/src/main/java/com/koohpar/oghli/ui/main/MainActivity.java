@@ -139,6 +139,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     "",
                     "",
                     "",
+                    "",
+                    "",
                     null);
 
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);

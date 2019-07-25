@@ -30,6 +30,8 @@ public class AppPreferencesHelper implements PreferencesHelper {
     private static final String PREF_KEY_LATITUDE = "PREF_KEY_LATITUDE";
     private static final String PREF_KEY_LONGITUDE = "PREF_KEY_LONGITUDE";
     private static final String PREF_KEY_NATIONAL_CODE_CLUB = "PREF_KEY_NATIONAL_CODE_CLUB";
+    private static final String PREF_KEY_SERVIE_MAN_ID = "PREF_KEY_SERVIE_MAN_ID";
+    private static final String PREF_KEY_SERVICE_MAN_NAME = "PREF_KEY_SERVICE_MAN_NAME";
 
     private final SharedPreferences mPrefs;
 
@@ -45,8 +47,28 @@ public class AppPreferencesHelper implements PreferencesHelper {
     }
 
     @Override
+    public String getServiceManId() {
+        return mPrefs.getString(PREF_KEY_SERVIE_MAN_ID, "");
+    }
+
+    @Override
+    public String getServiceManName() {
+        return mPrefs.getString(PREF_KEY_SERVICE_MAN_NAME, "");
+    }
+
+    @Override
     public void setUserId(String userId) {
         mPrefs.edit().putString(PREF_KEY_USER_ID, userId).apply();
+    }
+
+    @Override
+    public void setServiceManId(String serviceManId) {
+        mPrefs.edit().putString(PREF_KEY_SERVIE_MAN_ID, serviceManId).apply();
+    }
+
+    @Override
+    public void setServiceManName(String serviceManName) {
+        mPrefs.edit().putString(PREF_KEY_SERVICE_MAN_NAME, serviceManName).apply();
     }
 
     @Override

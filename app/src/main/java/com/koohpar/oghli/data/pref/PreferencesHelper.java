@@ -13,8 +13,12 @@ public interface PreferencesHelper {
     void setCurrentUserLoggedInMode(DataManager.LoggedInMode mode);
 
     String getUserId();
+    String getServiceManId();
+    String getServiceManName();
 
     void setUserId(String userId);
+    void setServiceManId(String serviceManId);
+    void setServiceManName(String serviceManName);
 
     String getUsername();
 

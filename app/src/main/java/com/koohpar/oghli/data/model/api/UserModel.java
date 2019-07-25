@@ -2,11 +2,29 @@ package com.koohpar.oghli.data.model.api;
 
 public class UserModel {
    
+    private String ServiceManID;
+    private String ServiceManName;
     private String UserId;
     private String uName;
     private String UserName;
     private String Password;
     private byte[] UserImage;
+
+    public String getServiceManID() {
+        return ServiceManID;
+    }
+
+    public void setServiceManID(String serviceManID) {
+        ServiceManID = serviceManID;
+    }
+
+    public String getServiceManName() {
+        return ServiceManName;
+    }
+
+    public void setServiceManName(String serviceManName) {
+        ServiceManName = serviceManName;
+    }
 
     public String getUserId() {
         return UserId;

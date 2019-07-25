@@ -11,6 +11,8 @@ public interface DataManager extends PreferencesHelper {
     void setUserAsLoggedOut();
     void updateUserInfo(
             LoggedInMode loggedInMode,
+            String serviceManId,
+            String serviceManName,
             String userId,
             String vUserName,
             String vPassword,
