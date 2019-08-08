@@ -20,18 +20,17 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:elevation="16dp"
-            android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/sms"
-            android:tint="@color/colorPrimary"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/bg_btm_circle"
+            android:elevation="16dp"
             android:padding="@dimen/padding_common"
-            android:background="@drawable/bg_btm_circle"/>
+            android:src="@drawable/sms"
+            android:tint="@color/colorPrimary" />
 
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/btn_alert_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp">
@@ -43,8 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/img"
             android:text="@string/title"
-            android:visibility="gone"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:visibility="gone" />
 
 
         <TextView
@@ -58,4 +57,14 @@
             android:text="@string/text"
             android:textAlignment="center" />
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_alert_ok"
+        style="@style/AppTheme.ButtonPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginRight="@dimen/margin_normal"
+        android:layout_marginBottom="@dimen/margin_small"
+        android:text="@string/ok" />
 </LinearLayout>

@@ -4,9 +4,8 @@ import android.arch.lifecycle.MutableLiveData;
 
 import com.koohpar.oghli.api.RestManager;
 import com.koohpar.oghli.data.DataManager;
-import com.koohpar.oghli.data.model.api.BaseResponse;
-import com.koohpar.oghli.data.model.api.TokenResponse;
 import com.koohpar.oghli.data.model.api.UserModel;
+import com.koohpar.oghli.data.model.api.requestBody.LoginRequestBody;
 import com.koohpar.oghli.di.module.RxRetrofitErrorConsumer;
 import com.koohpar.oghli.ui.base.BaseViewModel;
 import com.koohpar.oghli.utils.AppConstants;

@@ -2,9 +2,7 @@ package com.koohpar.oghli.ui.signUpCustomer;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -13,10 +11,11 @@ import android.widget.ArrayAdapter;
 import com.koohpar.oghli.BR;
 import com.koohpar.oghli.R;
 import com.koohpar.oghli.data.model.api.BranchResponse;
-import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.Customer;
 import com.koohpar.oghli.data.model.api.MantagheResponse;
 import com.koohpar.oghli.databinding.ActivitySignUpCustomerBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
+import com.koohpar.oghli.ui.order.OrderActivity;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
 
@@ -72,12 +71,21 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
     @Override
     public void addCustomer() {
         try {
-            CustomerModel customerModel= new CustomerModel();
-            customerModel.setAddress(mActivitySignUpCustomerBinding.address.getText().toString());
+            Customer customerModel= new Customer();
+            customerModel.setCollectAddress(mActivitySignUpCustomerBinding.address.getText().toString());
             customerModel.setCustName(mActivitySignUpCustomerBinding.userName.getText().toString());
             customerModel.setCollectMobile(mActivitySignUpCustomerBinding.tel.getText().toString());
-            customerModel.setPhone(mActivitySignUpCustomerBinding.telHome.getText().toString());
+            customerModel.setCollectPhone(mActivitySignUpCustomerBinding.telHome.getText().toString());
             customerModel.setCustDesc(mActivitySignUpCustomerBinding.desc.getText().toString());
+            customerModel.setCreatedBy(mSignUpCustomerViewModel.getDataManager().getServiceManId());
+            customerModel.setCreatedDate("1398/05/06");
+            customerModel.setBranchID("00000000-0000-0000-0000-000000000000");
+            customerModel.setCustNo("");
+            customerModel.setBirthDate("");
+            customerModel.setCustSex(0);
+            customerModel.setEshterakNo("");
+            customerModel.setGeograficalID("00000000-0000-0000-0000-000000000000");
+
 
             mSignUpCustomerViewModel.callAddCustomer(AppConstants.REQUEST_OOGHLI,customerModel);
             mSignUpCustomerViewModel.getAddCustomerMutableLiveData().observe(this, this::receivedDataAddCustomer);
@@ -113,7 +121,8 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
 
     private void receivedDataAddCustomer(String data) {
         if (data != null) {
-
+            OrderActivity.customerId=data;
+            startActivity(OrderActivity.getStartIntent(SignUpCustomerActivity.this));
         } else {
             CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
         }

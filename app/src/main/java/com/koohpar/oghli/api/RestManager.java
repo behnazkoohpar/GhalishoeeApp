@@ -1,18 +1,29 @@
 package com.koohpar.oghli.api;
 
 import com.koohpar.oghli.data.model.api.BranchResponse;
-import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.Customer;
+import com.koohpar.oghli.data.model.api.LakeStatusModel;
 import com.koohpar.oghli.data.model.api.MantagheResponse;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
-import com.koohpar.oghli.data.model.api.OrdersModel;
+import com.koohpar.oghli.data.model.api.OrderTypeModel;
+import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
+import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
+import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
+import com.koohpar.oghli.data.model.api.ServiceAttrib4Model;
+import com.koohpar.oghli.data.model.api.ServicesModel;
 import com.koohpar.oghli.data.model.api.UserModel;
-import com.koohpar.oghli.ui.listSum.ListSumRequestBody;
-import com.koohpar.oghli.ui.login.LoginRequestBody;
-import com.koohpar.oghli.ui.searchCustomer.SearchCustomerRequestBody;
-import com.koohpar.oghli.ui.showOrder.ShowOrdersRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListSumRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.LoginRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListAttributeRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
+import com.koohpar.oghli.ui.editOrder.EditDetailRequestBody;
+import com.koohpar.oghli.ui.order.OrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.DeleteOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.LakeOrderRequestBody;
 import com.koohpar.oghli.ui.signUpCustomer.AddCustomerRequestBody;
-import com.koohpar.oghli.ui.signUpCustomer.ListBaseRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListBaseRequestBody;
 
 import java.util.List;
 
@@ -23,7 +34,7 @@ public interface RestManager {
 
     Observable<UserModel> loginUser(LoginRequestBody loginRequestBody);
 
-    Observable<List<CustomerModel>> searchCustomer(SearchCustomerRequestBody searchCustomerRequestBody);
+    Observable<List<Customer>> searchCustomer(SearchCustomerRequestBody searchCustomerRequestBody);
 
     Observable<List<OrderMissionDetailModel>> listJam(ListSumRequestBody listSumRequestBody);
 
@@ -36,5 +47,25 @@ public interface RestManager {
     Observable<List<BranchResponse>> listBranch(ListBaseRequestBody listBaseRequestBody);
 
     Observable<String> addCustomer(AddCustomerRequestBody addCustomerRequestBody);
+
+    Observable<List<ServicesModel>> listServices(ListBaseRequestBody listBaseRequestBody);
+
+    Observable<List<OrderTypeModel>> listOrderType(ListBaseRequestBody listBaseRequestBody);
+
+    Observable<List<ServiceAttrib3Model>> listCity(ListAttributeRequestBody listAttRequestBody);
+
+    Observable<List<ServiceAttrib2Model>> listJens(ListAttributeRequestBody listAttributeRequestBody);
+
+    Observable<List<ServiceAttrib1Model>> listShekl(ListAttributeRequestBody listAttributeRequestBody);
+
+    Observable<List<ServiceAttrib4Model>> listRang(ListAttributeRequestBody listAttributeRequestBody);
+
+    Observable<String> insertOrder(OrderRequestBody orderRequestBody);
+
+    Observable<Boolean> editDetail(EditDetailRequestBody editDetailRequestBody);
+
+    Observable<List<LakeStatusModel>> lakeOrder(LakeOrderRequestBody lakeOrderRequestBody);
+
+    Observable<Boolean> deleteOrderDetail(DeleteOrderRequestBody deleteOrderRequestBody);
 
 }

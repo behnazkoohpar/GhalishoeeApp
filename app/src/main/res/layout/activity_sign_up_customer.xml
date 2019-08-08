@@ -225,7 +225,7 @@
                     app:boxBackgroundMode="outline"
                     app:boxStrokeColor="@color/colorPrimary"
                     app:counterEnabled="false"
-                    app:counterMaxLength="2"
+                    app:counterMaxLength="200"
                     app:errorEnabled="false"
                     app:helperTextEnabled="true">
 
@@ -234,7 +234,7 @@
                         style="@style/AppTheme.TextViewTitle"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="text"
                         android:maxLength="200"
                         android:textAlignment="center" />

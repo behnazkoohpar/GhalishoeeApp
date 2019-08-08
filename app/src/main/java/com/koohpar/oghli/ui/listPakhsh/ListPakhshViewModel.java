@@ -7,7 +7,7 @@ import com.koohpar.oghli.data.DataManager;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.di.module.RxRetrofitErrorConsumer;
 import com.koohpar.oghli.ui.base.BaseViewModel;
-import com.koohpar.oghli.ui.listSum.ListSumRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListSumRequestBody;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.rx.SchedulersFacade;
 import com.koohpar.oghli.utils.rx.SingleLiveData;
@@ -29,7 +29,13 @@ public class ListPakhshViewModel extends BaseViewModel<ListPakhshNavigator> impl
     public ListPakhshViewModel(DataManager dataManager, RestManager mRestManager, SchedulersFacade mSchedulersFacade, SingleLiveData<Integer> mToastLiveData, CompositeDisposable mCompositeDisposable) {
         super(dataManager, mRestManager, mSchedulersFacade, mToastLiveData, mCompositeDisposable);
     }
+    public void search(){
+        getNavigator().callListPakhsh();
+    }
 
+    public void openCalendar(){
+        getNavigator().openFromDateCalendar();
+    }
 
     public void callListPakhsh(String serviceManID, String jamDate, String ooghli) {
         Disposable disposable = mRestManager.listPakhsh(new ListSumRequestBody(serviceManID, jamDate, ooghli))

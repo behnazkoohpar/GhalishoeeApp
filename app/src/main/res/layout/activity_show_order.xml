@@ -13,7 +13,7 @@
             type="com.koohpar.oghli.ui.showOrder.ShowOrderViewModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -44,24 +44,158 @@
                 android:text="@string/info_order"
                 android:textColor="@color/white" />
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/name"
-                style="@style/AppTheme.TextViewDetailLarge"
-                android:layout_width="wrap_content"
+        <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:layout_margin="@dimen/margin_mini_mini_small"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:contentPadding="5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/margin_small"
-                android:text="name" />
-        </RelativeLayout>
+                android:layout_gravity="right"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/name"
+                        style="@style/AppTheme.TextViewDetailLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:padding="@dimen/padding_common"
+                        android:text="@string/name" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_500" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/txtnumber"
+                        style="@style/AppTheme.TextViewWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:text="@string/number" />
+
+                    <TextView
+                        android:id="@+id/telnumber"
+                        style="@style/AppTheme.TextViewDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:layout_toLeftOf="@+id/txtnumber"
+                        android:text="@string/number"
+                        android:textColor="@color/colorPrimary" />
+
+                    <TextView
+                        android:id="@+id/txtnumber2"
+                        style="@style/AppTheme.TextViewWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginRight="@dimen/margin_large"
+                        android:layout_toRightOf="@+id/numberhome"
+                        android:text="@string/numberhome" />
+
+                    <TextView
+                        android:id="@+id/numberhome"
+                        style="@style/AppTheme.TextViewDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_large"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:text="@string/numberhome"
+                        android:textColor="@color/colorPrimary" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/taddress"
+                        style="@style/AppTheme.TextViewWhite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:text="@string/address" />
+
+                    <TextView
+                        android:id="@+id/address"
+                        style="@style/AppTheme.TextViewDetail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_marginRight="@dimen/margin_small"
+                        android:layout_toLeftOf="@+id/taddress"
+                        android:text="@string/address" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/card_view"/>
 
-        </android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+        <Button
+            android:id="@+id/result"
+            style="@style/AppTheme.ButtonPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/list"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{() -> viewModel.result()}"
+            android:text="دلایل عدم" />
+
+        <Button
+            android:id="@+id/btn"
+            style="@style/AppTheme.ButtonPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/result"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:onClick="@{() -> viewModel.addOrder()}"
+            android:text="ثبت سفارش جدید" />
+    </RelativeLayout>
 </layout>

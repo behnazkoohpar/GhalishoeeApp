@@ -6,6 +6,7 @@ public class OrderMissionDetailModel{
         private String OrderMissionID;
         private int RowNo;
         private String OrderID;
+        private String CustomerId;
         private int OrdersCount;
         private String CustNo;
         private String PreName;
@@ -33,6 +34,14 @@ public class OrderMissionDetailModel{
         private String KeyWords2;
         private String GeographicalName1;
         private String GeographicalName2;
+
+    public String getCustomerId() {
+        return CustomerId;
+    }
+
+    public void setCustomerId(String customerId) {
+        CustomerId = customerId;
+    }
 
     public String getOrderMissionDetailID() {
         return OrderMissionDetailID;

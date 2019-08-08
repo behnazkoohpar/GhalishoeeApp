@@ -16,12 +16,16 @@ import com.koohpar.oghli.ui.base.BaseActivity;
 import com.koohpar.oghli.ui.showOrder.ShowOrderActivity;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
+import com.mojtaba.materialdatetimepicker.date.DatePickerDialog;
+import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSumViewModel> implements AppConstants, ListSumNavigator {
+public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSumViewModel> implements AppConstants, ListSumNavigator,
+        DatePickerDialog.OnDateSetListener {
 
     @Inject
     ListSumViewModel mListSumViewModel;
@@ -30,6 +34,13 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
     private RecyclerView recyclerViewListOrderMissionDetailModel;
     private LinearLayoutManager layoutOrderMissionDetailModel;
     private ListOrderMissionDetailModelAdapter mAdapter;
+    private String mYear;
+    private String mMonth;
+    private String mDay;
+    private boolean selectedDateFrom;
+    private boolean selectedTimeFrom;
+    private PersianCalendar now;
+    private DatePickerDialog dpd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +49,16 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
             mActivityListSumBinding = getViewDataBinding();
             mListSumViewModel.setNavigator(this);
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+            PersianCalendar persianCalendar = new PersianCalendar();
+            mYear = String.valueOf(persianCalendar.getPersianYear());
+            mMonth = String.valueOf(persianCalendar.getPersianMonth());
+            mDay = String.valueOf(persianCalendar.getPersianDay());
+            if (Integer.parseInt(mMonth) < 10)
+                mMonth = "0" + mMonth;
+            if (Integer.parseInt(mDay) < 10)
+                mDay = "0" + mDay;
+            mActivityListSumBinding.date.setText(mYear + "/" + mMonth + "/" + mDay);
             callListSum();
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,11 +84,15 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
         return R.layout.activity_list_sum;
     }
 
-    private void callListSum() {
+    @Override
+    public void callListSum() {
         try {
-
-            mListSumViewModel.callListSum(
-                    mListSumViewModel.getDataManager().getServiceManId(), "1398/04/28", AppConstants.REQUEST_OOGHLI);
+            if (mActivityListSumBinding.date.getText().toString().isEmpty())
+                mListSumViewModel.callListSum(
+                        mListSumViewModel.getDataManager().getServiceManId(), mYear + "/" + mMonth + "/" + mDay, AppConstants.REQUEST_OOGHLI);
+            else
+                mListSumViewModel.callListSum(
+                        mListSumViewModel.getDataManager().getServiceManId(), mActivityListSumBinding.date.getText().toString(), AppConstants.REQUEST_OOGHLI);
             mListSumViewModel.getOrderMissionDetailModelMutableLiveData().observe(this, this::receivedData);
 
         } catch (Exception e) {
@@ -85,6 +110,10 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
     }
 
     private void setListParameter(List<OrderMissionDetailModel> data) {
+        if (data.size() == 0) {
+            CommonUtils.showSingleButtonAlert(ListSumActivity.this, getString(R.string.text_attention), getString(R.string.data_is_null), null, null);
+            return;
+        }
         recyclerViewListOrderMissionDetailModel = mActivityListSumBinding.list;
         layoutOrderMissionDetailModel = new LinearLayoutManager(this);
         recyclerViewListOrderMissionDetailModel.setLayoutManager(layoutOrderMissionDetailModel);
@@ -95,6 +124,11 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
             public void onOpenClick(int position) {
                 ShowOrderActivity.orderId = data.get(position).getOrderID();
                 ShowOrderActivity.name = data.get(position).getCustName();
+                ShowOrderActivity.customerId = data.get(position).getCustomerId();
+                ShowOrderActivity.address = data.get(position).getCollectAddress();
+                ShowOrderActivity.tel = data.get(position).getCollectMobile();
+                ShowOrderActivity.telHome = data.get(position).getCollectPhone();
+                ShowOrderActivity.isFromSum =true;
                 startActivity(ShowOrderActivity.getStartIntent(ListSumActivity.this));
             }
 
@@ -112,6 +146,32 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
                 startActivity(intent);
             }
         });
+    }
+
+    public void openFromDateCalendar() {
+        now = new PersianCalendar();
+        dpd = DatePickerDialog.newInstance(
+                this,
+                now.getPersianYear(),
+                now.getPersianMonth(),
+                now.getPersianDay()
+        );
+        selectedDateFrom = true;
+        dpd.show(getFragmentManager(), "Datepickerdialog");
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String day, month;
+        day = String.valueOf(dayOfMonth);
+        month = String.valueOf((monthOfYear + 1));
+        if (dayOfMonth < 10)
+            day = "0" + dayOfMonth;
+        if ((monthOfYear + 1) < 10)
+            month = "0" + (monthOfYear + 1);
+        String date = year + "/" + month + "/" + day;
+        mActivityListSumBinding.date.setText(date);
+        callListSum();
     }
 
 

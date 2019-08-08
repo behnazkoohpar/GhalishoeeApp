@@ -31,6 +31,13 @@
                 android:layout_centerVertical="true"
                 android:padding="@dimen/padding_small"
                 android:text="@string/name" />
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/info"
+                android:tint="@color/colorPrimary"
+                android:layout_marginLeft="@dimen/margin_normal"/>
         </RelativeLayout>
 
         <View
@@ -61,6 +68,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginRight="@dimen/margin_small"
+                android:textColor="@color/colorPrimary"
                 android:layout_toLeftOf="@+id/txtnumber"
                 android:text="@string/number" />
 
@@ -84,6 +92,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="@dimen/margin_small"
+                android:textColor="@color/colorPrimary"
                 android:layout_marginTop="@dimen/margin_small"
                 android:text="@string/numberhome" />
         </RelativeLayout>

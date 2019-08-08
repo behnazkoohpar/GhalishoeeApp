@@ -139,11 +139,11 @@ public final class CommonUtils implements AppConstants {
     public static void showSingleButtonAlert(Context context, String title, String msg, String buttonTitle, final IL listner) {
         try {
             TextView tvAlertTitle, tvAlertMessage;
-            RelativeLayout btnAlertOK;
+            Button btnAlertOK;
             View dialogAlert = LayoutInflater.from(context).inflate(R.layout.dialog_alert, null);
             tvAlertTitle = (TextView) dialogAlert.findViewById(R.id.tv_alert_title);
             tvAlertMessage = (TextView) dialogAlert.findViewById(R.id.tv_alert_message);
-            btnAlertOK = (RelativeLayout) dialogAlert.findViewById(R.id.btn_alert_ok);
+            btnAlertOK = (Button) dialogAlert.findViewById(R.id.btn_alert_ok);
             dialogAlert.setLayoutParams(new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 
             if (!TextUtils.isEmpty(msg))

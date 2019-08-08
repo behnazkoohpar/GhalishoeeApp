@@ -1,6 +1,6 @@
 package com.koohpar.oghli.data.model.api;
 
-public class CustomerModel {
+public class Customer {
 
     private String CustomerID;
     private String CustomerGroupID;
@@ -84,7 +84,7 @@ public class CustomerModel {
     private String ReleasePhone;
     private String ReleaseAddress;
 
-//    class CustomerToMapModel : CustomerModel
+//    class CustomerToMapModel : Customer
 //    private String CustomerToMapId;
 //    private String Lat;
 //    private String Lng;

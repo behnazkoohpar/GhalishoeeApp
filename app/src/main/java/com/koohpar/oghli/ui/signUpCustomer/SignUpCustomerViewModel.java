@@ -4,11 +4,10 @@ import android.arch.lifecycle.MutableLiveData;
 
 import com.koohpar.oghli.api.RestManager;
 import com.koohpar.oghli.data.DataManager;
-import com.koohpar.oghli.data.model.api.BaseResponse;
 import com.koohpar.oghli.data.model.api.BranchResponse;
-import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.Customer;
 import com.koohpar.oghli.data.model.api.MantagheResponse;
-import com.koohpar.oghli.data.model.api.TokenResponse;
+import com.koohpar.oghli.data.model.api.requestBody.ListBaseRequestBody;
 import com.koohpar.oghli.di.module.RxRetrofitErrorConsumer;
 import com.koohpar.oghli.ui.base.BaseViewModel;
 import com.koohpar.oghli.utils.AppConstants;
@@ -87,7 +86,7 @@ public class SignUpCustomerViewModel extends BaseViewModel<SignUpCustomerNavigat
 
     }
 
-    public void callAddCustomer(String requestOoghli, CustomerModel customerModel) {
+    public void callAddCustomer(String requestOoghli, Customer customerModel) {
         Disposable disposable = mRestManager.addCustomer(new AddCustomerRequestBody(requestOoghli,customerModel))
                 .subscribeOn(mSchedulersFacade.io())
                 .observeOn(mSchedulersFacade.ui())

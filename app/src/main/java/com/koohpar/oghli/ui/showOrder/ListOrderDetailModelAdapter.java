@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.koohpar.oghli.R;
@@ -20,10 +21,19 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
     public ListOrderDetailModelAdapter(List<OrderDetailModel> SlistS) {
         stList = SlistS;
     }
+    private ListOrderDetailModelAdapter.OnItemClickListener mListener;
 
+    public interface OnItemClickListener {
+        void onOpenClick(int position,OrderDetailModel orderDetailModel);
+    }
+
+    public void setOnitemclickListener(ListOrderDetailModelAdapter.OnItemClickListener onitemclickListener) {
+        mListener = onitemclickListener;
+    }
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public final TextView typeOrder, city, jensGhali, form,colorFator,price,discountPrice,priceRufo,quantity,tool,arz,price2;
+        private final Button delete;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -39,6 +49,7 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
             tool = (TextView) itemView.findViewById(R.id.tool);
             arz = (TextView) itemView.findViewById(R.id.arz);
             price2 = (TextView) itemView.findViewById(R.id.price2);
+            delete = (Button) itemView.findViewById(R.id.delete);
 
         }
     }
@@ -67,13 +78,13 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
         viewHolder.tool.setText(String.valueOf(stList.get(position).getLenght()));
         viewHolder.arz.setText(String.valueOf(stList.get(position).getWidth()));
         viewHolder.price2.setText(String.valueOf(stList.get(position).getOrderPrice()));
-//        viewHolder.address.setText(stList.get(position).getServiceAttrib1Name() + ", " +
-//                stList.get(position).getServiceAttrib2Name() + ", " +
-//                stList.get(position).getServiceAttrib3Name() + ", " +
-//                stList.get(position).getServiceAttrib4Name() + ", " +
-//                stList.get(position).getRofuAttrib1Name() + ", " +
-//                stList.get(position).getRofuAttrib2Name() + ", " +
-//                stList.get(position).getRofuDesc());
+
+        viewHolder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onOpenClick(position,stList.get(position));
+            }
+        });
 
     }
 

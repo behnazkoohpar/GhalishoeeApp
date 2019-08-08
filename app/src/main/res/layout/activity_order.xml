@@ -45,7 +45,6 @@
                 android:text="@string/set_order"
                 android:textColor="@color/white" />
 
-
         </RelativeLayout>
 
         <ScrollView
@@ -60,120 +59,218 @@
                 android:layout_marginRight="@dimen/margin_normal"
                 android:orientation="vertical">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/name"
-                        style="@style/AppTheme.TextViewDetailLarge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:text="name" />
-                </RelativeLayout>
-
-                <RelativeLayout
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:background="@drawable/bg_white">
+                    android:layout_margin="@dimen/margin_mini_mini_small"
+                    card_view:cardCornerRadius="5dp"
+                    card_view:cardUseCompatPadding="true"
+                    card_view:contentPadding="5dp">
 
-                    <TextView
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/margin_small"
-                        android:text="شماره فاکتور:" />
+                        android:layout_gravity="right"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:orientation="vertical">
 
-                    <TextView
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/name"
+                                style="@style/AppTheme.TextViewDetailLarge"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:padding="@dimen/padding_common"
+                                android:text="@string/name" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/gray_500" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txtnumber"
+                                style="@style/AppTheme.TextViewWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:text="@string/number" />
+
+                            <TextView
+                                android:id="@+id/telnumber"
+                                style="@style/AppTheme.TextViewDetail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:layout_toLeftOf="@+id/txtnumber"
+                                android:text="@string/number"
+                                android:textColor="@color/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/txtnumber2"
+                                style="@style/AppTheme.TextViewWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/margin_small"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_large"
+                                android:layout_toRightOf="@+id/numberhome"
+                                android:text="@string/numberhome" />
+
+                            <TextView
+                                android:id="@+id/numberhome"
+                                style="@style/AppTheme.TextViewDetail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/margin_large"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:text="@string/numberhome"
+                                android:textColor="@color/colorPrimary" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/taddress"
+                                style="@style/AppTheme.TextViewWhite"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:text="@string/address" />
+
+                            <TextView
+                                android:id="@+id/address"
+                                style="@style/AppTheme.TextViewDetail"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginTop="@dimen/margin_small"
+                                android:layout_marginRight="@dimen/margin_small"
+                                android:layout_toLeftOf="@+id/taddress"
+                                android:text="@string/address" />
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textLayoutfactorNumber"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:fontFamily="@font/iran_sans"
+                    android:hint="@string/factorNumber"
+                    android:visibility="gone"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="10"
+                    app:errorEnabled="false"
+                    app:helperTextEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
                         android:id="@+id/factorNumber"
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
+                        style="@style/AppTheme.TextViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textAlignment="center" />
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_normal"
-                        android:text="123456" />
-                </RelativeLayout>
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_white">
+
+                        <TextView
+                            android:id="@+id/tTyeOrder"
+                            style="@style/AppTheme.TextViewDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/margin_small"
+                            android:text="نوع خدمت:" />
+
+                        <Spinner
+                            android:id="@+id/typeOrder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/tTyeOrder"
+                            android:background="@android:drawable/btn_dropdown"
+                            android:spinnerMode="dropdown" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_white">
+
+                        <TextView
+                            android:id="@+id/tnumberOrder"
+                            style="@style/AppTheme.TextViewDetail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/margin_small"
+                            android:text="تعداد سفارش:" />
+
+                        <Spinner
+                            android:id="@+id/numberOrder"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_toLeftOf="@+id/tnumberOrder"
+                            android:background="@android:drawable/btn_dropdown"
+                            android:spinnerMode="dropdown" />
+                    </RelativeLayout>
+                </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:background="@drawable/bg_white">
 
                     <TextView
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/margin_small"
-                        android:text="نوع خدمت:" />
-
-                    <TextView
-                        android:id="@+id/typeOrder"
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="name" />
-
-                    <ImageView
-                        android:id="@+id/typeArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_normal"
-                        android:src="@drawable/ic_arrow_drop_down" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:background="@drawable/bg_white">
-
-                    <TextView
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_margin="@dimen/margin_small"
-                        android:text="تعداد سفارش:" />
-
-                    <TextView
-                        android:id="@+id/numberOrder"
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="name" />
-
-                    <ImageView
-                        android:id="@+id/numberArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_normal"
-                        android:src="@drawable/ic_arrow_drop_down" />
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:background="@drawable/bg_white">
-
-                    <TextView
+                        android:id="@+id/ttypeFator"
                         style="@style/AppTheme.TextViewDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -182,32 +279,25 @@
                         android:layout_margin="@dimen/margin_small"
                         android:text="نوع فاکتور:" />
 
-                    <TextView
+                    <Spinner
                         android:id="@+id/typeFator"
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="name" />
+                        android:layout_toLeftOf="@+id/ttypeFator"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown" />
 
-                    <ImageView
-                        android:id="@+id/factorArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_normal"
-                        android:src="@drawable/ic_arrow_drop_down" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_small"
-                    android:background="@drawable/bg_white">
+                    android:background="@drawable/bg_white"
+                    android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/tcity"
                         style="@style/AppTheme.TextViewDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -216,32 +306,25 @@
                         android:layout_margin="@dimen/margin_small"
                         android:text="شهر قالی:" />
 
-                    <TextView
+                    <Spinner
                         android:id="@+id/city"
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="name" />
+                        android:layout_toLeftOf="@+id/tcity"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown" />
 
-                    <ImageView
-                        android:id="@+id/cityArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_normal"
-                        android:src="@drawable/ic_arrow_drop_down" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_small"
-                    android:background="@drawable/bg_white">
+                    android:background="@drawable/bg_white"
+                    android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/tjensGhali"
                         style="@style/AppTheme.TextViewDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -250,32 +333,25 @@
                         android:layout_margin="@dimen/margin_small"
                         android:text="جنس قالی:" />
 
-                    <TextView
+                    <Spinner
                         android:id="@+id/jensGhali"
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="name" />
+                        android:layout_toLeftOf="@+id/tjensGhali"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown" />
 
-                    <ImageView
-                        android:id="@+id/jensArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_normal"
-                        android:src="@drawable/ic_arrow_drop_down" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_small"
-                    android:background="@drawable/bg_white">
+                    android:background="@drawable/bg_white"
+                    android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/tform"
                         style="@style/AppTheme.TextViewDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -284,32 +360,25 @@
                         android:layout_margin="@dimen/margin_small"
                         android:text="شکل قالی:" />
 
-                    <TextView
+                    <Spinner
                         android:id="@+id/form"
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="name" />
+                        android:layout_toLeftOf="@+id/tform"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown" />
 
-                    <ImageView
-                        android:id="@+id/formArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_normal"
-                        android:src="@drawable/ic_arrow_drop_down" />
                 </RelativeLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_small"
-                    android:background="@drawable/bg_white">
+                    android:background="@drawable/bg_white"
+                    android:visibility="gone">
 
                     <TextView
+                        android:id="@+id/tcolorFator"
                         style="@style/AppTheme.TextViewDetail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -318,23 +387,13 @@
                         android:layout_margin="@dimen/margin_small"
                         android:text="رنگ قالی:" />
 
-                    <TextView
+                    <Spinner
                         android:id="@+id/colorFator"
-                        style="@style/AppTheme.TextViewDetail"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="name" />
-
-                    <ImageView
-                        android:id="@+id/colorArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_centerInParent="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="@dimen/margin_normal"
-                        android:src="@drawable/ic_arrow_drop_down" />
+                        android:layout_toLeftOf="@+id/tcolorFator"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown" />
                 </RelativeLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -342,7 +401,9 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginRight="4dp"
                     android:fontFamily="@font/iran_sans"
                     android:hint="@string/priceOne"
                     app:boxBackgroundMode="outline"
@@ -365,7 +426,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_small">
 
                     <TextView
                         android:id="@+id/tAbad"
@@ -470,12 +532,254 @@
                         android:textAlignment="center" />
                 </android.support.design.widget.TextInputLayout>
 
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_mini_mini_small"
+                    card_view:cardCornerRadius="5dp"
+                    android:background="@color/backgroundPage2"
+                    card_view:cardUseCompatPadding="true"
+                    card_view:contentPadding="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tSum"
+                            style="@style/AppTheme.TextViewDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/infoSum"
+                            android:textAlignment="center" />
+
+                        <LinearLayout
+                            android:id="@+id/lsum"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tSum"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/textLayouttelSum"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                               android:layout_marginRight="4dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/iran_sans"
+                                android:hint="@string/tel_mobile_number"
+                                app:boxBackgroundMode="outline"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:counterEnabled="false"
+                                app:counterMaxLength="10"
+                                app:errorEnabled="false"
+                                app:helperTextEnabled="true">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/tel"
+                                    style="@style/AppTheme.TextViewTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="number"
+                                    android:maxLength="10"
+                                    android:textAlignment="center" />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/textLayouttelHomeSum"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:layout_marginRight="4dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/iran_sans"
+                                android:hint="@string/tel_home"
+                                app:boxBackgroundMode="outline"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:counterEnabled="false"
+                                app:counterMaxLength="10"
+                                app:errorEnabled="false"
+                                app:helperTextEnabled="true">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/telHome"
+                                    style="@style/AppTheme.TextViewTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="number"
+                                    android:maxLength="10"
+                                    android:textAlignment="center" />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textLayoutAddressSum"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lsum"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="4dp"
+                            android:fontFamily="@font/iran_sans"
+                            android:hint="@string/address"
+                            app:boxBackgroundMode="outline"
+                            app:boxStrokeColor="@color/colorPrimary"
+                            app:counterEnabled="false"
+                            app:counterMaxLength="500"
+                            app:errorEnabled="false"
+                            app:helperTextEnabled="true">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/addressSum"
+                                style="@style/AppTheme.TextViewTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="110dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="500"
+                                android:textAlignment="center" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/card_view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_mini_mini_small"
+                    card_view:cardCornerRadius="5dp"
+                    android:background="@color/backgroundPage2"
+                    card_view:cardUseCompatPadding="true"
+                    card_view:contentPadding="5dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tPakhsh"
+                            style="@style/AppTheme.TextViewDetail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/infoDistribute"
+                            android:textAlignment="center" />
+
+                        <LinearLayout
+                            android:id="@+id/lpakhsh"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tPakhsh"
+                            android:orientation="horizontal">
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/textLayouttelPakhsh"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:layout_marginRight="4dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/iran_sans"
+                                android:hint="@string/tel_mobile_number"
+                                app:boxBackgroundMode="outline"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:counterEnabled="false"
+                                app:counterMaxLength="10"
+                                app:errorEnabled="false"
+                                app:helperTextEnabled="true">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/telpakhsh"
+                                    style="@style/AppTheme.TextViewTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="number"
+                                    android:maxLength="10"
+                                    android:textAlignment="center" />
+                            </android.support.design.widget.TextInputLayout>
+
+                            <android.support.design.widget.TextInputLayout
+                                android:id="@+id/textLayouttelHomePakhsh"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="4dp"
+                                android:layout_marginRight="4dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/iran_sans"
+                                android:hint="@string/tel_home"
+                                app:boxBackgroundMode="outline"
+                                app:boxStrokeColor="@color/colorPrimary"
+                                app:counterEnabled="false"
+                                app:counterMaxLength="10"
+                                app:errorEnabled="false"
+                                app:helperTextEnabled="true">
+
+                                <android.support.design.widget.TextInputEditText
+                                    android:id="@+id/telHomePakhsh"
+                                    style="@style/AppTheme.TextViewTitle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="50dp"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="number"
+                                    android:maxLength="10"
+                                    android:textAlignment="center" />
+                            </android.support.design.widget.TextInputLayout>
+
+                        </LinearLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:id="@+id/textLayoutAddressPakhsh"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/lpakhsh"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginTop="@dimen/margin_small"
+                            android:layout_marginRight="4dp"
+                            android:fontFamily="@font/iran_sans"
+                            android:hint="@string/add_merchant"
+                            app:boxBackgroundMode="outline"
+                            app:boxStrokeColor="@color/colorPrimary"
+                            app:counterEnabled="false"
+                            app:counterMaxLength="500"
+                            app:errorEnabled="false"
+                            app:helperTextEnabled="true">
+
+                            <android.support.design.widget.TextInputEditText
+                                android:id="@+id/addressPakhsh"
+                                style="@style/AppTheme.TextViewTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="110dp"
+                                android:imeOptions="actionNext"
+                                android:inputType="text"
+                                android:maxLength="500"
+                                android:textAlignment="center" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </RelativeLayout>
+
+                </android.support.v7.widget.CardView>
+
                 <Button
                     style="@style/AppTheme.ButtonPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="@dimen/margin_large"
+                    android:onClick="@{()->viewModel.addOrder()}"
                     android:text="@string/set_order" />
 
             </LinearLayout>

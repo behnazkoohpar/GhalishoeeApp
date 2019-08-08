@@ -1,26 +1,34 @@
 package com.koohpar.oghli.api;
 
-import com.koohpar.oghli.data.model.api.BaseResponse;
 import com.koohpar.oghli.data.model.api.BranchResponse;
-import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.Customer;
+import com.koohpar.oghli.data.model.api.LakeStatusModel;
 import com.koohpar.oghli.data.model.api.MantagheResponse;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
-import com.koohpar.oghli.data.model.api.OrdersModel;
-import com.koohpar.oghli.data.model.api.TokenResponse;
+import com.koohpar.oghli.data.model.api.OrderTypeModel;
+import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
+import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
+import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
+import com.koohpar.oghli.data.model.api.ServiceAttrib4Model;
+import com.koohpar.oghli.data.model.api.ServicesModel;
 import com.koohpar.oghli.data.model.api.UserModel;
-import com.koohpar.oghli.ui.listSum.ListSumRequestBody;
-import com.koohpar.oghli.ui.login.LoginRequestBody;
-import com.koohpar.oghli.ui.searchCustomer.SearchCustomerRequestBody;
-import com.koohpar.oghli.ui.showOrder.ShowOrdersRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListSumRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.LoginRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListAttributeRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
+import com.koohpar.oghli.ui.editOrder.EditDetailRequestBody;
+import com.koohpar.oghli.ui.order.OrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.DeleteOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.LakeOrderRequestBody;
 import com.koohpar.oghli.ui.signUpCustomer.AddCustomerRequestBody;
-import com.koohpar.oghli.ui.signUpCustomer.ListBaseRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListBaseRequestBody;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 public class AppRestManager implements RestManager {
@@ -41,7 +49,7 @@ public class AppRestManager implements RestManager {
     }
 
     @Override
-    public Observable<List<CustomerModel>> searchCustomer(SearchCustomerRequestBody searchCustomerRequestBody) {
+    public Observable<List<Customer>> searchCustomer(SearchCustomerRequestBody searchCustomerRequestBody) {
         return iCallApi.searchCustomer(searchCustomerRequestBody);
     }
 
@@ -73,5 +81,55 @@ public class AppRestManager implements RestManager {
     @Override
     public Observable addCustomer(AddCustomerRequestBody addCustomerRequestBody) {
         return iCallApi.addCustomer(addCustomerRequestBody);
+    }
+
+    @Override
+    public Observable<List<ServicesModel>> listServices(ListBaseRequestBody listBaseRequestBody) {
+        return iCallApi.listServices(listBaseRequestBody);
+    }
+
+    @Override
+    public Observable<List<OrderTypeModel>> listOrderType(ListBaseRequestBody listBaseRequestBody) {
+        return iCallApi.listOrderType(listBaseRequestBody);
+    }
+
+    @Override
+    public Observable<List<ServiceAttrib3Model>> listCity(ListAttributeRequestBody listAttRequestBody) {
+        return iCallApi.listCity(listAttRequestBody);
+    }
+
+    @Override
+    public Observable<List<ServiceAttrib2Model>> listJens(ListAttributeRequestBody listAttributeRequestBody) {
+        return iCallApi.listJens(listAttributeRequestBody);
+    }
+
+    @Override
+    public Observable<List<ServiceAttrib1Model>> listShekl(ListAttributeRequestBody listAttributeRequestBody) {
+        return iCallApi.listShekl(listAttributeRequestBody);
+    }
+
+    @Override
+    public Observable<List<ServiceAttrib4Model>> listRang(ListAttributeRequestBody listAttributeRequestBody) {
+        return iCallApi.listRang(listAttributeRequestBody);
+    }
+
+    @Override
+    public Observable<String> insertOrder(OrderRequestBody orderRequestBody) {
+        return iCallApi.insertOrder(orderRequestBody);
+    }
+
+    @Override
+    public Observable<Boolean> editDetail(EditDetailRequestBody editDetailRequestBody) {
+        return iCallApi.editDetail(editDetailRequestBody);
+    }
+
+    @Override
+    public Observable<List<LakeStatusModel>> lakeOrder(LakeOrderRequestBody lakeOrderRequestBody) {
+        return iCallApi.lakeOrder(lakeOrderRequestBody);
+    }
+
+    @Override
+    public Observable<Boolean> deleteOrderDetail(DeleteOrderRequestBody deleteOrderRequestBody) {
+        return iCallApi.deleteOrderDetail(deleteOrderRequestBody);
     }
 }

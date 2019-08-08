@@ -4,9 +4,8 @@ import android.arch.lifecycle.MutableLiveData;
 
 import com.koohpar.oghli.api.RestManager;
 import com.koohpar.oghli.data.DataManager;
-import com.koohpar.oghli.data.model.api.BaseResponse;
+import com.koohpar.oghli.data.model.api.requestBody.ListSumRequestBody;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
-import com.koohpar.oghli.data.model.api.TokenResponse;
 import com.koohpar.oghli.di.module.RxRetrofitErrorConsumer;
 import com.koohpar.oghli.ui.base.BaseViewModel;
 import com.koohpar.oghli.utils.AppConstants;
@@ -25,6 +24,13 @@ public class ListSumViewModel extends BaseViewModel<ListSumNavigator> implements
 
     public MutableLiveData<List<OrderMissionDetailModel>> getOrderMissionDetailModelMutableLiveData() {
         return orderMissionDetailModelMutableLiveData;
+    }
+
+    public void search(){
+        getNavigator().callListSum();
+    }
+    public void openCalendar(){
+        getNavigator().openFromDateCalendar();
     }
 
     public ListSumViewModel(DataManager dataManager, RestManager mRestManager, SchedulersFacade mSchedulersFacade, SingleLiveData<Integer> mToastLiveData, CompositeDisposable mCompositeDisposable) {

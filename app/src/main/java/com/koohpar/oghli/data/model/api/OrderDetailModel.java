@@ -36,6 +36,10 @@ public class OrderDetailModel {
     private float DiscountPrice;
     private float _OrderPrice;
 
+    public OrderDetailModel() {
+
+    }
+
     public float getOrderPrice() {
         return Quantity * UnitPrice + RofuPrice - DiscountPrice;
     }

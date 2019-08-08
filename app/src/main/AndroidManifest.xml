@@ -29,7 +29,8 @@
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.showOrder.ShowOrderActivity"></activity>
+        <activity android:name=".ui.editOrder.EditOrderActivity"></activity>
+        <activity android:name=".ui.showOrder.ShowOrderActivity" />
         <activity android:name=".ui.listPakhsh.ListPakhshActivity" />
         <activity android:name=".ui.listSum.ListSumActivity" />
         <activity android:name=".ui.order.OrderActivity" />

@@ -1,4 +1,4 @@
-package com.koohpar.oghli.ui.login;
+package com.koohpar.oghli.data.model.api.requestBody;
 
 public class LoginRequestBody {
     private String UserName;

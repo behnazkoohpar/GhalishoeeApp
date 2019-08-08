@@ -1,4 +1,4 @@
-package com.koohpar.oghli.ui.listSum;
+package com.koohpar.oghli.data.model.api.requestBody;
 
 public class ListSumRequestBody {
     private String ServiceManID;

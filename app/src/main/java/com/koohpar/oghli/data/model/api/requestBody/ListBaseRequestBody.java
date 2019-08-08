@@ -1,4 +1,4 @@
-package com.koohpar.oghli.ui.signUpCustomer;
+package com.koohpar.oghli.data.model.api.requestBody;
 
 public class ListBaseRequestBody {
     private String OouoOGhla;

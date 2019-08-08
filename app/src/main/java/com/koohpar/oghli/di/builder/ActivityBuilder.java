@@ -1,5 +1,7 @@
 package com.koohpar.oghli.di.builder;
 
+import com.koohpar.oghli.ui.editOrder.EditOrderActivity;
+import com.koohpar.oghli.ui.editOrder.EditOrderActivityModule;
 import com.koohpar.oghli.ui.listCustomer.ListCustomerActivity;
 import com.koohpar.oghli.ui.listCustomer.ListCustomerActivityModule;
 import com.koohpar.oghli.ui.listPakhsh.ListPakhshActivity;
@@ -56,6 +58,9 @@ public abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = ListPakhshActivityModule.class)
     abstract ListPakhshActivity bindListPakhshActivity();
+
+    @ContributesAndroidInjector(modules = EditOrderActivityModule.class)
+    abstract EditOrderActivity bindEditOrderActivity();
 
 }
 

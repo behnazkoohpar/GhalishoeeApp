@@ -1,28 +1,23 @@
-
+-dontwarn rx.**
 -dontwarn okio.**
--dontwarn retrofit2.Platform$Java8
--dontwarn com.google.errorprone.annotations.*
+-dontwarn javax.annotation.**
 
--keep public class com.koohpar.oghli.data.model.** { *;}
+-dontwarn okhttp3.**
+-dontwarn com.squareup.okhttp3.**
+-keep class com.squareup.okhttp3.** { *; }
+-keep interface com.squareup.okhttp3.** { *; }
+-dontwarn javax.annotation.Nullable
+-dontwarn javax.annotation.ParametersAreNonnullByDefault
+
+-dontwarn retrofit2.**
+-keep class retrofit2.** { *; }
+-keepclasseswithmembers class * {
+    @retrofit.http.* <methods>;
+}
+-dontwarn com.google.errorprone.annotations.*
+-dontwarn javax.naming.directory.*
+-dontwarn javax.naming.*
 -dontwarn junit.textui.*
 -dontnote org.apache.commons.codec.**
 -dontwarn org.conscrypt.*
--dontwarn javax.xml.namespace.*
--dontwarn javax.naming.directory.*
--dontwarn javax.naming.*
--dontnote javax.xml.namespace.*
--dontnote javax.xml.*
--keep class pl.droidsonroids.gif.*
--keep class com.theartofdev.edmodo.cropper.*
--keep class com.github.aakira.expandablelayout.*
--keep class com.github.anastr.speedviewlib.**
--keep class me.itangqi.waveloadingview.*
--keep class com.orm.SugarRecord
--keepclassmembers class net.sourceforge.zbar.ImageScanner { *; }
--keepclassmembers class net.sourceforge.zbar.Image { *; }
--keepclassmembers class net.sourceforge.zbar.Symbol { *; }
--keepclassmembers class net.sourceforge.zbar.SymbolSet { *; }
-#-keep public class com.google.android.gms.* { public *; }
-#-dontwarn com.google.android.gms.**
-#-keep class com.google.android.gms.maps.** { *; }
-#-keep interface com.google.android.gms.maps.* { *; }
+-keep public class com.koohpar.oghli.data.model.** { *;}

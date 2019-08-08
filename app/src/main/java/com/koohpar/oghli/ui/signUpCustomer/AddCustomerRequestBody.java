@@ -1,14 +1,14 @@
 package com.koohpar.oghli.ui.signUpCustomer;
 
-import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.Customer;
 
 public class AddCustomerRequestBody {
     private String OouoOGhla;
-    private CustomerModel customerModel;
+    private Customer Customer;
 
-    public AddCustomerRequestBody(String oouoOGhla, CustomerModel customerModel) {
+    public AddCustomerRequestBody(String oouoOGhla, Customer customerModel) {
         OouoOGhla = oouoOGhla;
-        this.customerModel = customerModel;
+        this.Customer = customerModel;
     }
 
     public String getOouoOGhla() {
@@ -19,11 +19,11 @@ public class AddCustomerRequestBody {
         OouoOGhla = oouoOGhla;
     }
 
-    public CustomerModel getCustomerModel() {
-        return customerModel;
+    public Customer getCustomer() {
+        return Customer;
     }
 
-    public void setCustomerModel(CustomerModel customerModel) {
-        this.customerModel = customerModel;
+    public void setCustomer(Customer customer) {
+        this.Customer = customer;
     }
 }

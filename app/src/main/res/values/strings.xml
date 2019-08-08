@@ -127,7 +127,7 @@
     <string name="list_car">لیست خودرو ها</string>
     <string name="cvv">cvv :</string>
     <string name="save">ذخیره کارت</string>
-    <string name="delete">حذف کارت</string>
+    <string name="delete">حذف</string>
     <string name="editCard">ویرایش کارت</string>
     <string name="name_bank_is_null">نام بانک را وارد کنید</string>
     <string name="dont_save_card_enter_your_card">کارتی ثبت نشده است. لطفا اطلاعات کارت خود را وارد کنید.</string>
@@ -210,5 +210,12 @@
     <string name="numberhome">تلفن ثابت</string>
     <string name="list_pakhsh">لیست پخش</string>
     <string name="info_order">اطلاعات سفارش</string>
+    <string name="validation_telnumber">شماره تلفن کامل نیست</string>
+    <string name="factorNumber">شماره فاکتور</string>
+    <string name="date">تاریخ</string>
+    <string name="data_is_null">اطلاعاتی برای نمایش وجود ندارد</string>
+    <string name="data_record">سفارش ثبت شد</string>
+    <string name="editCarpet">ویرایش</string>
+    <string name="data_chaged">اطلاعات تغییر کرد</string>
 
 </resources>

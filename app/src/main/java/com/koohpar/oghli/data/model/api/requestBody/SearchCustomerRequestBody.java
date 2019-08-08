@@ -1,4 +1,4 @@
-package com.koohpar.oghli.ui.searchCustomer;
+package com.koohpar.oghli.data.model.api.requestBody;
 
 public class SearchCustomerRequestBody {
 

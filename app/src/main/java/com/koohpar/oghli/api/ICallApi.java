@@ -1,28 +1,33 @@
 package com.koohpar.oghli.api;
 
-import com.koohpar.oghli.data.model.api.BaseResponse;
 import com.koohpar.oghli.data.model.api.BranchResponse;
-import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.Customer;
+import com.koohpar.oghli.data.model.api.LakeStatusModel;
 import com.koohpar.oghli.data.model.api.MantagheResponse;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
-import com.koohpar.oghli.data.model.api.OrdersModel;
-import com.koohpar.oghli.data.model.api.TokenResponse;
+import com.koohpar.oghli.data.model.api.OrderTypeModel;
+import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
+import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
+import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
+import com.koohpar.oghli.data.model.api.ServiceAttrib4Model;
+import com.koohpar.oghli.data.model.api.ServicesModel;
 import com.koohpar.oghli.data.model.api.UserModel;
-import com.koohpar.oghli.ui.listSum.ListSumRequestBody;
-import com.koohpar.oghli.ui.login.LoginRequestBody;
-import com.koohpar.oghli.ui.searchCustomer.SearchCustomerRequestBody;
-import com.koohpar.oghli.ui.showOrder.ShowOrdersRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListSumRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.LoginRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListAttributeRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
+import com.koohpar.oghli.ui.editOrder.EditDetailRequestBody;
+import com.koohpar.oghli.ui.order.OrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.DeleteOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.LakeOrderRequestBody;
 import com.koohpar.oghli.ui.signUpCustomer.AddCustomerRequestBody;
-import com.koohpar.oghli.ui.signUpCustomer.ListBaseRequestBody;
+import com.koohpar.oghli.data.model.api.requestBody.ListBaseRequestBody;
 
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Observable;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
@@ -36,7 +41,7 @@ public interface ICallApi {
     Observable<UserModel> loginUser(@Body LoginRequestBody loginRequestBody);
 
     @POST("Retrive_Customer_List_ByPhone")
-    Observable<List<CustomerModel>> searchCustomer(@Body SearchCustomerRequestBody searchCustomerRequestBody);
+    Observable<List<Customer>> searchCustomer(@Body SearchCustomerRequestBody searchCustomerRequestBody);
 
     @POST("Retrive_List_Jam")
     Observable<List<OrderMissionDetailModel>> listJam(@Body ListSumRequestBody listSumRequestBody);
@@ -55,6 +60,36 @@ public interface ICallApi {
 
     @POST("Insert_Customer")
     Observable<String> addCustomer(@Body AddCustomerRequestBody addCustomerRequestBody);
+
+    @POST("Retrive_List_Service")
+    Observable<List<ServicesModel>> listServices(@Body ListBaseRequestBody listBaseRequestBody);
+
+    @POST("Retrive_OrderTypes")
+    Observable<List<OrderTypeModel>> listOrderType(@Body ListBaseRequestBody listBaseRequestBody);
+
+    @POST("Retrive_ServiceAttrib3")
+    Observable<List<ServiceAttrib3Model>> listCity(@Body ListAttributeRequestBody listAttRequestBody);
+
+    @POST("Retrive_ServiceAttrib2")
+    Observable<List<ServiceAttrib2Model>> listJens(@Body ListAttributeRequestBody listAttributeRequestBody);
+
+    @POST("Retrive_ServiceAttrib1")
+    Observable<List<ServiceAttrib1Model>> listShekl(@Body ListAttributeRequestBody listAttributeRequestBody);
+
+    @POST("Retrive_ServiceAttrib4")
+    Observable<List<ServiceAttrib4Model>> listRang(@Body ListAttributeRequestBody listAttributeRequestBody);
+
+    @POST("Insert_Order")
+    Observable<String> insertOrder(@Body OrderRequestBody orderRequestBody);
+
+    @POST("Update_OrderDetail")
+    Observable<Boolean> editDetail(@Body EditDetailRequestBody editDetailRequestBody);
+
+    @POST("Retrive_LakeStatus")
+    Observable<List<LakeStatusModel>> lakeOrder(@Body LakeOrderRequestBody lakeOrderRequestBody);
+
+    @POST("Delete_OrderDetail")
+    Observable<Boolean> deleteOrderDetail(@Body DeleteOrderRequestBody deleteOrderRequestBody);
 
 
 //    @GET

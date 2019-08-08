@@ -1,8 +1,6 @@
 package com.koohpar.oghli.ui.listCustomer;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,15 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.koohpar.oghli.R;
-import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.Customer;
 
 import java.util.List;
 
 public class ListCustomerModelAdapter extends RecyclerView.Adapter<ListCustomerModelAdapter.ViewHolder> {
-    public List<CustomerModel> stList;
+    public List<Customer> stList;
     public static Context context;
     private ListCustomerModelAdapter.OnItemClickListener mListener;
-    public ListCustomerModelAdapter(List<CustomerModel> SlistS) {
+    public ListCustomerModelAdapter(List<Customer> SlistS) {
         stList = SlistS;
     }
 

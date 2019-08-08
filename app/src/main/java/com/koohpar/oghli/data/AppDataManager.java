@@ -223,7 +223,7 @@ public class AppDataManager implements DataManager {
         setUsername(vUserName);
         setPassword(vPassword);
         setFirstName(vName);
-        setProfilePicture(image.toString());
+        setProfilePicture(String.valueOf(image));
     }
 
     @Override

@@ -18,146 +18,171 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white">
+
+                <TextView
+                    style="@style/AppTheme.TextViewWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_small"
+                    android:text="نوع خدمت:" />
+
+                <TextView
+                    android:id="@+id/typeOrder"
+                    style="@style/AppTheme.TextViewDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="name" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white">
+
+                <TextView
+                    style="@style/AppTheme.TextViewWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_small"
+                    android:text="جنس قالی:" />
+
+                <TextView
+                    android:id="@+id/jensGhali"
+                    style="@style/AppTheme.TextViewDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="name" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white">
+
+                <TextView
+                    style="@style/AppTheme.TextViewWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_small"
+                    android:text="شکل قالی:" />
+
+                <TextView
+                    android:id="@+id/form"
+                    style="@style/AppTheme.TextViewDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="name" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white">
+
+                <TextView
+                    style="@style/AppTheme.TextViewWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_small"
+                    android:text="شهر قالی:" />
+
+                <TextView
+                    android:id="@+id/city"
+                    style="@style/AppTheme.TextViewDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="name" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_normal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_normal"
+                android:layout_weight="1"
+                android:background="@drawable/bg_white">
+
+                <TextView
+                    style="@style/AppTheme.TextViewWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_small"
+                    android:text="رنگ قالی:" />
+
+                <TextView
+                    android:id="@+id/colorFator"
+                    style="@style/AppTheme.TextViewDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="name" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_normal"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginRight="@dimen/margin_normal"
-            android:background="@drawable/bg_white">
-
-            <TextView
-                style="@style/AppTheme.TextViewWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/margin_small"
-                android:text="نوع خدمت:" />
-
-            <TextView
-                android:id="@+id/typeOrder"
-                style="@style/AppTheme.TextViewDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="name" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginRight="@dimen/margin_normal"
-            android:background="@drawable/bg_white">
-
-            <TextView
-                style="@style/AppTheme.TextViewWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/margin_small"
-                android:text="شهر قالی:" />
-
-            <TextView
-                android:id="@+id/city"
-                style="@style/AppTheme.TextViewDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="name" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginRight="@dimen/margin_normal"
-            android:background="@drawable/bg_white">
-
-            <TextView
-                style="@style/AppTheme.TextViewWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/margin_small"
-                android:text="جنس قالی:" />
-
-            <TextView
-                android:id="@+id/jensGhali"
-                style="@style/AppTheme.TextViewDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="name" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginRight="@dimen/margin_normal"
-            android:background="@drawable/bg_white">
-
-            <TextView
-                style="@style/AppTheme.TextViewWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/margin_small"
-                android:text="شکل قالی:" />
-
-            <TextView
-                android:id="@+id/form"
-                style="@style/AppTheme.TextViewDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="name" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginRight="@dimen/margin_normal"
-            android:background="@drawable/bg_white">
-
-            <TextView
-                style="@style/AppTheme.TextViewWhite"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/margin_small"
-                android:text="رنگ قالی:" />
-
-            <TextView
-                android:id="@+id/colorFator"
-                style="@style/AppTheme.TextViewDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="name" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_normal"
-            android:layout_marginTop="@dimen/margin_small"
-            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_weight="1"
             android:background="@drawable/bg_white">
 
             <TextView
@@ -336,6 +361,17 @@
                 android:text="name" />
 
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_normal"
+            android:layout_marginRight="@dimen/margin_normal"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:text="@string/delete"
+            style="@style/AppTheme.ButtonPrimary"/>
 
     </LinearLayout>
 </android.support.v7.widget.CardView>

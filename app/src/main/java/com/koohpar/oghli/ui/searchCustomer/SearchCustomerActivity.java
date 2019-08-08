@@ -7,7 +7,7 @@ import android.view.WindowManager;
 
 import com.koohpar.oghli.BR;
 import com.koohpar.oghli.R;
-import com.koohpar.oghli.data.model.api.CustomerModel;
+import com.koohpar.oghli.data.model.api.Customer;
 import com.koohpar.oghli.databinding.ActivitySearchCustomerBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
 import com.koohpar.oghli.ui.listCustomer.ListCustomerActivity;
@@ -25,7 +25,7 @@ public class SearchCustomerActivity extends BaseActivity<ActivitySearchCustomerB
     SearchCustomerViewModel mSearchCustomerViewModel;
 
     ActivitySearchCustomerBinding mActivitySearchCustomerBinding;
-    public static List<CustomerModel> customerModels = new ArrayList<>();
+    public static List<Customer> customerModels = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +75,7 @@ public class SearchCustomerActivity extends BaseActivity<ActivitySearchCustomerB
 //
     }
 
-    private void receivedData(List<CustomerModel> data) {
+    private void receivedData(List<Customer> data) {
         if (data != null) {
             customerModels = data;
             startActivity(ListCustomerActivity.getStartIntent(SearchCustomerActivity.this));
@@ -102,7 +102,7 @@ public class SearchCustomerActivity extends BaseActivity<ActivitySearchCustomerB
 //        }
         if (mActivitySearchCustomerBinding.tel.getText().toString().trim().isEmpty() ||
                 mActivitySearchCustomerBinding.tel.getText().toString().length() < 10) {
-            mActivitySearchCustomerBinding.textLayoutTel.setError(wrapInCustomfont(getString(R.string.validation_phonenumber)));
+            mActivitySearchCustomerBinding.textLayoutTel.setError(wrapInCustomfont(getString(R.string.validation_telnumber)));
             mActivitySearchCustomerBinding.tel.requestFocus();
             return false;
         } else {

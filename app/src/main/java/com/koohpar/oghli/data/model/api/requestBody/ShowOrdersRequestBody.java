@@ -1,4 +1,4 @@
-package com.koohpar.oghli.ui.showOrder;
+package com.koohpar.oghli.data.model.api.requestBody;
 
 public class ShowOrdersRequestBody {
     private String OouoOGhla;

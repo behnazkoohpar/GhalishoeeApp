@@ -1,13 +1,11 @@
 package com.koohpar.oghli.ui.searchCustomer;
 
 import android.arch.lifecycle.MutableLiveData;
-import android.text.Editable;
 
 import com.koohpar.oghli.api.RestManager;
 import com.koohpar.oghli.data.DataManager;
-import com.koohpar.oghli.data.model.api.BaseResponse;
-import com.koohpar.oghli.data.model.api.CustomerModel;
-import com.koohpar.oghli.data.model.api.TokenResponse;
+import com.koohpar.oghli.data.model.api.Customer;
+import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
 import com.koohpar.oghli.di.module.RxRetrofitErrorConsumer;
 import com.koohpar.oghli.ui.base.BaseViewModel;
 import com.koohpar.oghli.utils.AppConstants;
@@ -22,9 +20,9 @@ import timber.log.Timber;
 
 public class SearchCustomerViewModel extends BaseViewModel<SearchCustomerNavigator> implements AppConstants {
 
-    private final MutableLiveData<List<CustomerModel>> customerModelModelMutableLiveData = new SingleLiveData<>();
+    private final MutableLiveData<List<Customer>> customerModelModelMutableLiveData = new SingleLiveData<>();
 
-    public MutableLiveData<List<CustomerModel>> getCustomerModelMutableLiveData() {
+    public MutableLiveData<List<Customer>> getCustomerModelMutableLiveData() {
         return customerModelModelMutableLiveData;
     }
 

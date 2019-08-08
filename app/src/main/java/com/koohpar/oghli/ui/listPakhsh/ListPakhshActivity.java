@@ -17,12 +17,16 @@ import com.koohpar.oghli.ui.listSum.ListOrderMissionDetailModelAdapter;
 import com.koohpar.oghli.ui.showOrder.ShowOrderActivity;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
+import com.mojtaba.materialdatetimepicker.date.DatePickerDialog;
+import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
 
+import java.util.Calendar;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, ListPakhshViewModel> implements AppConstants, ListPakhshNavigator {
+public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, ListPakhshViewModel> implements AppConstants, ListPakhshNavigator
+        , DatePickerDialog.OnDateSetListener {
 
     @Inject
     ListPakhshViewModel mListPakhshViewModel;
@@ -31,6 +35,13 @@ public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, 
     private RecyclerView recyclerViewListOrderMissionDetailModel;
     private LinearLayoutManager layoutOrderMissionDetailModel;
     private ListOrderMissionDetailModelAdapter mAdapter;
+    private String mYear;
+    private String mMonth;
+    private String mDay;
+    private boolean selectedDateFrom;
+    private boolean selectedTimeFrom;
+    private PersianCalendar now;
+    private DatePickerDialog dpd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +50,15 @@ public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, 
             mActivityListPakhshBinding = getViewDataBinding();
             mListPakhshViewModel.setNavigator(this);
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+            PersianCalendar persianCalendar = new PersianCalendar();
+            mYear = String.valueOf(persianCalendar.getPersianYear());
+            mMonth = String.valueOf(persianCalendar.getPersianMonth());
+            mDay = String.valueOf(persianCalendar.getPersianDay());
+            if (Integer.parseInt(mMonth) < 10)
+                mMonth = "0" + mMonth;
+            if (Integer.parseInt(mDay) < 10)
+                mDay = "0" + mDay;
+            mActivityListPakhshBinding.date.setText(mYear + "/" + mMonth + "/" + mDay);
             callListPakhsh();
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,11 +84,15 @@ public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, 
         return R.layout.activity_list_pakhsh;
     }
 
-    private void callListPakhsh() {
+    @Override
+    public void callListPakhsh() {
         try {
-
-            mListPakhshViewModel.callListPakhsh(
-                    mListPakhshViewModel.getDataManager().getServiceManId(), "1398/04/31", AppConstants.REQUEST_OOGHLI);
+            if (mActivityListPakhshBinding.date.getText().toString().isEmpty())
+                mListPakhshViewModel.callListPakhsh(
+                        mListPakhshViewModel.getDataManager().getServiceManId(), mYear + "/" + mMonth + "/" + mDay, AppConstants.REQUEST_OOGHLI);
+            else
+                mListPakhshViewModel.callListPakhsh(
+                        mListPakhshViewModel.getDataManager().getServiceManId(), mActivityListPakhshBinding.date.getText().toString(), AppConstants.REQUEST_OOGHLI);
             mListPakhshViewModel.getOrderMissionDetailModelMutableLiveData().observe(this, this::receivedData);
 
         } catch (Exception e) {
@@ -86,6 +110,10 @@ public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, 
     }
 
     private void setListParameter(List<OrderMissionDetailModel> data) {
+        if (data.size() == 0) {
+            CommonUtils.showSingleButtonAlert(ListPakhshActivity.this, getString(R.string.text_attention), getString(R.string.data_is_null), null, null);
+            return;
+        }
         recyclerViewListOrderMissionDetailModel = mActivityListPakhshBinding.list;
         layoutOrderMissionDetailModel = new LinearLayoutManager(this);
         recyclerViewListOrderMissionDetailModel.setLayoutManager(layoutOrderMissionDetailModel);
@@ -96,6 +124,11 @@ public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, 
             public void onOpenClick(int position) {
                 ShowOrderActivity.orderId = data.get(position).getOrderID();
                 ShowOrderActivity.name = data.get(position).getCustName();
+                ShowOrderActivity.customerId = data.get(position).getCustomerId();
+                ShowOrderActivity.address = data.get(position).getCollectAddress();
+                ShowOrderActivity.tel = data.get(position).getCollectMobile();
+                ShowOrderActivity.telHome = data.get(position).getCollectPhone();
+                ShowOrderActivity.isFromSum =false;
                 startActivity(ShowOrderActivity.getStartIntent(ListPakhshActivity.this));
             }
 
@@ -114,4 +147,32 @@ public class ListPakhshActivity extends BaseActivity<ActivityListPakhshBinding, 
             }
         });
     }
+
+    public void openFromDateCalendar() {
+        now = new PersianCalendar();
+        dpd = DatePickerDialog.newInstance(
+                this,
+                now.getPersianYear(),
+                now.getPersianMonth(),
+                now.getPersianDay()
+        );
+        selectedDateFrom = true;
+        dpd.show(getFragmentManager(), "Datepickerdialog");
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String day, month;
+        day = String.valueOf(dayOfMonth);
+        month = String.valueOf((monthOfYear + 1));
+        if (dayOfMonth < 10)
+            day = "0" + dayOfMonth;
+        if ((monthOfYear + 1) < 10)
+            month = "0" + (monthOfYear + 1);
+        String date = year + "/" + month + "/" + day;
+        mActivityListPakhshBinding.date.setText(date);
+        callListPakhsh();
+    }
+
+
 }
