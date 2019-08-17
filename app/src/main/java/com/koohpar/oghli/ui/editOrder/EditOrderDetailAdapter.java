@@ -12,6 +12,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.koohpar.oghli.R;
+import com.koohpar.oghli.data.model.api.OrderDetailEdit;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
@@ -36,7 +37,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
 
 
     public interface OnItemClickListener {
-        void onOpenClick(int position,OrderDetailModel orderDetailModel);
+        void onEditClick(int position,OrderDetailEdit orderDetailEdit);
     }
 
     public void setOnitemclickListener(EditOrderDetailAdapter.OnItemClickListener onitemclickListener) {
@@ -205,15 +206,17 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
         viewHolder.editCarpet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stList.get(position).setUnitPrice(Float.parseFloat(viewHolder.price.getText().toString()));
-                stList.get(position).setServiceAttrib1ID(sheklSelected);
-                stList.get(position).setServiceAttrib2ID(jensSelected);
-                stList.get(position).setServiceAttrib3ID(citySelected);
-                stList.get(position).setServiceAttrib4ID(rangSelected);
-                stList.get(position).setWidth(Float.parseFloat(viewHolder.arz.getText().toString()));
-                stList.get(position).setLenght(Float.parseFloat(viewHolder.tool.getText().toString()));
-                stList.get(position).setUnitPrice2(Float.parseFloat(viewHolder.sumPrice.getText().toString()));
-                mListener.onOpenClick(position,stList.get(position));
+                OrderDetailEdit orderDetailEdit = new OrderDetailEdit();
+                orderDetailEdit.setOrderDetailID(stList.get(position).getOrderDetailID());
+                orderDetailEdit.setUnitPrice(Float.parseFloat(viewHolder.price.getText().toString()));
+                orderDetailEdit.setServiceAttrib1ID(sheklSelected);
+                orderDetailEdit.setServiceAttrib2ID(jensSelected);
+                orderDetailEdit.setServiceAttrib3ID(citySelected);
+                orderDetailEdit.setServiceAttrib4ID(rangSelected);
+                orderDetailEdit.setWidth(Float.parseFloat(viewHolder.arz.getText().toString()));
+                orderDetailEdit.setLenght(Float.parseFloat(viewHolder.tool.getText().toString()));
+                orderDetailEdit.setQuantity(12);
+                mListener.onEditClick(position,orderDetailEdit);
             }
         });
 

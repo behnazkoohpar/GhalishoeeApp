@@ -1,4 +1,4 @@
-package com.koohpar.oghli.ui.showOrder;
+package com.koohpar.oghli.ui.showOrder.body;
 
 public class LakeOrderRequestBody {
     private String OouoOGhla;

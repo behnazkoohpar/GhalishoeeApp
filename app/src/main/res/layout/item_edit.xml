@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_mini_mini_small"
+    card_view:cardBackgroundColor="@color/backgroundPage2"
     card_view:cardCornerRadius="5dp"
     card_view:cardUseCompatPadding="true"
     card_view:contentPadding="5dp">
@@ -14,8 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,8 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_weight="1"
-                android:background="@drawable/bg_white">
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/tcity"
@@ -53,8 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_weight="1"
-                android:background="@drawable/bg_white">
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/tjensGhali"
@@ -86,8 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_weight="1"
-                android:background="@drawable/bg_white">
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/tform"
@@ -113,8 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_small"
-                android:layout_weight="1"
-                android:background="@drawable/bg_white">
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/tcolorFator"
@@ -192,7 +187,7 @@
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/colorPrimary"
                 app:counterEnabled="false"
-                app:counterMaxLength="2"
+                app:counterMaxLength="3"
                 app:errorEnabled="false"
                 app:helperTextEnabled="true">
 
@@ -202,8 +197,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:maxLength="2"
+                    android:inputType="text"
+                    android:maxLength="3"
                     android:textAlignment="center" />
             </android.support.design.widget.TextInputLayout>
 
@@ -230,7 +225,7 @@
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/colorPrimary"
                 app:counterEnabled="false"
-                app:counterMaxLength="2"
+                app:counterMaxLength="3"
                 app:errorEnabled="false"
                 app:helperTextEnabled="true">
 
@@ -240,8 +235,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:maxLength="2"
+                    android:inputType="text"
+                    android:maxLength="3"
                     android:textAlignment="center" />
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
@@ -272,20 +267,57 @@
                 android:textAlignment="center" />
         </android.support.design.widget.TextInputLayout>
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_small"
             android:layout_marginTop="@dimen/margin_small"
             android:layout_marginRight="@dimen/margin_small"
-            android:layout_marginBottom="@dimen/margin_normal">
+            android:layout_marginBottom="@dimen/margin_normal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/deleteCarpet"
+                style="@style/AppTheme.ButtonRed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_weight="1"
+                android:text="@string/delete"
+                android:visibility="gone"/>
 
             <Button
                 android:id="@+id/editCarpet"
-                style="@style/AppTheme.ButtonPrimary"
+                style="@style/AppTheme.ButtonEdit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/editCarpet" />
-        </RelativeLayout>
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_weight="1"
+                android:text="@string/editCarpet"
+                android:visibility="gone"/>
+            <Button
+                android:id="@+id/adamPakhsh"
+                style="@style/AppTheme.ButtonRed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_weight="1"
+                android:text="@string/adamPakhsh"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/pakhshOk"
+                style="@style/AppTheme.ButtonAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_small"
+                android:layout_marginRight="@dimen/margin_small"
+                android:layout_weight="1"
+                android:text="@string/pakhshOk"
+                android:visibility="gone"/>
+        </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

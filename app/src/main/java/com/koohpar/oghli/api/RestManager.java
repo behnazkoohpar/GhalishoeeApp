@@ -20,14 +20,16 @@ import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
 import com.koohpar.oghli.ui.editOrder.EditDetailRequestBody;
 import com.koohpar.oghli.ui.order.OrderRequestBody;
-import com.koohpar.oghli.ui.showOrder.DeleteOrderRequestBody;
-import com.koohpar.oghli.ui.showOrder.LakeOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.DeleteOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.EditOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.LakeOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.UpdateOrderDetailStatusRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.UpdateOrderStatusRequestBody;
 import com.koohpar.oghli.ui.signUpCustomer.AddCustomerRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ListBaseRequestBody;
 
 import java.util.List;
 
-import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 public interface RestManager {
@@ -68,4 +70,9 @@ public interface RestManager {
 
     Observable<Boolean> deleteOrderDetail(DeleteOrderRequestBody deleteOrderRequestBody);
 
+    Observable<Boolean> callEditOrder(EditOrderRequestBody editOrderRequestBody);
+
+    Observable<Boolean> updateOrderStatus(UpdateOrderStatusRequestBody updateOrderStatusRequestBody);
+
+    Observable<Boolean> updateOrderDetailStatus(UpdateOrderDetailStatusRequestBody updateOrderDetailStatusRequestBody);
 }

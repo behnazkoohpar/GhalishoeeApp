@@ -20,8 +20,11 @@ import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
 import com.koohpar.oghli.ui.editOrder.EditDetailRequestBody;
 import com.koohpar.oghli.ui.order.OrderRequestBody;
-import com.koohpar.oghli.ui.showOrder.DeleteOrderRequestBody;
-import com.koohpar.oghli.ui.showOrder.LakeOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.DeleteOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.EditOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.LakeOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.UpdateOrderDetailStatusRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.UpdateOrderStatusRequestBody;
 import com.koohpar.oghli.ui.signUpCustomer.AddCustomerRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ListBaseRequestBody;
 
@@ -131,5 +134,20 @@ public class AppRestManager implements RestManager {
     @Override
     public Observable<Boolean> deleteOrderDetail(DeleteOrderRequestBody deleteOrderRequestBody) {
         return iCallApi.deleteOrderDetail(deleteOrderRequestBody);
+    }
+
+    @Override
+    public Observable<Boolean> callEditOrder(EditOrderRequestBody editOrderRequestBody) {
+        return iCallApi.callEditOrder(editOrderRequestBody);
+    }
+
+    @Override
+    public Observable<Boolean> updateOrderStatus(UpdateOrderStatusRequestBody updateOrderStatusRequestBody) {
+        return iCallApi.updateOrderStatus(updateOrderStatusRequestBody);
+    }
+
+    @Override
+    public Observable<Boolean> updateOrderDetailStatus(UpdateOrderDetailStatusRequestBody updateOrderDetailStatusRequestBody) {
+        return iCallApi.updateOrderDetailStatus(updateOrderDetailStatusRequestBody);
     }
 }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData;
 
 import com.koohpar.oghli.api.RestManager;
 import com.koohpar.oghli.data.DataManager;
+import com.koohpar.oghli.data.model.api.OrderDetailEdit;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
 import com.koohpar.oghli.di.module.RxRetrofitErrorConsumer;
@@ -62,8 +63,8 @@ public class EditOrderViewModel extends BaseViewModel<EditOrderNavigator> implem
         mCompositeDisposable.add(disposable);
     }
 
-    public void callEditDetail(OrderDetailModel orderDetailModel, String requestOoghli) {
-        Disposable disposable = mRestManager.editDetail(new EditDetailRequestBody(orderDetailModel,requestOoghli))
+    public void callEditDetail(OrderDetailEdit orderDetailEdit, String requestOoghli) {
+        Disposable disposable = mRestManager.editDetail(new EditDetailRequestBody(orderDetailEdit,requestOoghli))
                 .subscribeOn(mSchedulersFacade.io())
                 .observeOn(mSchedulersFacade.ui())
                 .subscribe(r -> {

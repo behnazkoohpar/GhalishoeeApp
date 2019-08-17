@@ -131,8 +131,8 @@
     <string name="editCard">ویرایش کارت</string>
     <string name="name_bank_is_null">نام بانک را وارد کنید</string>
     <string name="dont_save_card_enter_your_card">کارتی ثبت نشده است. لطفا اطلاعات کارت خود را وارد کنید.</string>
-    <string name="do_delete_card">آیا از حذف کارت بانکی خود اطمینان دارید؟</string>
-    <string name="do_edit_card">آیا از ویرایش کارت بانکی خود اطمینان دارید؟</string>
+    <string name="do_delete_card">آیا از حذف سفارش اطمینان دارید؟</string>
+    <string name="do_edit_card">آیا از ویرایش سفارش اطمینان دارید؟</string>
     <string name="card_exsist_edit_please">اطلاعات این کارت قبلا ثبت شده است. درصورت نیاز آن را ویرایش نمائید.</string>
     <string name="get_inventory">دریافت موجودی حساب</string>
     <string name="receipt_card_to_card">رسید انتقال وجه</string>
@@ -217,5 +217,7 @@
     <string name="data_record">سفارش ثبت شد</string>
     <string name="editCarpet">ویرایش</string>
     <string name="data_chaged">اطلاعات تغییر کرد</string>
+    <string name="adamPakhsh">دلایل عدم پخش</string>
+    <string name="pakhshOk">تحویل شد</string>
 
 </resources>

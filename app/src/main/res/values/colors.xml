@@ -13,7 +13,7 @@
     <color name="statusBar">#0D1F61</color>
     <color name="background">#ffffff</color>
     <color name="backgroundPage">#ecebe7</color>
-    <color name="backgroundPage2">#A7A7A7</color>
+    <color name="backgroundPage2">#D4E1F0</color>
     <color name="backgroundPageLogin">#dcdcdc</color>
     <color name="backPicture">#ffcccc</color>
     <color name="divider">#b1b1b1</color>
@@ -27,7 +27,7 @@
     <color name="brown_600">#cc5526</color>
     <color name="priple">#7b09cc</color>
     <color name="green">#078600</color>
-    <color name="green_active">#0CEA5A</color>
+    <color name="green_active">#BAECA4</color>
     <color name="red_expired">#EA0C0C</color>
     <color name="transparent_white">#bbffffff</color>
     <color name="orange_100" >#fcf4e6</color>
@@ -47,7 +47,7 @@
     <color name="green_500" >#5cb8b0</color>
     <color name="green_600" >#47afa7</color>
     <color name="green_700" >#2ea399</color>
-    <color name="green_800" >#199c90</color>
+    <color name="green_800" >#138178</color>
 
     <color name="gray_50" >#f4f4f4</color>
     <color name="gray_100" >#e9e9e9</color>

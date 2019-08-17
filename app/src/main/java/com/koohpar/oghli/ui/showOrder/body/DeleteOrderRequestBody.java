@@ -1,4 +1,4 @@
-package com.koohpar.oghli.ui.showOrder;
+package com.koohpar.oghli.ui.showOrder.body;
 
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 

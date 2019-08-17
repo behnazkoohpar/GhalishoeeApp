@@ -8,6 +8,8 @@ public class OrderMissionDetailModel{
         private String OrderID;
         private String CustomerId;
         private int OrdersCount;
+        private int OrderStatusID;
+        private String OrderStatusName;
         private String CustNo;
         private String PreName;
         private String CustName;
@@ -34,6 +36,41 @@ public class OrderMissionDetailModel{
         private String KeyWords2;
         private String GeographicalName1;
         private String GeographicalName2;
+        private String LastUpdateBy;
+        private String LastUpdateDate;
+
+
+    public int getOrderStatusID() {
+        return OrderStatusID;
+    }
+
+    public void setOrderStatusID(int orderStatusID) {
+        OrderStatusID = orderStatusID;
+    }
+
+    public String getOrderStatusName() {
+        return OrderStatusName;
+    }
+
+    public void setOrderStatusName(String orderStatusName) {
+        OrderStatusName = orderStatusName;
+    }
+
+    public String getLastUpdateBy() {
+        return LastUpdateBy;
+    }
+
+    public void setLastUpdateBy(String lastUpdateBy) {
+        LastUpdateBy = lastUpdateBy;
+    }
+
+    public String getLastUpdateDate() {
+        return LastUpdateDate;
+    }
+
+    public void setLastUpdateDate(String lastUpdateDate) {
+        LastUpdateDate = lastUpdateDate;
+    }
 
     public String getCustomerId() {
         return CustomerId;

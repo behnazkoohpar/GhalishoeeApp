@@ -3,6 +3,8 @@ package com.koohpar.oghli.ui.searchCustomer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.WindowManager;
 
 import com.koohpar.oghli.BR;
@@ -34,7 +36,35 @@ public class SearchCustomerActivity extends BaseActivity<ActivitySearchCustomerB
             mActivitySearchCustomerBinding = getViewDataBinding();
             mSearchCustomerViewModel.setNavigator(this);
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+            mActivitySearchCustomerBinding.tel.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (count == 1 && s.charAt(0)==48)
+                        CommonUtils.showSingleButtonAlert(SearchCustomerActivity.this, getString(R.string.text_attention), "شماره موبایل بدون صفر باشد", getString(R.string.ok), new CommonUtils.IL() {
+                            @Override
+                            public void onSuccess() {
+                                mActivitySearchCustomerBinding.tel.setText("");
+                                return;
+                            }
+
+                            @Override
+                            public void onCancel() {
+                                return;
+                            }
+                        });
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }

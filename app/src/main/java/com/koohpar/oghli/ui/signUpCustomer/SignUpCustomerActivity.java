@@ -3,6 +3,8 @@ package com.koohpar.oghli.ui.signUpCustomer;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -18,6 +20,7 @@ import com.koohpar.oghli.ui.base.BaseActivity;
 import com.koohpar.oghli.ui.order.OrderActivity;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
+import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
     List<BranchResponse> branchesResponseList = new ArrayList<>();
     private String mantagheSelected;
     private String branchSelected;
+    private String mYear,mMonth,mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,36 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
             callListBranches();
             callListMantaghe();
+
+            mActivitySignUpCustomerBinding.tel.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (count == 1 && s.charAt(0)==48)
+                        CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), "شماره موبایل بدون صفر باشد", getString(R.string.ok), new CommonUtils.IL() {
+                            @Override
+                            public void onSuccess() {
+                                mActivitySignUpCustomerBinding.tel.setText("");
+                                return;
+                            }
+
+                            @Override
+                            public void onCancel() {
+                                return;
+                            }
+                        });
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,6 +105,15 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
     @Override
     public void addCustomer() {
         try {
+            PersianCalendar persianCalendar = new PersianCalendar();
+            mYear = String.valueOf(persianCalendar.getPersianYear());
+            mMonth = String.valueOf(persianCalendar.getPersianMonth()+1);
+            mDay = String.valueOf(persianCalendar.getPersianDay());
+            if (Integer.parseInt(mMonth) < 10)
+                mMonth = "0" + mMonth;
+            if (Integer.parseInt(mDay) < 10)
+                mDay = "0" + mDay;
+
             Customer customerModel= new Customer();
             customerModel.setCollectAddress(mActivitySignUpCustomerBinding.address.getText().toString());
             customerModel.setCustName(mActivitySignUpCustomerBinding.userName.getText().toString());
@@ -78,7 +121,7 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
             customerModel.setCollectPhone(mActivitySignUpCustomerBinding.telHome.getText().toString());
             customerModel.setCustDesc(mActivitySignUpCustomerBinding.desc.getText().toString());
             customerModel.setCreatedBy(mSignUpCustomerViewModel.getDataManager().getServiceManId());
-            customerModel.setCreatedDate("1398/05/06");
+            customerModel.setCreatedDate(mYear + "/" + mMonth + "/" + mDay);
             customerModel.setBranchID("00000000-0000-0000-0000-000000000000");
             customerModel.setCustNo("");
             customerModel.setBirthDate("");
@@ -121,7 +164,14 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
 
     private void receivedDataAddCustomer(String data) {
         if (data != null) {
-            OrderActivity.customerId=data;
+            Customer customer = new Customer();
+            customer.setCustName(mActivitySignUpCustomerBinding.userName.getText().toString());
+            customer.setCollectAddress(mActivitySignUpCustomerBinding.address.getText().toString());
+            customer.setCollectMobile(mActivitySignUpCustomerBinding.tel.getText().toString());
+            customer.setCollectPhone(mActivitySignUpCustomerBinding.telHome.getText().toString());
+            customer.setCustomerID(data);
+            OrderActivity.isFromCustomer=true;
+            OrderActivity.customerModel = customer;
             startActivity(OrderActivity.getStartIntent(SignUpCustomerActivity.this));
         } else {
             CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);

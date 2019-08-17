@@ -1,12 +1,12 @@
 package com.koohpar.oghli.ui.editOrder;
 
-import com.koohpar.oghli.data.model.api.OrderDetailModel;
+import com.koohpar.oghli.data.model.api.OrderDetailEdit;
 
 public class EditDetailRequestBody {
     private String OouoOGhla;
-    private OrderDetailModel OrderDetail;
+    private OrderDetailEdit OrderDetail;
 
-    public EditDetailRequestBody( OrderDetailModel orderDetail,String oouoOGhla) {
+    public EditDetailRequestBody(OrderDetailEdit orderDetail, String oouoOGhla) {
         OouoOGhla = oouoOGhla;
         OrderDetail = orderDetail;
     }
@@ -19,11 +19,11 @@ public class EditDetailRequestBody {
         OouoOGhla = oouoOGhla;
     }
 
-    public OrderDetailModel getOrderDetail() {
+    public OrderDetailEdit getOrderDetail() {
         return OrderDetail;
     }
 
-    public void setOrderDetail(OrderDetailModel orderDetail) {
+    public void setOrderDetail(OrderDetailEdit orderDetail) {
         OrderDetail = orderDetail;
     }
 }

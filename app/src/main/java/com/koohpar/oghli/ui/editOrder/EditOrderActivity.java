@@ -11,7 +11,10 @@ import android.view.WindowManager;
 
 import com.koohpar.oghli.BR;
 import com.koohpar.oghli.R;
+import com.koohpar.oghli.data.model.api.Customer;
+import com.koohpar.oghli.data.model.api.OrderDetailEdit;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
+import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
@@ -23,16 +26,20 @@ import com.koohpar.oghli.ui.order.OrderActivity;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
 
+import org.simpleframework.xml.Order;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, EditOrderViewModel> implements AppConstants, EditOrderNavigator {
 
-    public static String address,tel,telHome;
+    public static OrderMissionDetailModel orderMissionDetail;
+    public static Customer customerModel;
+    public static boolean isFromCustomer;
     @Inject
     EditOrderViewModel mEditOrderViewModel;
-    public static String orderId, name, customerId;
+    public static String orderId;
 
     public static List<ServiceAttrib3Model> att3;
     public static List<ServiceAttrib4Model> att4;
@@ -51,8 +58,14 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
             mEditOrderViewModel.setNavigator(this);
             getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
             callEditOrderDetail();
-            if (customerId == null) {
-                mActivityEditOrderBinding.btn.setVisibility(View.GONE);
+            if (isFromCustomer) {
+                if (customerModel.getCustomerID() == null) {
+                    mActivityEditOrderBinding.btn.setVisibility(View.GONE);
+                }
+            } else {
+                if (orderMissionDetail.getCustomerId() == null) {
+                    mActivityEditOrderBinding.btn.setVisibility(View.GONE);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,11 +98,11 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
 
     @Override
     public void addOrder() {
-        OrderActivity.customerId = customerId;
-        OrderActivity.name = name;
-        OrderActivity.telNumber = tel;
-        OrderActivity.address = address;
-        OrderActivity.numberHome = telHome;
+        if (isFromCustomer)
+            OrderActivity.customerModel = customerModel;
+        else
+            OrderActivity.orderMissionDetail = orderMissionDetail;
+        OrderActivity.isFromCustomer = isFromCustomer;
         startActivity(OrderActivity.getStartIntent(EditOrderActivity.this));
     }
 
@@ -115,25 +128,40 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
 
     private void setParameter(List<OrderDetailModel> ordersModels) {
 
-        if (ordersModels != null)
-            mActivityEditOrderBinding.name.setText(name);
+        if (ordersModels != null) {
+            if (isFromCustomer)
+                mActivityEditOrderBinding.name.setText(customerModel.getCustName());
+            else
+                mActivityEditOrderBinding.name.setText(orderMissionDetail.getCustName());
+        }
         recyclerViewListOrderMissionDetailModel = mActivityEditOrderBinding.list;
         layoutOrderMissionDetailModel = new LinearLayoutManager(this);
         recyclerViewListOrderMissionDetailModel.setLayoutManager(layoutOrderMissionDetailModel);
-        mAdapter = new EditOrderDetailAdapter(ordersModels,att3,att2,att1,att4);
+        mAdapter = new EditOrderDetailAdapter(ordersModels, att3, att2, att1, att4);
         recyclerViewListOrderMissionDetailModel.setAdapter(mAdapter);
         mAdapter.setOnitemclickListener(new EditOrderDetailAdapter.OnItemClickListener() {
             @Override
-            public void onOpenClick(int position,OrderDetailModel orderDetailModel) {
-                callEditDetail(orderDetailModel);
+            public void onEditClick(int position, OrderDetailEdit orderDetailEdit) {
+                CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.do_edit_card), null, new CommonUtils.IL() {
+                    @Override
+                    public void onSuccess() {
+                        callEditDetail(orderDetailEdit);
+                    }
+
+                    @Override
+                    public void onCancel() {
+
+                    }
+                });
+
             }
 
         });
     }
 
-    private void callEditDetail(OrderDetailModel orderDetailModel) {
+    private void callEditDetail(OrderDetailEdit orderDetailEdit) {
         try {
-            mEditOrderViewModel.callEditDetail(orderDetailModel, AppConstants.REQUEST_OOGHLI);
+            mEditOrderViewModel.callEditDetail(orderDetailEdit, AppConstants.REQUEST_OOGHLI);
             mEditOrderViewModel.getEditDetailMutableLiveData().observe(this, this::receivedDataEdit);
 
         } catch (Exception e) {
@@ -141,6 +169,7 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
             e.printStackTrace();
         }
     }
+
     private void receivedDataEdit(boolean data) {
         if (data) {
             CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_chaged), null, null);

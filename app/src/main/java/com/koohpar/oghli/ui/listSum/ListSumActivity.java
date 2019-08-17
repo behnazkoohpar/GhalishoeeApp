@@ -13,6 +13,7 @@ import com.koohpar.oghli.R;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.databinding.ActivityListSumBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
+import com.koohpar.oghli.ui.order.OrderActivity;
 import com.koohpar.oghli.ui.showOrder.ShowOrderActivity;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
@@ -52,7 +53,7 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
 
             PersianCalendar persianCalendar = new PersianCalendar();
             mYear = String.valueOf(persianCalendar.getPersianYear());
-            mMonth = String.valueOf(persianCalendar.getPersianMonth());
+            mMonth = String.valueOf(persianCalendar.getPersianMonth()+1);
             mDay = String.valueOf(persianCalendar.getPersianDay());
             if (Integer.parseInt(mMonth) < 10)
                 mMonth = "0" + mMonth;
@@ -122,13 +123,9 @@ public class ListSumActivity extends BaseActivity<ActivityListSumBinding, ListSu
         mAdapter.setOnitemclickListener(new ListOrderMissionDetailModelAdapter.OnItemClickListener() {
             @Override
             public void onOpenClick(int position) {
-                ShowOrderActivity.orderId = data.get(position).getOrderID();
-                ShowOrderActivity.name = data.get(position).getCustName();
-                ShowOrderActivity.customerId = data.get(position).getCustomerId();
-                ShowOrderActivity.address = data.get(position).getCollectAddress();
-                ShowOrderActivity.tel = data.get(position).getCollectMobile();
-                ShowOrderActivity.telHome = data.get(position).getCollectPhone();
+                ShowOrderActivity.orderMissionDetail = data.get(position);
                 ShowOrderActivity.isFromSum =true;
+                OrderActivity.isFromCustomer =false;
                 startActivity(ShowOrderActivity.getStartIntent(ListSumActivity.this));
             }
 

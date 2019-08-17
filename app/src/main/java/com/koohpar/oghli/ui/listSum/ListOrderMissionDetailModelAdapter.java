@@ -2,6 +2,7 @@ package com.koohpar.oghli.ui.listSum;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -110,6 +111,11 @@ public class ListOrderMissionDetailModelAdapter  extends RecyclerView.Adapter<Li
         viewHolder.telnumber.setText(stList.get(position).getCollectMobile());
         viewHolder.numberhome.setText(stList.get(position).getCollectPhone());
         viewHolder.address.setText(stList.get(position).getCollectAddress());
+        if (stList.get(position).getOrderStatusID() == 3 || stList.get(position).getOrderStatusID() == 11)
+            viewHolder.card_view.setCardBackgroundColor(Color.rgb(186,236,164));
+
+        if (stList.get(position).getOrderStatusID() == 1 || stList.get(position).getOrderStatusID() == 9)
+            viewHolder.card_view.setCardBackgroundColor(Color.rgb(255,204,204));
     }
 
     public int getItemCount() {

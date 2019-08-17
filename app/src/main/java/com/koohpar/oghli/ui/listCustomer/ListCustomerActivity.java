@@ -52,11 +52,8 @@ public class ListCustomerActivity  extends BaseActivity<ActivityListCustomerBind
         mAdapter.setOnitemclickListener(new ListCustomerModelAdapter.OnItemClickListener() {
             @Override
             public void onOpenClick(int position) {
-                OrderActivity.customerId=SearchCustomerActivity.customerModels.get(position).getCustomerID();
-                OrderActivity.name=SearchCustomerActivity.customerModels.get(position).getCustName();
-                OrderActivity.numberHome=SearchCustomerActivity.customerModels.get(position).getCollectPhone();
-                OrderActivity.telNumber=SearchCustomerActivity.customerModels.get(position).getCollectMobile();
-                OrderActivity.address=SearchCustomerActivity.customerModels.get(position).getCollectAddress();
+                OrderActivity.isFromCustomer =true;
+                OrderActivity.customerModel=SearchCustomerActivity.customerModels.get(position);
                 startActivity(OrderActivity.getStartIntent(ListCustomerActivity.this));
             }
 

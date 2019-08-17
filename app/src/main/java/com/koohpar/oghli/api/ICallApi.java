@@ -20,8 +20,11 @@ import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
 import com.koohpar.oghli.ui.editOrder.EditDetailRequestBody;
 import com.koohpar.oghli.ui.order.OrderRequestBody;
-import com.koohpar.oghli.ui.showOrder.DeleteOrderRequestBody;
-import com.koohpar.oghli.ui.showOrder.LakeOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.DeleteOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.EditOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.LakeOrderRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.UpdateOrderDetailStatusRequestBody;
+import com.koohpar.oghli.ui.showOrder.body.UpdateOrderStatusRequestBody;
 import com.koohpar.oghli.ui.signUpCustomer.AddCustomerRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ListBaseRequestBody;
 
@@ -90,6 +93,15 @@ public interface ICallApi {
 
     @POST("Delete_OrderDetail")
     Observable<Boolean> deleteOrderDetail(@Body DeleteOrderRequestBody deleteOrderRequestBody);
+
+    @POST("Update_Order")
+    Observable<Boolean> callEditOrder(@Body EditOrderRequestBody editOrderRequestBody);
+
+    @POST("Update_Order_Status")
+    Observable<Boolean> updateOrderStatus(@Body UpdateOrderStatusRequestBody updateOrderStatusRequestBody);
+
+    @POST("Update_OrderDetail_Status")
+    Observable<Boolean> updateOrderDetailStatus(@Body UpdateOrderDetailStatusRequestBody updateOrderDetailStatusRequestBody);
 
 
 //    @GET

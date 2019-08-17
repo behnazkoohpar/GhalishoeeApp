@@ -4,4 +4,9 @@ public interface ShowOrderNavigator {
     void addOrder();
 
     void result();
+
+    void editOrder();
+
+    void sumOrder();
+
 }
