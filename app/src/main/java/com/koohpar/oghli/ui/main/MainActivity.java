@@ -69,7 +69,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     public void openMenu() {
-        mActivityMainBinding.dl.openDrawer(Gravity.RIGHT);
+        CommonUtils.showTwoButtonAlert(MainActivity.this, getString(R.string.exit_ok), getString(R.string.txt_menu_exit), getString(R.string.btn_cancel), new CommonUtils.IL() {
+            @Override
+            public void onSuccess() {
+                setLogOut();
+            }
+
+            @Override
+            public void onCancel() {
+            }
+        });
+
+//        mActivityMainBinding.dl.openDrawer(Gravity.RIGHT);
     }
 
     @TargetApi(23)

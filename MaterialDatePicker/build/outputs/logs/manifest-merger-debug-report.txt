@@ -1,43 +1,43 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
+ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
 	package
-		ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:16:5-49
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:16:5-49
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-		ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-		ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:1-21:12
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:11-69
+		ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:15:11-69
 uses-permission#android.permission.VIBRATE
-ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:18:5-66
+ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:18:5-66
 	android:name
-		ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:18:22-63
+		ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:18:22-63
 application
-ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:20:5-19
+ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml:20:5-19
 uses-sdk
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-		ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-		ADDED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
-		INJECTED from E:\AndroidStudioProjects\GhalishoeSharbatOghli\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		ADDED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml
+		INJECTED from E:\AndroidStudioProjects\GhalishoeeApp\MaterialDatePicker\src\main\AndroidManifest.xml

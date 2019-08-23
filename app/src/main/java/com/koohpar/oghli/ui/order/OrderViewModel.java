@@ -4,6 +4,12 @@ import android.arch.lifecycle.MutableLiveData;
 
 import com.koohpar.oghli.api.RestManager;
 import com.koohpar.oghli.data.DataManager;
+import com.koohpar.oghli.data.model.api.CustomerCollectAddressModel;
+import com.koohpar.oghli.data.model.api.CustomerCollectMobileModel;
+import com.koohpar.oghli.data.model.api.CustomerCollectPhoneModel;
+import com.koohpar.oghli.data.model.api.CustomerReleaseAddressModel;
+import com.koohpar.oghli.data.model.api.CustomerReleaseMobileModel;
+import com.koohpar.oghli.data.model.api.CustomerReleasePhoneModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
 import com.koohpar.oghli.data.model.api.OrdersModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
@@ -63,7 +69,12 @@ public class OrderViewModel extends BaseViewModel<OrderNavigator> implements App
 
 
     public void addOrder(){
+//        getNavigator().editOrder();
         getNavigator().addOrder();
+    }
+    public void addInfo(){
+//        getNavigator().editOrder();
+        getNavigator().addInfo();
     }
 
     public void callListService(String requestOoghli) {
@@ -191,5 +202,116 @@ public class OrderViewModel extends BaseViewModel<OrderNavigator> implements App
                     }
                 });
         mCompositeDisposable.add(disposable);
+    }
+
+    public void addNewCollectAddress(String requestOoghli, CustomerCollectAddressModel customerCollectAddressModel) {
+        Disposable disposable = mRestManager.insertNewCollectAddress(new NewCollectAddressBody(requestOoghli,customerCollectAddressModel))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    insertOrderMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
+
+    public void addNewCollectMobile(String requestOoghli, CustomerCollectMobileModel customerCollectMobileModel) {
+        Disposable disposable = mRestManager.insertNewCollectMobile(new NewCollectMobileBody(requestOoghli,customerCollectMobileModel))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    insertOrderMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
+
+    public void addNewCollectPhone(String requestOoghli, CustomerCollectPhoneModel customerCollectPhoneModel) {
+        Disposable disposable = mRestManager.insertNewCollectPhone(new NewCollectPhoneBody(requestOoghli,customerCollectPhoneModel))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    insertOrderMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
+
+    public void addNewRealeseAddress(String requestOoghli, CustomerReleaseAddressModel customerReleaseAddressModel) {
+        Disposable disposable = mRestManager.insertNewRealeseAddress(new NewRealeseAddressBody(requestOoghli,customerReleaseAddressModel))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    insertOrderMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+
+    }
+
+    public void addNewRealeseMobile(String requestOoghli, CustomerReleaseMobileModel customerReleaseMobileModel) {
+
+        Disposable disposable = mRestManager.insertNewRealeseMobile(new NewRealeseMobileBody(requestOoghli,customerReleaseMobileModel))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    insertOrderMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
+
+    public void addNewRealesePhone(String requestOoghli, CustomerReleasePhoneModel customerReleasePhoneModel) {
+        Disposable disposable = mRestManager.insertNewRealesePhone(new NewRealesePhoneBody(requestOoghli,customerReleasePhoneModel))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    insertOrderMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+
     }
 }

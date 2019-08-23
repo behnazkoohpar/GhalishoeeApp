@@ -19,6 +19,12 @@ import com.koohpar.oghli.data.model.api.requestBody.ListAttributeRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
 import com.koohpar.oghli.ui.editOrder.EditDetailRequestBody;
+import com.koohpar.oghli.ui.order.NewCollectAddressBody;
+import com.koohpar.oghli.ui.order.NewCollectMobileBody;
+import com.koohpar.oghli.ui.order.NewCollectPhoneBody;
+import com.koohpar.oghli.ui.order.NewRealeseAddressBody;
+import com.koohpar.oghli.ui.order.NewRealeseMobileBody;
+import com.koohpar.oghli.ui.order.NewRealesePhoneBody;
 import com.koohpar.oghli.ui.order.OrderRequestBody;
 import com.koohpar.oghli.ui.showOrder.body.DeleteOrderRequestBody;
 import com.koohpar.oghli.ui.showOrder.body.EditOrderRequestBody;
@@ -149,5 +155,35 @@ public class AppRestManager implements RestManager {
     @Override
     public Observable<Boolean> updateOrderDetailStatus(UpdateOrderDetailStatusRequestBody updateOrderDetailStatusRequestBody) {
         return iCallApi.updateOrderDetailStatus(updateOrderDetailStatusRequestBody);
+    }
+
+    @Override
+    public Observable<String> insertNewCollectMobile(NewCollectMobileBody newCollectMobileBody) {
+        return iCallApi.insertNewCollectMobile(newCollectMobileBody);
+    }
+
+    @Override
+    public Observable<String> insertNewCollectAddress(NewCollectAddressBody newCollectAddressBody) {
+        return iCallApi.insertNewCollectAddress(newCollectAddressBody);
+    }
+
+    @Override
+    public Observable<String> insertNewCollectPhone(NewCollectPhoneBody newCollectPhoneBody) {
+        return iCallApi.insertNewCollectPhone(newCollectPhoneBody);
+    }
+
+    @Override
+    public Observable<String> insertNewRealeseAddress(NewRealeseAddressBody newRealeseAddressBody) {
+        return iCallApi.insertNewRealeseAddress(newRealeseAddressBody);
+    }
+
+    @Override
+    public Observable<String> insertNewRealeseMobile(NewRealeseMobileBody newRealeseMobileBody) {
+        return iCallApi.insertNewRealeseMobile(newRealeseMobileBody);
+    }
+
+    @Override
+    public Observable<String> insertNewRealesePhone(NewRealesePhoneBody newRealesePhoneBody) {
+        return iCallApi.insertNewRealesePhone(newRealesePhoneBody);
     }
 }

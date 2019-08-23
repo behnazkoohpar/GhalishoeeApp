@@ -35,14 +35,14 @@
                     android:layout_height="match_parent"
                     android:background="@color/transparent_colorblue"/>
                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginRight="@dimen/margin_normal"
                     android:layout_marginTop="@dimen/margin_normal"
                     android:tint="@color/white"
                     android:onClick="@{()->viewModel.openMenu()}"
-                    android:src="@drawable/menu"/>
+                    android:src="@drawable/exit"/>
 
                 <ImageView
                     android:id="@+id/imageView2"

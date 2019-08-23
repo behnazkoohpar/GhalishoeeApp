@@ -19,6 +19,12 @@ import com.koohpar.oghli.data.model.api.requestBody.ListAttributeRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
 import com.koohpar.oghli.ui.editOrder.EditDetailRequestBody;
+import com.koohpar.oghli.ui.order.NewCollectAddressBody;
+import com.koohpar.oghli.ui.order.NewCollectMobileBody;
+import com.koohpar.oghli.ui.order.NewCollectPhoneBody;
+import com.koohpar.oghli.ui.order.NewRealeseAddressBody;
+import com.koohpar.oghli.ui.order.NewRealeseMobileBody;
+import com.koohpar.oghli.ui.order.NewRealesePhoneBody;
 import com.koohpar.oghli.ui.order.OrderRequestBody;
 import com.koohpar.oghli.ui.showOrder.body.DeleteOrderRequestBody;
 import com.koohpar.oghli.ui.showOrder.body.EditOrderRequestBody;
@@ -30,6 +36,7 @@ import com.koohpar.oghli.data.model.api.requestBody.ListBaseRequestBody;
 
 import java.util.List;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 public interface RestManager {
@@ -75,4 +82,16 @@ public interface RestManager {
     Observable<Boolean> updateOrderStatus(UpdateOrderStatusRequestBody updateOrderStatusRequestBody);
 
     Observable<Boolean> updateOrderDetailStatus(UpdateOrderDetailStatusRequestBody updateOrderDetailStatusRequestBody);
+
+    Observable<String> insertNewCollectAddress(NewCollectAddressBody newCollectAddressBody);
+
+    Observable<String> insertNewCollectMobile(NewCollectMobileBody newCollectMobileBody);
+
+    Observable<String> insertNewCollectPhone(NewCollectPhoneBody newCollectPhoneBody);
+
+    Observable<String> insertNewRealeseAddress(NewRealeseAddressBody newRealeseAddressBody);
+
+    Observable<String> insertNewRealeseMobile(NewRealeseMobileBody newRealeseMobileBody);
+
+    Observable<String> insertNewRealesePhone(NewRealesePhoneBody newRealesePhoneBody);
 }

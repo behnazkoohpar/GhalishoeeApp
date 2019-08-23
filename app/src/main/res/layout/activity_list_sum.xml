@@ -49,16 +49,17 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_normal">
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/datel"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/margin_normal"
-                android:layout_alignParentRight="true"
                 android:fontFamily="@font/iran_sans"
                 android:hint="@string/date"
                 android:orientation="vertical"
@@ -74,35 +75,37 @@
                     style="@style/AppTheme.TextViewTitle"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:enabled="false"
                     android:imeOptions="actionDone"
                     android:inputType="number"
-                    android:enabled="false"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textSize="@dimen/font_size_xxlarge" />
             </android.support.design.widget.TextInputLayout>
 
-            <ImageView
+            <Button
                 android:id="@+id/cal"
-                android:layout_width="50dp"
-                android:onClick="@{()->viewModel.openCalendar()}"
+                style="@style/AppTheme.ButtonPrimary"
+                android:layout_width="150dp"
                 android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/margin_normal"
-                android:src="@drawable/calendar"
-                android:layout_toLeftOf="@+id/datel"/>
+                android:layout_toLeftOf="@+id/datel"
+                android:onClick="@{()->viewModel.openCalendar()}"
+                android:text="@string/select_date" />
 
             <Button
                 style="@style/AppTheme.ButtonPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:layout_marginRight="20dp"
-                android:layout_centerVertical="true"
                 android:layout_marginBottom="20dp"
-                android:visibility="gone"
                 android:layout_toLeftOf="@+id/cal"
                 android:onClick="@{() -> viewModel.search()}"
-                android:text="جستجو" />
+                android:text="جستجو"
+                android:visibility="gone" />
 
         </RelativeLayout>
 

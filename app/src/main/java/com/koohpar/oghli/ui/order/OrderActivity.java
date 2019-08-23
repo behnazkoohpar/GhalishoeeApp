@@ -13,6 +13,12 @@ import android.widget.ArrayAdapter;
 import com.koohpar.oghli.BR;
 import com.koohpar.oghli.R;
 import com.koohpar.oghli.data.model.api.Customer;
+import com.koohpar.oghli.data.model.api.CustomerCollectAddressModel;
+import com.koohpar.oghli.data.model.api.CustomerCollectMobileModel;
+import com.koohpar.oghli.data.model.api.CustomerCollectPhoneModel;
+import com.koohpar.oghli.data.model.api.CustomerReleaseAddressModel;
+import com.koohpar.oghli.data.model.api.CustomerReleaseMobileModel;
+import com.koohpar.oghli.data.model.api.CustomerReleasePhoneModel;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
@@ -39,6 +45,7 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
     public static OrderMissionDetailModel orderMissionDetail;
     public static Customer customerModel;
     public static boolean isFromCustomer = false;
+    String customerId;
     @Inject
     OrderViewModel mOrderViewModel;
     ActivityOrderBinding mActivityOrderBinding;
@@ -60,12 +67,11 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
             mActivityOrderBinding.tel.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
                 }
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if (count == 1 && s.charAt(0)==48)
+                    if (count == 1 && s.charAt(0) == 48)
                         CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), "شماره موبایل بدون صفر باشد", getString(R.string.ok), new CommonUtils.IL() {
                             @Override
                             public void onSuccess() {
@@ -78,7 +84,6 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
                                 return;
                             }
                         });
-
                 }
 
                 @Override
@@ -91,11 +96,13 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
                 mActivityOrderBinding.numberhome.setText(customerModel.getCollectPhone());
                 mActivityOrderBinding.telnumber.setText(customerModel.getCollectMobile());
                 mActivityOrderBinding.address.setText(customerModel.getCollectAddress());
+                customerId = customerModel.getCustomerID();
             } else {
                 mActivityOrderBinding.name.setText(orderMissionDetail.getCustName());
                 mActivityOrderBinding.numberhome.setText(orderMissionDetail.getCollectPhone());
                 mActivityOrderBinding.telnumber.setText(orderMissionDetail.getCollectMobile());
                 mActivityOrderBinding.address.setText(orderMissionDetail.getCollectAddress());
+                customerId = orderMissionDetail.getCustomerId();
             }
             callListService();
             setNumberOrder();
@@ -381,57 +388,147 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
         });
     }
 
+//    @Override
+//    public void addOrder() {
+//        try {
+//            List<OrderDetailModel> orderDetailModels = new ArrayList<>();
+//
+//            for (int i = 0; i < numberOrderSelected; i++) {
+//                OrderDetailModel orderDetailModel = new OrderDetailModel();
+////                orderDetailModel.setLenght(Integer.parseInt(mActivityOrderBinding.tool.getText().toString()));
+////                orderDetailModel.setWidth(Integer.parseInt(mActivityOrderBinding.arz.getText().toString()));
+//                orderDetailModel.setUnitPrice(Float.parseFloat(mActivityOrderBinding.price.getText().toString()));
+////                orderDetailModel.setServiceAttrib1ID(sheklSelected);
+////                orderDetailModel.setServiceAttrib2ID(jensSelected);
+////                orderDetailModel.setServiceAttrib3ID(citySelected);
+////                orderDetailModel.setServiceAttrib4ID(rangSelected);
+//                orderDetailModels.add(orderDetailModel);
+//            }
+//
+//            PersianCalendar persianCalendar = new PersianCalendar();
+//            String mYear = String.valueOf(persianCalendar.getPersianYear());
+//            String mMonth = String.valueOf(persianCalendar.getPersianMonth() + 1);
+//            String mDay = String.valueOf(persianCalendar.getPersianDay());
+//            if (Integer.parseInt(mMonth) < 10)
+//                mMonth = "0" + mMonth;
+//            if (Integer.parseInt(mDay) < 10)
+//                mDay = "0" + mDay;
+//            String date = mYear + "/" + mMonth + "/" + mDay;
+//            OrdersModel ordersModel = new OrdersModel();
+////            ordersModel.setCustName(orderMissionDetail.getCustName());
+//            if (isFromCustomer)
+//                ordersModel.setCustomerID(customerModel.getCustomerID());
+//            else
+//                ordersModel.setCustomerID(orderMissionDetail.getCustomerId());
+//            ordersModel.setServicesID(serviceSelected);
+////            ordersModel.setCollectOrderMissionID(orderMissionDetail.getOrderMissionID());
+//            ordersModel.setCollectServiceManID(mOrderViewModel.getDataManager().getServiceManId());
+////            ordersModel.setCollectTime(String.valueOf(persianCalendar.getTime()));
+//            ordersModel.setCollectAddress(mActivityOrderBinding.addressSum.getText().toString());
+//            ordersModel.setCollectMobile(mActivityOrderBinding.tel.getText().toString());
+//            ordersModel.setCollectPhone(mActivityOrderBinding.telHome.getText().toString());
+//            ordersModel.setReleaseAddress(mActivityOrderBinding.addressPakhsh.getText().toString());
+//            ordersModel.setReleaseMobile(mActivityOrderBinding.telpakhsh.getText().toString());
+//            ordersModel.setReleasePhone(mActivityOrderBinding.telHomePakhsh.getText().toString());
+//            ordersModel.setCreatedBy(mOrderViewModel.getDataManager().getServiceManId());
+////            ordersModel.setCreatedDate("1398/05/08");
+//            ordersModel.setLstOrderDetail(orderDetailModels);
+//            ordersModel.setOrdersCount(numberOrderSelected);
+////            ordersModel.setServiceCode(orderTypeSelected);
+//            ordersModel.setOrderTypeCode(orderTypeSelected);
+//            mOrderViewModel.addNewOrder(AppConstants.REQUEST_OOGHLI, ordersModel);
+//            mOrderViewModel.getInsertOrderMutableLiveData().observe(this, this::receivedDataInsertOrder);
+//
+//        } catch (Exception e) {
+//            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private void receivedDataInsertOrder(String s) {
+//        if (!s.equals("00000000-0000-0000-0000-000000000000")) {
+//            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.data_record), null, new CommonUtils.IL() {
+//                @Override
+//                public void onSuccess() {
+//                    EditOrderActivity.orderId = s;
+//                    EditOrderActivity.isFromCustomer = isFromCustomer;
+//                    if (isFromCustomer)
+//                        EditOrderActivity.customerModel = customerModel;
+//                    else
+//                        EditOrderActivity.orderMissionDetail = orderMissionDetail;
+//                    startActivity(EditOrderActivity.getStartIntent(OrderActivity.this));
+//                }
+//
+//                @Override
+//                public void onCancel() {
+//                    EditOrderActivity.orderId = s;
+//                    EditOrderActivity.orderMissionDetail = orderMissionDetail;
+//                    startActivity(EditOrderActivity.getStartIntent(OrderActivity.this));
+//                }
+//            });
+//
+//        } else {
+//            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+//        }
+//    }
+
+
     @Override
     public void addOrder() {
-        try {
-            List<OrderDetailModel> orderDetailModels = new ArrayList<>();
+        EditOrderActivity.isFromCustomer = isFromCustomer;
+        if (isFromCustomer)
+            EditOrderActivity.customerModel = customerModel;
+        else
+            EditOrderActivity.orderMissionDetail = orderMissionDetail;
+        startActivity(EditOrderActivity.getStartIntent(OrderActivity.this));
+    }
 
-            for (int i = 0; i < numberOrderSelected; i++) {
-                OrderDetailModel orderDetailModel = new OrderDetailModel();
-//                orderDetailModel.setLenght(Integer.parseInt(mActivityOrderBinding.tool.getText().toString()));
-//                orderDetailModel.setWidth(Integer.parseInt(mActivityOrderBinding.arz.getText().toString()));
-                orderDetailModel.setUnitPrice(Float.parseFloat(mActivityOrderBinding.price.getText().toString()));
-//                orderDetailModel.setServiceAttrib1ID(sheklSelected);
-//                orderDetailModel.setServiceAttrib2ID(jensSelected);
-//                orderDetailModel.setServiceAttrib3ID(citySelected);
-//                orderDetailModel.setServiceAttrib4ID(rangSelected);
-                orderDetailModels.add(orderDetailModel);
+    @Override
+    public void addInfo() {
+        try {
+            if (!mActivityOrderBinding.addressSum.getText().toString().isEmpty()) {
+                CustomerCollectAddressModel customerCollectAddressModel = new CustomerCollectAddressModel();
+                customerCollectAddressModel.setCollectAddress(mActivityOrderBinding.addressSum.getText().toString());
+                customerCollectAddressModel.setCustomerID(customerId);
+                mOrderViewModel.addNewCollectAddress(AppConstants.REQUEST_OOGHLI, customerCollectAddressModel);
+                mOrderViewModel.getInsertOrderMutableLiveData().observe(this, this::receivedDataInsertOrder);
             }
 
-            PersianCalendar persianCalendar = new PersianCalendar();
-            String mYear = String.valueOf(persianCalendar.getPersianYear());
-            String mMonth = String.valueOf(persianCalendar.getPersianMonth() + 1);
-            String mDay = String.valueOf(persianCalendar.getPersianDay());
-            if (Integer.parseInt(mMonth) < 10)
-                mMonth = "0" + mMonth;
-            if (Integer.parseInt(mDay) < 10)
-                mDay = "0" + mDay;
-            String date = mYear + "/" + mMonth + "/" + mDay;
-            OrdersModel ordersModel = new OrdersModel();
-//            ordersModel.setCustName(orderMissionDetail.getCustName());
-            if (isFromCustomer)
-                ordersModel.setCustomerID(customerModel.getCustomerID());
-            else
-                ordersModel.setCustomerID(orderMissionDetail.getCustomerId());
-            ordersModel.setServicesID(serviceSelected);
-//            ordersModel.setCollectOrderMissionID(orderMissionDetail.getOrderMissionID());
-            ordersModel.setCollectServiceManID(mOrderViewModel.getDataManager().getServiceManId());
-//            ordersModel.setCollectTime(String.valueOf(persianCalendar.getTime()));
-            ordersModel.setCollectAddress(mActivityOrderBinding.addressSum.getText().toString());
-            ordersModel.setCollectMobile(mActivityOrderBinding.tel.getText().toString());
-            ordersModel.setCollectPhone(mActivityOrderBinding.telHome.getText().toString());
-            ordersModel.setReleaseAddress(mActivityOrderBinding.addressPakhsh.getText().toString());
-            ordersModel.setReleaseMobile(mActivityOrderBinding.telpakhsh.getText().toString());
-            ordersModel.setReleasePhone(mActivityOrderBinding.telHomePakhsh.getText().toString());
-            ordersModel.setCreatedBy(mOrderViewModel.getDataManager().getServiceManId());
-//            ordersModel.setCreatedDate("1398/05/08");
-            ordersModel.setLstOrderDetail(orderDetailModels);
-            ordersModel.setOrdersCount(numberOrderSelected);
-//            ordersModel.setServiceCode(orderTypeSelected);
-            ordersModel.setOrderTypeCode(orderTypeSelected);
-            mOrderViewModel.addNewOrder(AppConstants.REQUEST_OOGHLI, ordersModel);
-            mOrderViewModel.getInsertOrderMutableLiveData().observe(this, this::receivedDataInsertOrder);
-
+            if (!mActivityOrderBinding.tel.getText().toString().isEmpty()) {
+                CustomerCollectMobileModel customerCollectMobileModel = new CustomerCollectMobileModel();
+                customerCollectMobileModel.setCollectMobile(mActivityOrderBinding.tel.getText().toString());
+                customerCollectMobileModel.setCustomerID(customerId);
+                mOrderViewModel.addNewCollectMobile(AppConstants.REQUEST_OOGHLI, customerCollectMobileModel);
+                mOrderViewModel.getInsertOrderMutableLiveData().observe(this, this::receivedDataInsertOrder);
+            }
+            if (!mActivityOrderBinding.telHome.getText().toString().isEmpty()) {
+                CustomerCollectPhoneModel customerCollectPhoneModel = new CustomerCollectPhoneModel();
+                customerCollectPhoneModel.setCollectPhone(mActivityOrderBinding.telHome.getText().toString());
+                customerCollectPhoneModel.setCustomerID(customerId);
+                mOrderViewModel.addNewCollectPhone(AppConstants.REQUEST_OOGHLI, customerCollectPhoneModel);
+                mOrderViewModel.getInsertOrderMutableLiveData().observe(this, this::receivedDataInsertOrder);
+            }
+            if (!mActivityOrderBinding.addressPakhsh.getText().toString().isEmpty()) {
+                CustomerReleaseAddressModel customerReleaseAddressModel = new CustomerReleaseAddressModel();
+                customerReleaseAddressModel.setReleaseAddress(mActivityOrderBinding.addressPakhsh.getText().toString());
+                customerReleaseAddressModel.setCustomerID(customerId);
+                mOrderViewModel.addNewRealeseAddress(AppConstants.REQUEST_OOGHLI, customerReleaseAddressModel);
+                mOrderViewModel.getInsertOrderMutableLiveData().observe(this, this::receivedDataInsertOrder);
+            }
+            if (!mActivityOrderBinding.telpakhsh.getText().toString().isEmpty()) {
+                CustomerReleaseMobileModel customerReleaseMobileModel = new CustomerReleaseMobileModel();
+                customerReleaseMobileModel.setReleaseMobile(mActivityOrderBinding.telpakhsh.getText().toString());
+                customerReleaseMobileModel.setCustomerID(customerId);
+                mOrderViewModel.addNewRealeseMobile(AppConstants.REQUEST_OOGHLI, customerReleaseMobileModel);
+                mOrderViewModel.getInsertOrderMutableLiveData().observe(this, this::receivedDataInsertOrder);
+            }
+            if (!mActivityOrderBinding.telHomePakhsh.getText().toString().isEmpty()) {
+                CustomerReleasePhoneModel customerReleasePhoneModel = new CustomerReleasePhoneModel();
+                customerReleasePhoneModel.setReleasePhone(mActivityOrderBinding.telHomePakhsh.getText().toString());
+                customerReleasePhoneModel.setCustomerID(customerId);
+                mOrderViewModel.addNewRealesePhone(AppConstants.REQUEST_OOGHLI, customerReleasePhoneModel);
+                mOrderViewModel.getInsertOrderMutableLiveData().observe(this, this::receivedDataInsertOrder);
+            }
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -439,30 +536,21 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
     }
 
     private void receivedDataInsertOrder(String s) {
-        if (s != null) {
-            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.data_record), null, new CommonUtils.IL() {
-                @Override
-                public void onSuccess() {
-                    EditOrderActivity.orderId = s;
-                    EditOrderActivity.isFromCustomer = isFromCustomer;
-                    if (isFromCustomer)
-                        EditOrderActivity.customerModel = customerModel;
-                    else
-                        EditOrderActivity.orderMissionDetail = orderMissionDetail;
-                    startActivity(EditOrderActivity.getStartIntent(OrderActivity.this));
-                }
-
-                @Override
-                public void onCancel() {
-                    EditOrderActivity.orderId = s;
-                    EditOrderActivity.orderMissionDetail = orderMissionDetail;
-                    startActivity(EditOrderActivity.getStartIntent(OrderActivity.this));
-                }
-            });
-
+        if (!s.equals("00000000-0000-0000-0000-000000000000")) {
+            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.info_record), null, null);
         } else {
             CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
         }
+    }
+
+    @Override
+    public void editOrder() {
+        EditOrderActivity.isFromCustomer = isFromCustomer;
+        if (isFromCustomer)
+            EditOrderActivity.customerModel = customerModel;
+        else
+            EditOrderActivity.orderMissionDetail = orderMissionDetail;
+        startActivity(EditOrderActivity.getStartIntent(OrderActivity.this));
     }
 }
 

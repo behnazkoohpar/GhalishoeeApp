@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.koohpar.oghli.BuildConfig;
 import com.koohpar.oghli.R;
 import com.koohpar.oghli.data.model.api.Customer;
 
@@ -36,6 +38,7 @@ public class ListCustomerModelAdapter extends RecyclerView.Adapter<ListCustomerM
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public final TextView name,telnumber,numberhome,address;
+        public final Button select;
         public CardView card_view;
 
         public ViewHolder(final View itemView, final ListCustomerModelAdapter.OnItemClickListener listener) {
@@ -45,8 +48,21 @@ public class ListCustomerModelAdapter extends RecyclerView.Adapter<ListCustomerM
             numberhome = (TextView) itemView.findViewById(R.id.numberhome);
             address = (TextView) itemView.findViewById(R.id.address);
             card_view = (CardView) itemView.findViewById(R.id.card_view);
+             select = (Button) itemView.findViewById(R.id.select);
 
             card_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onOpenClick(position);
+                        }
+                    }
+                }
+            });
+
+            select.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if (listener != null) {

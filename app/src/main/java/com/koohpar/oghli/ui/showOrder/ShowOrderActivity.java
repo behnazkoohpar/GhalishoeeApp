@@ -79,6 +79,13 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             mActivityShowOrderBinding.telnumber.setText(orderMissionDetail.getCollectMobile());
             mActivityShowOrderBinding.numberhome.setText(orderMissionDetail.getCollectPhone());
             mActivityShowOrderBinding.name.setText(orderMissionDetail.getCustName());
+            if(!isFromSum){
+                mActivityShowOrderBinding.numberOrder.setEnabled(false);
+                mActivityShowOrderBinding.typeFator.setEnabled(false);
+                mActivityShowOrderBinding.typeOrder.setEnabled(false);
+                mActivityShowOrderBinding.btn.setVisibility(View.GONE);
+                mActivityShowOrderBinding.editOrder.setVisibility(View.GONE);
+            }
             callListTypeFactor();
             callListService();
 
@@ -89,6 +96,7 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
                 mActivityShowOrderBinding.result.setText("دلایل عدم جمع");
                 mActivityShowOrderBinding.sumOrder.setVisibility(View.VISIBLE);
             } else {
+                mActivityShowOrderBinding.sumOrder.setVisibility(View.GONE);
                 mActivityShowOrderBinding.result.setVisibility(View.GONE);
                 mActivityShowOrderBinding.result.setText("دلایل عدم پخش");
             }
@@ -252,9 +260,20 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     @Override
     public void sumOrder() {
         try {
-            LakeStatusModel lakeStatusModel = new LakeStatusModel();
-            lakeStatusModel.setLakeStatusCode(3);
-            updateOrderStatus(lakeStatusModel);
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_changed), null, new CommonUtils.IL() {
+                @Override
+                public void onSuccess() {
+                    LakeStatusModel lakeStatusModel = new LakeStatusModel();
+                    lakeStatusModel.setLakeStatusCode(3);
+                    updateOrderStatus(lakeStatusModel);
+                }
+
+                @Override
+                public void onCancel() {
+
+                }
+            });
+
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -267,14 +286,14 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             OrdersModel ordersModel = new OrdersModel();
             List<OrderDetailModel> orderDetailModels = new ArrayList<>();
 
-            for (int i = 0; i < numberOrderSelected; i++) {
-                OrderDetailModel orderDetailModel = new OrderDetailModel();
-                if (mActivityShowOrderBinding.price.getText().toString().isEmpty())
-                    orderDetailModel.setUnitPrice(0f);
-                else
-                    orderDetailModel.setUnitPrice(Float.parseFloat(mActivityShowOrderBinding.price.getText().toString()));
-                orderDetailModels.add(orderDetailModel);
-            }
+//            for (int i = 0; i < numberOrderSelected; i++) {
+//                OrderDetailModel orderDetailModel = new OrderDetailModel();
+//                if (mActivityShowOrderBinding.price.getText().toString().isEmpty())
+//                    orderDetailModel.setUnitPrice(0f);
+//                else
+//                    orderDetailModel.setUnitPrice(Float.parseFloat(mActivityShowOrderBinding.price.getText().toString()));
+//                orderDetailModels.add(orderDetailModel);
+//            }
             ordersModel.setOrdersID(orderMissionDetail.getOrderID());
             ordersModel.setOrderTypeCode(Integer.parseInt(orderTypeSelected));
             ordersModel.setOrdersCount(numberOrderSelected);
@@ -476,7 +495,6 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             builderSingle.show();
         } else {
             CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_is_null), null, null);
-
         }
     }
 
@@ -484,7 +502,6 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         try {
             mShowOrderViewModel.callListService(AppConstants.REQUEST_OOGHLI);
             mShowOrderViewModel.getServicesModelMutableLiveData().observe(this, this::receivedData);
-
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -499,8 +516,9 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             }
             serviceSelected = data.get(0).getServiceID();
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(R.layout.spinner_text_color);
             mActivityShowOrderBinding.typeOrder.setAdapter(adapter);
-
             mActivityShowOrderBinding.typeOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view,
@@ -539,6 +557,8 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             }
             orderTypeSelected = String.valueOf(data.get(0).getOrderTypeCode());
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(R.layout.spinner_text_color);
             mActivityShowOrderBinding.typeFator.setAdapter(adapter);
             mActivityShowOrderBinding.typeFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -721,6 +741,8 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         for (int i = 0; i < datas.length; i++)
             datas[i] = String.valueOf(i + 1);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(R.layout.spinner_text_color);
         mActivityShowOrderBinding.numberOrder.setAdapter(adapter);
         mActivityShowOrderBinding.numberOrder.setSelection(ordersModelsList.size() - 1);
         mActivityShowOrderBinding.numberOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.koohpar.oghli.R;
@@ -17,6 +18,7 @@ import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import java.util.List;
 
 public class ListOrderMissionDetailModelAdapter  extends RecyclerView.Adapter<ListOrderMissionDetailModelAdapter.ViewHolder> {
+
     public List<OrderMissionDetailModel> stList;
     public static Context context;
     private ListOrderMissionDetailModelAdapter.OnItemClickListener mListener;
@@ -40,7 +42,7 @@ public class ListOrderMissionDetailModelAdapter  extends RecyclerView.Adapter<Li
 
         public final TextView name,telnumber,numberhome,address;
         public CardView card_view;
-
+        public Button select;
         public ViewHolder(final View itemView, final ListOrderMissionDetailModelAdapter.OnItemClickListener listener) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
@@ -48,7 +50,19 @@ public class ListOrderMissionDetailModelAdapter  extends RecyclerView.Adapter<Li
             numberhome = (TextView) itemView.findViewById(R.id.numberhome);
             address = (TextView) itemView.findViewById(R.id.address);
             card_view = (CardView) itemView.findViewById(R.id.card_view);
+            select = (Button) itemView.findViewById(R.id.select);
 
+            select.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onOpenClick(position);
+                        }
+                    }
+                }
+            });
             card_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

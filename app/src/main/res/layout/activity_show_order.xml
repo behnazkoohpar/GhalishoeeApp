@@ -70,7 +70,8 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:background="@color/backgroundPage2">
 
                         <TextView
                             android:id="@+id/name"
@@ -164,6 +165,7 @@
                             android:layout_centerVertical="true"
                             android:layout_marginTop="@dimen/margin_small"
                             android:layout_marginRight="@dimen/margin_small"
+                            android:lineSpacingExtra="15dp"
                             android:layout_toLeftOf="@+id/taddress"
                             android:text="@string/address" />
                     </RelativeLayout>
@@ -213,8 +215,9 @@
                                 android:layout_margin="@dimen/margin_small"
                                 android:text="نوع خدمت:" />
 
-                            <Spinner
+                            <android.support.v7.widget.AppCompatSpinner
                                 android:id="@+id/typeOrder"
+                                style="@style/AppTheme.font"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_toLeftOf="@+id/tTyeOrder"
@@ -239,8 +242,9 @@
                                 android:layout_margin="@dimen/margin_small"
                                 android:text="تعداد سفارش:" />
 
-                            <Spinner
+                            <android.support.v7.widget.AppCompatSpinner
                                 android:id="@+id/numberOrder"
+                                style="@style/AppTheme.font"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_toLeftOf="@+id/tnumberOrder"
@@ -273,8 +277,9 @@
                                 android:layout_margin="@dimen/margin_small"
                                 android:text="نوع فاکتور:" />
 
-                            <Spinner
+                            <android.support.v7.widget.AppCompatSpinner
                                 android:id="@+id/typeFator"
+                                style="@style/AppTheme.font"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_centerVertical="true"
@@ -283,36 +288,7 @@
                                 android:spinnerMode="dropdown" />
                         </RelativeLayout>
 
-                        <android.support.design.widget.TextInputLayout
-                            android:id="@+id/textLayoutPrice"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:layout_marginLeft="4dp"
-                            android:layout_marginRight="@dimen/margin_normal"
-                            android:layout_toLeftOf="@+id/typeFator"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/iran_sans"
-                            android:hint="@string/priceOne"
-                            app:boxBackgroundMode="outline"
-                            app:boxStrokeColor="@color/colorPrimary"
-                            app:counterEnabled="false"
-                            app:counterMaxLength="10"
-                            app:errorEnabled="false"
-                            app:helperTextEnabled="true">
-
-                            <android.support.design.widget.TextInputEditText
-                                android:id="@+id/price"
-                                style="@style/AppTheme.TextViewTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:imeOptions="actionNext"
-                                android:inputType="number"
-                                android:maxLength="10"
-                                android:textAlignment="center" />
-                        </android.support.design.widget.TextInputLayout>
-                    </LinearLayout>
+                         </LinearLayout>
 
                     <Button
                         android:id="@+id/editOrder"
@@ -358,10 +334,11 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:visibility="visible"
                     android:onClick="@{() -> viewModel.sumOrder()}"
-                    android:text="جمع سفارش" />
+                    android:text="جمع سفارش"
+                    android:visibility="visible" />
             </LinearLayout>
 
 
@@ -372,7 +349,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/bttn"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:onClick="@{() -> viewModel.addOrder()}"

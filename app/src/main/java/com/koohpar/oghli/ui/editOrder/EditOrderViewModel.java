@@ -6,9 +6,14 @@ import com.koohpar.oghli.api.RestManager;
 import com.koohpar.oghli.data.DataManager;
 import com.koohpar.oghli.data.model.api.OrderDetailEdit;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
+import com.koohpar.oghli.data.model.api.OrderTypeModel;
+import com.koohpar.oghli.data.model.api.OrdersModel;
+import com.koohpar.oghli.data.model.api.ServicesModel;
+import com.koohpar.oghli.data.model.api.requestBody.ListBaseRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
 import com.koohpar.oghli.di.module.RxRetrofitErrorConsumer;
 import com.koohpar.oghli.ui.base.BaseViewModel;
+import com.koohpar.oghli.ui.order.OrderRequestBody;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.rx.SchedulersFacade;
 import com.koohpar.oghli.utils.rx.SingleLiveData;
@@ -27,21 +32,31 @@ public class EditOrderViewModel extends BaseViewModel<EditOrderNavigator> implem
 
     private final MutableLiveData<List<OrderDetailModel>> ordersModelMutableLiveData = new SingleLiveData<>();
     private final MutableLiveData<Boolean> editDetailMutableLiveData = new SingleLiveData<>();
+    private final MutableLiveData<List<ServicesModel>> servicesModelMutableLiveData = new SingleLiveData<>();
+    private final MutableLiveData<List<OrderTypeModel>> orderTypeModelMutableLiveData = new SingleLiveData<>();
+    private final MutableLiveData<String> insertOrderMutableLiveData = new SingleLiveData<>();
 
+    public MutableLiveData<List<ServicesModel>> getServicesModelMutableLiveData() {
+        return servicesModelMutableLiveData;
+    }
+    public MutableLiveData<List<OrderTypeModel>> getOrderTypeModelMutableLiveData() {
+        return orderTypeModelMutableLiveData;
+    }
     public MutableLiveData<List<OrderDetailModel>> getOrdersModelMutableLiveData() {
         return ordersModelMutableLiveData;
     }
-
     public MutableLiveData<Boolean> getEditDetailMutableLiveData() {
         return editDetailMutableLiveData;
     }
-
-    public void addOrder() {
-        getNavigator().addOrder();
+    public MutableLiveData<String> getInsertOrderMutableLiveData() {
+        return insertOrderMutableLiveData;
     }
 
     public void closed() {
         getNavigator().closed();
+    }
+    public void editOrder() {
+        getNavigator().callEditOrderDetail();
     }
 
     public void callEditOrder(String ordersID, String ooghli) {
@@ -79,6 +94,61 @@ public class EditOrderViewModel extends BaseViewModel<EditOrderNavigator> implem
                     }
                 });
 
+        mCompositeDisposable.add(disposable);
+    }
+
+    public void callListService(String requestOoghli) {
+        Disposable disposable = mRestManager.listServices(new ListBaseRequestBody(requestOoghli))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    servicesModelMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+    }
+
+    public void callTypeFactor(String requestOoghli) {
+        Disposable disposable = mRestManager.listOrderType(new ListBaseRequestBody(requestOoghli))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    orderTypeModelMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+
+    }
+
+    public void addNewOrder(String requestOoghli, OrdersModel ordersModel) {
+        Disposable disposable = mRestManager.insertOrder(new OrderRequestBody(requestOoghli,ordersModel))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    insertOrderMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
         mCompositeDisposable.add(disposable);
     }
 }

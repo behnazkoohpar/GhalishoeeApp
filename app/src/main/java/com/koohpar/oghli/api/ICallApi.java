@@ -19,6 +19,12 @@ import com.koohpar.oghli.data.model.api.requestBody.ListAttributeRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.SearchCustomerRequestBody;
 import com.koohpar.oghli.data.model.api.requestBody.ShowOrdersRequestBody;
 import com.koohpar.oghli.ui.editOrder.EditDetailRequestBody;
+import com.koohpar.oghli.ui.order.NewCollectAddressBody;
+import com.koohpar.oghli.ui.order.NewCollectMobileBody;
+import com.koohpar.oghli.ui.order.NewCollectPhoneBody;
+import com.koohpar.oghli.ui.order.NewRealeseAddressBody;
+import com.koohpar.oghli.ui.order.NewRealeseMobileBody;
+import com.koohpar.oghli.ui.order.NewRealesePhoneBody;
 import com.koohpar.oghli.ui.order.OrderRequestBody;
 import com.koohpar.oghli.ui.showOrder.body.DeleteOrderRequestBody;
 import com.koohpar.oghli.ui.showOrder.body.EditOrderRequestBody;
@@ -102,6 +108,24 @@ public interface ICallApi {
 
     @POST("Update_OrderDetail_Status")
     Observable<Boolean> updateOrderDetailStatus(@Body UpdateOrderDetailStatusRequestBody updateOrderDetailStatusRequestBody);
+
+    @POST("Insert_CustomerCollectAddress")
+    Observable<String> insertNewCollectAddress(@Body NewCollectAddressBody newCollectAddressBody);
+
+    @POST("Insert_CustomerCollectMobile")
+    Observable<String> insertNewCollectMobile(@Body NewCollectMobileBody newCollectMobileBody);
+
+    @POST("Insert_CustomerCollectPhone")
+    Observable<String> insertNewCollectPhone(@Body NewCollectPhoneBody newCollectPhoneBody);
+
+    @POST("Insert_CustomerReleaseAddress")
+    Observable<String> insertNewRealeseAddress(@Body NewRealeseAddressBody newRealeseAddressBody);
+
+    @POST("Insert_CustomerReleaseMobile")
+    Observable<String> insertNewRealeseMobile(@Body NewRealeseMobileBody newRealeseMobileBody);
+
+    @POST("Insert_CustomerReleasePhone")
+    Observable<String> insertNewRealesePhone(@Body NewRealesePhoneBody newRealesePhoneBody);
 
 
 //    @GET

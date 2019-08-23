@@ -37,7 +37,7 @@
                     android:layout_margin="@dimen/margin_small"
                     android:text="شهر قالی:" />
 
-                <Spinner
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -63,8 +63,9 @@
                     android:layout_margin="@dimen/margin_small"
                     android:text="جنس قالی:" />
 
-                <Spinner
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/jensGhali"
+                    style="@style/AppTheme.font"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toLeftOf="@+id/tjensGhali"
@@ -95,7 +96,7 @@
                     android:layout_margin="@dimen/margin_small"
                     android:text="شکل قالی:" />
 
-                <Spinner
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/form"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -121,7 +122,7 @@
                     android:layout_margin="@dimen/margin_small"
                     android:text="رنگ قالی:" />
 
-                <Spinner
+                <android.support.v7.widget.AppCompatSpinner
                     android:id="@+id/colorFator"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,33 +132,49 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/textLayoutPrice"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="@dimen/margin_normal"
-            android:layout_marginRight="4dp"
-            android:fontFamily="@font/iran_sans"
-            android:hint="@string/priceOne"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/colorPrimary"
-            app:counterEnabled="false"
-            app:counterMaxLength="10"
-            app:errorEnabled="false"
-            app:helperTextEnabled="true">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/price"
-                style="@style/AppTheme.TextViewTitle"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textLayoutPrice"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:imeOptions="actionNext"
-                android:inputType="number"
-                android:maxLength="10"
-                android:textAlignment="center" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="@dimen/margin_normal"
+                android:layout_marginRight="4dp"
+                android:layout_toRightOf="@+id/clearprice"
+                android:fontFamily="@font/iran_sans"
+                android:hint="@string/priceOne"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:counterEnabled="false"
+                app:counterMaxLength="10"
+                app:errorEnabled="false"
+                app:helperTextEnabled="true">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/price"
+                    style="@style/AppTheme.TextViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:textAlignment="center" />
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/clearprice"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_clear" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -241,31 +258,46 @@
             </android.support.design.widget.TextInputLayout>
         </RelativeLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/textLayoutSumPrice"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            android:fontFamily="@font/iran_sans"
-            android:hint="@string/sumPrice"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/colorPrimary"
-            app:counterEnabled="false"
-            app:counterMaxLength="60"
-            app:errorEnabled="false"
-            app:helperTextEnabled="true">
+            android:layout_height="wrap_content">
 
-            <android.support.design.widget.TextInputEditText
-                android:id="@+id/sumPrice"
-                style="@style/AppTheme.TextViewTitle"
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/textLayoutSumPrice"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:maxLength="11"
-                android:textAlignment="center" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="4dp"
+                android:layout_toRightOf="@+id/clearsumprice"
+                android:fontFamily="@font/iran_sans"
+                android:hint="@string/sumPrice"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:counterEnabled="false"
+                app:counterMaxLength="60"
+                app:errorEnabled="false"
+                app:helperTextEnabled="true">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/sumPrice"
+                    style="@style/AppTheme.TextViewTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:imeOptions="actionDone"
+                    android:inputType="number"
+                    android:maxLength="11"
+                    android:textAlignment="center" />
+            </android.support.design.widget.TextInputLayout>
+
+            <ImageView
+                android:id="@+id/clearsumprice"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_clear" />
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -285,7 +317,7 @@
                 android:layout_marginRight="@dimen/margin_small"
                 android:layout_weight="1"
                 android:text="@string/delete"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/editCarpet"
@@ -296,7 +328,8 @@
                 android:layout_marginRight="@dimen/margin_small"
                 android:layout_weight="1"
                 android:text="@string/editCarpet"
-                android:visibility="gone"/>
+                android:visibility="gone" />
+
             <Button
                 android:id="@+id/adamPakhsh"
                 style="@style/AppTheme.ButtonRed"
@@ -306,7 +339,7 @@
                 android:layout_marginRight="@dimen/margin_small"
                 android:layout_weight="1"
                 android:text="@string/adamPakhsh"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/pakhshOk"
@@ -317,7 +350,7 @@
                 android:layout_marginRight="@dimen/margin_small"
                 android:layout_weight="1"
                 android:text="@string/pakhshOk"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 </android.support.v7.widget.CardView>

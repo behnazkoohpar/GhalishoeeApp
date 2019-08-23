@@ -24,11 +24,15 @@
         <item name="android:minHeight">50dip</item>
         <item name="android:maxHeight">50dip</item>
     </style>
-
+    <style name="MySpinnerLook"
+        parent="@android:style/Widget.TextView.SpinnerItem">
+        <item name="android:fontFamily">@font/iran_sans</item>
+        <item name="android:textSize">24sp</item>
+    </style>
     <style name="AppTheme.ButtonPrimary" parent="Widget.AppCompat.Button.Colored">
         <item name="android:background">@drawable/bg_btn_color_primary</item>
         <item name="android:fontFamily">@font/iran_sans</item>
-        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:padding">@dimen/padding_small</item>
     </style>
@@ -36,7 +40,7 @@
     <style name="AppTheme.ButtonAccent" parent="Widget.AppCompat.Button.Colored">
         <item name="android:background">@drawable/button</item>
         <item name="android:fontFamily">@font/iran_sans</item>
-        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:padding">@dimen/padding_small</item>
     </style>
@@ -44,7 +48,7 @@
     <style name="AppTheme.ButtonEdit" parent="Widget.AppCompat.Button.Colored">
         <item name="android:background">@drawable/bg_btn_edit</item>
         <item name="android:fontFamily">@font/iran_sans</item>
-        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:padding">@dimen/padding_small</item>
     </style>
@@ -52,7 +56,7 @@
     <style name="AppTheme.ButtonRed" parent="Widget.AppCompat.Button.Colored">
         <item name="android:background">@drawable/bg_btn_orange</item>
         <item name="android:fontFamily">@font/iran_sans</item>
-        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:padding">@dimen/padding_small</item>
     </style>
@@ -60,7 +64,7 @@
     <style name="AppTheme.TextViewTitle">
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/iran_sans</item>
-        <item name="android:textSize">@dimen/font_size_normal</item>
+        <item name="android:textSize">@dimen/font_size_xxlarge</item>
         <item name="android:textColor">@color/black_effective</item>
         <item name="android:padding">@dimen/padding_mini_mini_small</item>
     </style>
@@ -68,7 +72,7 @@
     <style name="AppTheme.TextViewDetail">
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/iran_sans</item>
-        <item name="android:textSize">@dimen/font_size_normal</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
         <item name="android:textColor">@color/gray_600</item>
         <item name="android:padding">@dimen/padding_mini_mini_small</item>
     </style>
@@ -76,7 +80,7 @@
     <style name="AppTheme.TextViewDetailLarge">
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/iran_sans</item>
-        <item name="android:textSize">@dimen/font_size_large</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
         <item name="android:textColor">@color/black_effective</item>
         <item name="android:padding">@dimen/padding_mini_mini_small</item>
     </style>
@@ -84,7 +88,7 @@
     <style name="AppTheme.TextViewWhite">
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/iran_sans</item>
-        <item name="android:textSize">@dimen/font_size_small</item>
+        <item name="android:textSize">@dimen/font_size_xlarge</item>
         <item name="android:textColor">@color/black_effective</item>
         <item name="android:padding">4dp</item>
     </style>

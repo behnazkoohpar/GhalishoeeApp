@@ -20,7 +20,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@color/backgroundPage2">
 
             <TextView
                 android:id="@+id/name"
@@ -31,11 +32,14 @@
                 android:padding="@dimen/padding_common"
                 android:text="@string/name" />
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+            <Button
+                style="@style/AppTheme.ButtonPrimary"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@drawable/info"
+                android:text="@string/select"
+                android:id="@+id/select"
+                android:layout_margin="@dimen/margin_mini_small"
                 android:tint="@color/colorPrimary"
                 android:layout_marginLeft="@dimen/margin_normal"/>
         </RelativeLayout>
@@ -120,6 +124,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginTop="@dimen/margin_small"
                 android:layout_marginRight="@dimen/margin_small"
+                android:lineSpacingExtra="15dp"
                 android:layout_toLeftOf="@+id/taddress"
                 android:text="@string/address" />
         </RelativeLayout>

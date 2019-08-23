@@ -219,5 +219,10 @@
     <string name="data_chaged">اطلاعات تغییر کرد</string>
     <string name="adamPakhsh">دلایل عدم پخش</string>
     <string name="pakhshOk">تحویل شد</string>
+    <string name="data_changed">آیا از تغییر خود اطمینان دارید؟</string>
+    <string name="set_info">ثبت اطلاعات</string>
+    <string name="info_record">اطلاعات ثبت شد</string>
+    <string name="select">انتخاب</string>
+    <string name="select_date">انتخاب تاریخ</string>
 
 </resources>
