@@ -14,14 +14,16 @@ import android.widget.TextView;
 
 import com.koohpar.oghli.R;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
+import com.koohpar.oghli.utils.CommonUtils;
 
 import java.util.List;
 
-public class ListOrderMissionDetailModelAdapter  extends RecyclerView.Adapter<ListOrderMissionDetailModelAdapter.ViewHolder> {
+public class ListOrderMissionDetailModelAdapter extends RecyclerView.Adapter<ListOrderMissionDetailModelAdapter.ViewHolder> {
 
     public List<OrderMissionDetailModel> stList;
     public static Context context;
     private ListOrderMissionDetailModelAdapter.OnItemClickListener mListener;
+
     public ListOrderMissionDetailModelAdapter(List<OrderMissionDetailModel> SlistS) {
         stList = SlistS;
     }
@@ -40,9 +42,10 @@ public class ListOrderMissionDetailModelAdapter  extends RecyclerView.Adapter<Li
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView name,telnumber,numberhome,address;
+        public final TextView name, telnumber, numberhome, address;
         public CardView card_view;
         public Button select;
+
         public ViewHolder(final View itemView, final ListOrderMissionDetailModelAdapter.OnItemClickListener listener) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.name);
@@ -120,16 +123,20 @@ public class ListOrderMissionDetailModelAdapter  extends RecyclerView.Adapter<Li
 
     @Override
     public void onBindViewHolder(final ListOrderMissionDetailModelAdapter.ViewHolder viewHolder, final int position) {
+        try {
+            viewHolder.name.setText(stList.get(position).getCustName());
+            viewHolder.telnumber.setText(stList.get(position).getCollectMobile());
+            viewHolder.numberhome.setText(stList.get(position).getCollectPhone());
+            viewHolder.address.setText(stList.get(position).getCollectAddress());
+            if (stList.get(position).getOrderStatusID() == 3 || stList.get(position).getOrderStatusID() == 11)
+                viewHolder.card_view.setCardBackgroundColor(Color.rgb(186, 236, 164));
 
-        viewHolder.name.setText(stList.get(position).getCustName());
-        viewHolder.telnumber.setText(stList.get(position).getCollectMobile());
-        viewHolder.numberhome.setText(stList.get(position).getCollectPhone());
-        viewHolder.address.setText(stList.get(position).getCollectAddress());
-        if (stList.get(position).getOrderStatusID() == 3 || stList.get(position).getOrderStatusID() == 11)
-            viewHolder.card_view.setCardBackgroundColor(Color.rgb(186,236,164));
-
-        if (stList.get(position).getOrderStatusID() == 1 || stList.get(position).getOrderStatusID() == 9)
-            viewHolder.card_view.setCardBackgroundColor(Color.rgb(255,204,204));
+            if (stList.get(position).getOrderStatusID() == 1 || stList.get(position).getOrderStatusID() == 9)
+                viewHolder.card_view.setCardBackgroundColor(Color.rgb(255, 204, 204));
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
+        }
     }
 
     public int getItemCount() {

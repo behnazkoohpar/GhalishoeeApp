@@ -83,7 +83,6 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding, SplashVi
 
     }
 
-
     public boolean checkConnectivity(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();

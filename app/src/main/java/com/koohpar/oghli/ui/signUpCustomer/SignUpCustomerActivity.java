@@ -37,7 +37,7 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
     List<BranchResponse> branchesResponseList = new ArrayList<>();
     private String mantagheSelected;
     private String branchSelected;
-    private String mYear,mMonth,mDay;
+    private String mYear, mMonth, mDay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,7 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
-                    if (count == 1 && s.charAt(0)==48)
+                    if (count == 1 && s.charAt(0) == 48)
                         CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), "شماره موبایل بدون صفر باشد", getString(R.string.ok), new CommonUtils.IL() {
                             @Override
                             public void onSuccess() {
@@ -107,14 +107,14 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
         try {
             PersianCalendar persianCalendar = new PersianCalendar();
             mYear = String.valueOf(persianCalendar.getPersianYear());
-            mMonth = String.valueOf(persianCalendar.getPersianMonth()+1);
+            mMonth = String.valueOf(persianCalendar.getPersianMonth() + 1);
             mDay = String.valueOf(persianCalendar.getPersianDay());
             if (Integer.parseInt(mMonth) < 10)
                 mMonth = "0" + mMonth;
             if (Integer.parseInt(mDay) < 10)
                 mDay = "0" + mDay;
 
-            Customer customerModel= new Customer();
+            Customer customerModel = new Customer();
             customerModel.setCollectAddress(mActivitySignUpCustomerBinding.address.getText().toString());
             customerModel.setCustName(mActivitySignUpCustomerBinding.userName.getText().toString());
             customerModel.setCollectMobile(mActivitySignUpCustomerBinding.tel.getText().toString());
@@ -130,7 +130,7 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
             customerModel.setGeograficalID("00000000-0000-0000-0000-000000000000");
 
 
-            mSignUpCustomerViewModel.callAddCustomer(AppConstants.REQUEST_OOGHLI,customerModel);
+            mSignUpCustomerViewModel.callAddCustomer(AppConstants.REQUEST_OOGHLI, customerModel);
             mSignUpCustomerViewModel.getAddCustomerMutableLiveData().observe(this, this::receivedDataAddCustomer);
 
         } catch (Exception e) {
@@ -163,69 +163,85 @@ public class SignUpCustomerActivity extends BaseActivity<ActivitySignUpCustomerB
     }
 
     private void receivedDataAddCustomer(String data) {
-        if (data != null) {
-            Customer customer = new Customer();
-            customer.setCustName(mActivitySignUpCustomerBinding.userName.getText().toString());
-            customer.setCollectAddress(mActivitySignUpCustomerBinding.address.getText().toString());
-            customer.setCollectMobile(mActivitySignUpCustomerBinding.tel.getText().toString());
-            customer.setCollectPhone(mActivitySignUpCustomerBinding.telHome.getText().toString());
-            customer.setCustomerID(data);
-            OrderActivity.isFromCustomer=true;
-            OrderActivity.customerModel = customer;
-            startActivity(OrderActivity.getStartIntent(SignUpCustomerActivity.this));
-        } else {
-            CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+        try {
+            if (data != null) {
+                Customer customer = new Customer();
+                customer.setCustName(mActivitySignUpCustomerBinding.userName.getText().toString());
+                customer.setCollectAddress(mActivitySignUpCustomerBinding.address.getText().toString());
+                customer.setCollectMobile(mActivitySignUpCustomerBinding.tel.getText().toString());
+                customer.setCollectPhone(mActivitySignUpCustomerBinding.telHome.getText().toString());
+                customer.setCustomerID(data);
+                OrderActivity.isFromCustomer = true;
+                OrderActivity.customerModel = customer;
+                startActivity(OrderActivity.getStartIntent(SignUpCustomerActivity.this));
+            } else {
+                CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
-    private void receivedData(List<MantagheResponse> data) {
-        if (data != null) {
-            String[] datas = new String[data.size()];
-            for(int i=0 ; i<data.size();i++){
-                datas[i] = data.get(i).getTitle();
-            }
-            mantagheSelected = data.get(0).getId();
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-            mActivitySignUpCustomerBinding.mantaghe.setAdapter(adapter);
-            mActivitySignUpCustomerBinding.mantaghe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    mantagheSelected =  data.get(position).getTitle();
-                }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
+    private void receivedData(List<MantagheResponse> data) {
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getTitle();
                 }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+                mantagheSelected = data.get(0).getId();
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                mActivitySignUpCustomerBinding.mantaghe.setAdapter(adapter);
+                mActivitySignUpCustomerBinding.mantaghe.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        mantagheSelected = data.get(position).getTitle();
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+            } else {
+                CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
     private void receivedDataBranches(List<BranchResponse> data) {
-        if (data != null) {
-            String[] datas = new String[data.size()];
-            for(int i=0 ; i<data.size();i++){
-                datas[i] = data.get(i).getBranchName();
-            }
-            branchSelected = data.get(0).getBranchId();
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-            mActivitySignUpCustomerBinding.branch.setAdapter(adapter);
-            mActivitySignUpCustomerBinding.branch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                   branchSelected = (String) data.get(position).getBranchName();
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getBranchName();
                 }
+                branchSelected = data.get(0).getBranchId();
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                mActivitySignUpCustomerBinding.branch.setAdapter(adapter);
+                mActivitySignUpCustomerBinding.branch.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        branchSelected = (String) data.get(position).getBranchName();
+                    }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+            } else {
+                CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(SignUpCustomerActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 }

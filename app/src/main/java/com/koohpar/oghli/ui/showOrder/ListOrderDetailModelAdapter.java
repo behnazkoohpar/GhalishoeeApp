@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -73,7 +74,7 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public final Spinner typeOrder, city, jensGhali, form, colorFator;
-        public final TextView price, tool, arz, sumPrice;
+        public final EditText price, tool, arz, sumPrice;
         private final Button editCarpet, deleteCarpet, pakhshOk, adamPakhsh;
         private final CardView card_view;
         private final ImageView clearprice, clearsumprice;
@@ -86,10 +87,10 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
             jensGhali = (Spinner) itemView.findViewById(R.id.jensGhali);
             form = (Spinner) itemView.findViewById(R.id.form);
             colorFator = (Spinner) itemView.findViewById(R.id.colorFator);
-            price = (TextView) itemView.findViewById(R.id.price);
-            tool = (TextView) itemView.findViewById(R.id.tool);
-            arz = (TextView) itemView.findViewById(R.id.arz);
-            sumPrice = (TextView) itemView.findViewById(R.id.sumPrice);
+            price = (EditText) itemView.findViewById(R.id.price);
+            tool = (EditText) itemView.findViewById(R.id.tool);
+            arz = (EditText) itemView.findViewById(R.id.arz);
+            sumPrice = (EditText) itemView.findViewById(R.id.sumPrice);
             editCarpet = (Button) itemView.findViewById(R.id.editCarpet);
             deleteCarpet = (Button) itemView.findViewById(R.id.deleteCarpet);
             pakhshOk = (Button) itemView.findViewById(R.id.pakhshOk);
@@ -324,26 +325,30 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
         viewHolder.editCarpet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                OrderDetailEdit orderDetailEdit = new OrderDetailEdit();
-                orderDetailEdit.setOrderDetailID(stList.get(position).getOrderDetailID());
-                if (!viewHolder.price.getText().toString().isEmpty() && !viewHolder.price.getText().toString().equals(""))
-                    orderDetailEdit.setUnitPrice(Float.parseFloat(viewHolder.price.getText().toString()));
-                sheklSelected = sheklList.get(viewHolder.form.getSelectedItemPosition()).getServiceAttrib1ID();
-                jensSelected = jensList.get(viewHolder.jensGhali.getSelectedItemPosition()).getServiceAttrib2ID();
-                citySelected = cityList.get(viewHolder.city.getSelectedItemPosition()).getServiceAttrib3ID();
-                rangSelected = rangList.get(viewHolder.colorFator.getSelectedItemPosition()).getServiceAttrib4ID();
-                orderDetailEdit.setServiceAttrib1ID(sheklSelected);
-                orderDetailEdit.setServiceAttrib2ID(jensSelected);
-                orderDetailEdit.setServiceAttrib3ID(citySelected);
-                orderDetailEdit.setServiceAttrib4ID(rangSelected);
-                if (!viewHolder.arz.getText().toString().isEmpty() && !viewHolder.arz.getText().toString().equals(""))
-                    orderDetailEdit.setWidth(Float.parseFloat(viewHolder.arz.getText().toString()));
-                if (!viewHolder.tool.getText().toString().isEmpty() && !viewHolder.tool.getText().toString().equals(""))
-                    orderDetailEdit.setLenght(Float.parseFloat(viewHolder.tool.getText().toString()));
+                try {
+                    OrderDetailEdit orderDetailEdit = new OrderDetailEdit();
+                    orderDetailEdit.setOrderDetailID(stList.get(position).getOrderDetailID());
+                    if (!viewHolder.price.getText().toString().isEmpty() && !viewHolder.price.getText().toString().equals(""))
+                        orderDetailEdit.setUnitPrice(Float.parseFloat(viewHolder.price.getText().toString()));
+                    sheklSelected = sheklList.get(viewHolder.form.getSelectedItemPosition()).getServiceAttrib1ID();
+                    jensSelected = jensList.get(viewHolder.jensGhali.getSelectedItemPosition()).getServiceAttrib2ID();
+                    citySelected = cityList.get(viewHolder.city.getSelectedItemPosition()).getServiceAttrib3ID();
+                    rangSelected = rangList.get(viewHolder.colorFator.getSelectedItemPosition()).getServiceAttrib4ID();
+                    orderDetailEdit.setServiceAttrib1ID(sheklSelected);
+                    orderDetailEdit.setServiceAttrib2ID(jensSelected);
+                    orderDetailEdit.setServiceAttrib3ID(citySelected);
+                    orderDetailEdit.setServiceAttrib4ID(rangSelected);
+                    if (!viewHolder.arz.getText().toString().isEmpty() && !viewHolder.arz.getText().toString().equals(""))
+                        orderDetailEdit.setWidth(Float.parseFloat(viewHolder.arz.getText().toString()));
+                    if (!viewHolder.tool.getText().toString().isEmpty() && !viewHolder.tool.getText().toString().equals(""))
+                        orderDetailEdit.setLenght(Float.parseFloat(viewHolder.tool.getText().toString()));
 
 //                orderDetailEdit.setQuantity(12);
-                mListener.onEditClick(position, orderDetailEdit);
+                    mListener.onEditClick(position, orderDetailEdit);
+                }catch (Exception e){
+                    CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.webservice_error), null, null);
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -391,6 +396,7 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
                 viewHolder.price.removeTextChangedListener(this);
                 //Assign processed text
                 viewHolder.price.setText(processed);
+                viewHolder.price.setSelection(processed.length());
                 viewHolder.price.addTextChangedListener(this);
             }
         });
@@ -419,6 +425,7 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
                 viewHolder.sumPrice.removeTextChangedListener(this);
                 //Assign processed text
                 viewHolder.sumPrice.setText(processed);
+                viewHolder.sumPrice.setSelection(processed.length());
                 viewHolder.sumPrice.addTextChangedListener(this);
             }
         });

@@ -4,8 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,13 +29,10 @@ import com.koohpar.oghli.data.model.api.UpdateOrder;
 import com.koohpar.oghli.data.model.api.UpdateOrderDetail;
 import com.koohpar.oghli.databinding.ActivityShowOrderBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
-import com.koohpar.oghli.ui.listSum.ListOrderMissionDetailModelAdapter;
 import com.koohpar.oghli.ui.listSum.ListSumActivity;
-import com.koohpar.oghli.ui.main.MainActivity;
 import com.koohpar.oghli.ui.order.OrderActivity;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
-import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -394,14 +389,14 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_chaged), null, new CommonUtils.IL() {
                 @Override
                 public void onSuccess() {
-//                    startActivity(ListSumActivity.getStartIntent(ShowOrderActivity.this));
-//                    finish();
+                    startActivity(ListSumActivity.getStartIntent(ShowOrderActivity.this));
+                    finish();
                 }
 
                 @Override
                 public void onCancel() {
-//                    startActivity(ListSumActivity.getStartIntent(ShowOrderActivity.this));
-//                    finish();
+                    startActivity(ListSumActivity.getStartIntent(ShowOrderActivity.this));
+                    finish();
                 }
             });
 
@@ -423,29 +418,34 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     }
 
     private void receivedDataPakhsh(List<LakeStatusModel> lakeStatusModels) {
-        if (lakeStatusModels.size() > 0) {
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ShowOrderActivity.this, android.R.layout.select_dialog_singlechoice);
-            AlertDialog.Builder builderSingle = new AlertDialog.Builder(ShowOrderActivity.this);
+        try {
+            if (lakeStatusModels.size() > 0) {
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ShowOrderActivity.this, android.R.layout.select_dialog_singlechoice);
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(ShowOrderActivity.this);
 
-            for (int i = 0; i < lakeStatusModels.size(); i++)
-                arrayAdapter.add(lakeStatusModels.get(i).getLakeStatusName());
-            builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String strName = arrayAdapter.getItem(which);
-                    updateOrderStatusPakhsh(lakeStatusModels.get(which));
-                }
-            });
-            builderSingle.show();
-        } else {
-            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_is_null), null, null);
+                for (int i = 0; i < lakeStatusModels.size(); i++)
+                    arrayAdapter.add(lakeStatusModels.get(i).getLakeStatusName());
+                builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String strName = arrayAdapter.getItem(which);
+                        updateOrderStatusPakhsh(lakeStatusModels.get(which));
+                    }
+                });
+                builderSingle.show();
+            } else {
+                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_is_null), null, null);
 
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -477,28 +477,33 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     }
 
     private void receivedDataPakhshCarpet(List<LakeStatusModel> lakeStatusModels) {
-        if (lakeStatusModels.size() > 0) {
-            final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ShowOrderActivity.this, android.R.layout.select_dialog_singlechoice);
-            AlertDialog.Builder builderSingle = new AlertDialog.Builder(ShowOrderActivity.this);
+        try {
+            if (lakeStatusModels.size() > 0) {
+                final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(ShowOrderActivity.this, android.R.layout.select_dialog_singlechoice);
+                AlertDialog.Builder builderSingle = new AlertDialog.Builder(ShowOrderActivity.this);
 
-            for (int i = 0; i < lakeStatusModels.size(); i++)
-                arrayAdapter.add(lakeStatusModels.get(i).getLakeStatusName());
-            builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    String strName = arrayAdapter.getItem(which);
-                    updateOrderStatusPakhsh(lakeStatusModels.get(which));
-                }
-            });
-            builderSingle.show();
-        } else {
-            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_is_null), null, null);
+                for (int i = 0; i < lakeStatusModels.size(); i++)
+                    arrayAdapter.add(lakeStatusModels.get(i).getLakeStatusName());
+                builderSingle.setNegativeButton("انصراف", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String strName = arrayAdapter.getItem(which);
+                        updateOrderStatusPakhsh(lakeStatusModels.get(which));
+                    }
+                });
+                builderSingle.show();
+            } else {
+                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_is_null), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -513,32 +518,37 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     }
 
     private void receivedData(List<ServicesModel> data) {
-        if (data != null) {
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getServiceName();
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getServiceName();
+                }
+                serviceSelected = data.get(0).getServiceID();
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(R.layout.spinner_text_color);
+                mActivityShowOrderBinding.typeOrder.setAdapter(adapter);
+                mActivityShowOrderBinding.typeOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        serviceSelected = data.get(position).getServiceID();
+                        callCity();
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+            } else {
+                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
             }
-            serviceSelected = data.get(0).getServiceID();
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(R.layout.spinner_text_color);
-            mActivityShowOrderBinding.typeOrder.setAdapter(adapter);
-            mActivityShowOrderBinding.typeOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    serviceSelected = data.get(position).getServiceID();
-                    callCity();
-
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -554,30 +564,35 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     }
 
     private void receivedDataTypeFactor(List<OrderTypeModel> data) {
-        if (data != null) {
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getOrderTypeName();
-            }
-            orderTypeSelected = String.valueOf(data.get(0).getOrderTypeCode());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(R.layout.spinner_text_color);
-            mActivityShowOrderBinding.typeFator.setAdapter(adapter);
-            mActivityShowOrderBinding.typeFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    orderTypeSelected = String.valueOf(data.get(position).getOrderTypeCode());
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getOrderTypeName();
                 }
+                orderTypeSelected = String.valueOf(data.get(0).getOrderTypeCode());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(R.layout.spinner_text_color);
+                mActivityShowOrderBinding.typeFator.setAdapter(adapter);
+                mActivityShowOrderBinding.typeFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        orderTypeSelected = String.valueOf(data.get(position).getOrderTypeCode());
+                    }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+            } else {
+                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -593,8 +608,9 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     }
 
     private void receivedDataCity(List<ServiceAttrib3Model> data) {
-        if (data != null) {
-            att3 = data;
+        try {
+            if (data != null) {
+                att3 = data;
 //            String[] datas = new String[data.size()];
 //            for (int i = 0; i < data.size(); i++) {
 //                datas[i] = data.get(i).getServiceAttribTitle();
@@ -614,10 +630,14 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
 //                    // TODO Auto-generated method stub
 //                }
 //            });
-            callJens();
+                callJens();
 
-        } else {
-            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            } else {
+                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -633,8 +653,9 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     }
 
     private void receivedDataJens(List<ServiceAttrib2Model> data) {
-        if (data != null) {
-            att2 = data;
+        try {
+            if (data != null) {
+                att2 = data;
 //            String[] datas = new String[data.size()];
 //            for (int i = 0; i < data.size(); i++) {
 //                datas[i] = data.get(i).getServiceAttribTitle();
@@ -654,10 +675,14 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
 //                    // TODO Auto-generated method stub
 //                }
 //            });
-            callShekl();
+                callShekl();
 
-        } else {
-            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            } else {
+                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -673,8 +698,9 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     }
 
     private void receivedDataShekl(List<ServiceAttrib1Model> data) {
-        if (data != null) {
-            att1 = data;
+        try {
+            if (data != null) {
+                att1 = data;
 //            String[] datas = new String[data.size()];
 //            for (int i = 0; i < data.size(); i++) {
 //                datas[i] = data.get(i).getServiceAttribTitle();
@@ -694,10 +720,14 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
 //                    // TODO Auto-generated method stub
 //                }
 //            });
-            callRang();
+                callRang();
 
-        } else {
-            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            } else {
+                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -713,8 +743,9 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     }
 
     private void receivedDataRang(List<ServiceAttrib4Model> data) {
-        if (data != null) {
-            att4 = data;
+        try {
+            if (data != null) {
+                att4 = data;
 //            String[] datas = new String[data.size()];
 //            for (int i = 0; i < data.size(); i++) {
 //                datas[i] = data.get(i).getServiceAttribTitle();
@@ -734,49 +765,59 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
 //                    // TODO Auto-generated method stub
 //                }
 //            });
-            callShowOrderDetail();
-        } else {
-            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+                callShowOrderDetail();
+            } else {
+                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
     public void setNumberOrder() {
-        String[] datas = new String[21];
-        for (int i = 0; i < datas.length; i++)
-            datas[i] = String.valueOf(i);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(R.layout.spinner_text_color);
-        mActivityShowOrderBinding.numberOrder.setAdapter(adapter);
-        if (ordersModelsList != null && ordersModelsList.size() >= 1)
-            mActivityShowOrderBinding.numberOrder.setSelection(ordersModelsList.size());
-        else
-            mActivityShowOrderBinding.numberOrder.setSelection(0);
-        mActivityShowOrderBinding.numberOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                if (ordersModelsList != null && mActivityShowOrderBinding.numberOrder.getSelectedItemPosition() < (ordersModelsList.size() - 1))
-                    CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_delete_error), null, new CommonUtils.IL() {
-                        @Override
-                        public void onSuccess() {
-                            mActivityShowOrderBinding.numberOrder.setSelection(ordersModelsList.size() - 1);
-                        }
+        try {
+            String[] datas = new String[21];
+            for (int i = 0; i < datas.length; i++)
+                datas[i] = String.valueOf(i);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(R.layout.spinner_text_color);
+            mActivityShowOrderBinding.numberOrder.setAdapter(adapter);
+            if (ordersModelsList != null && ordersModelsList.size() >= 1)
+                mActivityShowOrderBinding.numberOrder.setSelection(ordersModelsList.size());
+            else
+                mActivityShowOrderBinding.numberOrder.setSelection(0);
+            mActivityShowOrderBinding.numberOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view,
+                                           int position, long id) {
+                    if (ordersModelsList != null && mActivityShowOrderBinding.numberOrder.getSelectedItemPosition() < (ordersModelsList.size() - 1))
+                        CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_delete_error), null, new CommonUtils.IL() {
+                            @Override
+                            public void onSuccess() {
+                                mActivityShowOrderBinding.numberOrder.setSelection(ordersModelsList.size() - 1);
+                            }
 
-                        @Override
-                        public void onCancel() {
+                            @Override
+                            public void onCancel() {
 
-                        }
-                    });
-                else
-                    numberOrderSelected = Integer.parseInt(datas[position]);
-            }
+                            }
+                        });
+                    else
+                        numberOrderSelected = Integer.parseInt(datas[position]);
+                }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // TODO Auto-generated method stub
+                }
+            });
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
+        }
     }
+
 }
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -61,7 +62,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         public final Spinner typeOrder, city, jensGhali, form, colorFator;
-        public final TextView price, tool, arz, sumPrice;
+        public final EditText price, tool, arz, sumPrice;
         private final Button editCarpet;
         private final ImageView clearprice, clearsumprice;
 
@@ -72,10 +73,10 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
             jensGhali = (Spinner) itemView.findViewById(R.id.jensGhali);
             form = (Spinner) itemView.findViewById(R.id.form);
             colorFator = (Spinner) itemView.findViewById(R.id.colorFator);
-            price = (TextView) itemView.findViewById(R.id.price);
-            tool = (TextView) itemView.findViewById(R.id.tool);
-            arz = (TextView) itemView.findViewById(R.id.arz);
-            sumPrice = (TextView) itemView.findViewById(R.id.sumPrice);
+            price = (EditText) itemView.findViewById(R.id.price);
+            tool = (EditText) itemView.findViewById(R.id.tool);
+            arz = (EditText) itemView.findViewById(R.id.arz);
+            sumPrice = (EditText) itemView.findViewById(R.id.sumPrice);
             editCarpet = (Button) itemView.findViewById(R.id.editCarpet);
             clearprice = (ImageView) itemView.findViewById(R.id.clearprice);
             clearsumprice = (ImageView) itemView.findViewById(R.id.clearsumprice);
@@ -225,6 +226,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
 
     @Override
     public void onBindViewHolder(final EditOrderDetailAdapter.ViewHolder viewHolder, final int position) {
+        try{
         receivedDataCity(viewHolder, position, cityList);
         receivedDataJens(viewHolder, position, jensList);
         receivedDataShekl(viewHolder, position, sheklList);
@@ -306,6 +308,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
                 viewHolder.sumPrice.removeTextChangedListener(this);
                 //Assign processed text
                 viewHolder.sumPrice.setText(processed);
+                viewHolder.sumPrice.setSelection(processed.length());
                 viewHolder.sumPrice.addTextChangedListener(this);
             }
         });
@@ -334,11 +337,15 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
                 viewHolder.price.removeTextChangedListener(this);
                 //Assign processed text
                 viewHolder.price.setText(processed);
+                viewHolder.price.setSelection(processed.length());
                 viewHolder.price.addTextChangedListener(this);
 
             }
         });
-
+        }catch (Exception e){
+            CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
+        }
     }
 
     public int getItemCount() {

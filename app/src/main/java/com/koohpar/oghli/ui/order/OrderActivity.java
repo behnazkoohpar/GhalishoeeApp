@@ -19,10 +19,8 @@ import com.koohpar.oghli.data.model.api.CustomerCollectPhoneModel;
 import com.koohpar.oghli.data.model.api.CustomerReleaseAddressModel;
 import com.koohpar.oghli.data.model.api.CustomerReleaseMobileModel;
 import com.koohpar.oghli.data.model.api.CustomerReleasePhoneModel;
-import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
-import com.koohpar.oghli.data.model.api.OrdersModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
@@ -33,9 +31,7 @@ import com.koohpar.oghli.ui.base.BaseActivity;
 import com.koohpar.oghli.ui.editOrder.EditOrderActivity;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
-import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -191,28 +187,33 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
     }
 
     private void receivedDataTypeFactor(List<OrderTypeModel> data) {
-        if (data != null) {
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getOrderTypeName();
-            }
-            orderTypeSelected = data.get(0).getOrderTypeCode();
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-            mActivityOrderBinding.typeFator.setAdapter(adapter);
-            mActivityOrderBinding.typeFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    orderTypeSelected = data.get(position).getOrderTypeCode();
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getOrderTypeName();
                 }
+                orderTypeSelected = data.get(0).getOrderTypeCode();
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                mActivityOrderBinding.typeFator.setAdapter(adapter);
+                mActivityOrderBinding.typeFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        orderTypeSelected = data.get(position).getOrderTypeCode();
+                    }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+            } else {
+                CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -228,29 +229,34 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
     }
 
     private void receivedDataCity(List<ServiceAttrib3Model> data) {
-        if (data != null) {
-            EditOrderActivity.att3 = data;
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getServiceAttribTitle();
-            }
-            citySelected = String.valueOf(data.get(0).getServiceAttrib3ID());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-            mActivityOrderBinding.city.setAdapter(adapter);
-            mActivityOrderBinding.city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    citySelected = String.valueOf(data.get(position).getServiceAttrib3ID());
+        try {
+            if (data != null) {
+                EditOrderActivity.att3 = data;
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getServiceAttribTitle();
                 }
+                citySelected = String.valueOf(data.get(0).getServiceAttrib3ID());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                mActivityOrderBinding.city.setAdapter(adapter);
+                mActivityOrderBinding.city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        citySelected = String.valueOf(data.get(position).getServiceAttrib3ID());
+                    }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+            } else {
+                CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -266,29 +272,34 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
     }
 
     private void receivedDataJens(List<ServiceAttrib2Model> data) {
-        if (data != null) {
-            EditOrderActivity.att2 = data;
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getServiceAttribTitle();
-            }
-            jensSelected = String.valueOf(data.get(0).getServiceAttrib2ID());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-            mActivityOrderBinding.jensGhali.setAdapter(adapter);
-            mActivityOrderBinding.jensGhali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    jensSelected = String.valueOf(data.get(position).getServiceAttrib2ID());
+        try {
+            if (data != null) {
+                EditOrderActivity.att2 = data;
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getServiceAttribTitle();
                 }
+                jensSelected = String.valueOf(data.get(0).getServiceAttrib2ID());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                mActivityOrderBinding.jensGhali.setAdapter(adapter);
+                mActivityOrderBinding.jensGhali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        jensSelected = String.valueOf(data.get(position).getServiceAttrib2ID());
+                    }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+            } else {
+                CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -304,29 +315,34 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
     }
 
     private void receivedDataShekl(List<ServiceAttrib1Model> data) {
-        if (data != null) {
-            EditOrderActivity.att1 = data;
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getServiceAttribTitle();
-            }
-            sheklSelected = String.valueOf(data.get(0).getServiceAttrib1ID());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-            mActivityOrderBinding.form.setAdapter(adapter);
-            mActivityOrderBinding.form.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    sheklSelected = String.valueOf(data.get(position).getServiceAttrib1ID());
+        try {
+            if (data != null) {
+                EditOrderActivity.att1 = data;
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getServiceAttribTitle();
                 }
+                sheklSelected = String.valueOf(data.get(0).getServiceAttrib1ID());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                mActivityOrderBinding.form.setAdapter(adapter);
+                mActivityOrderBinding.form.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        sheklSelected = String.valueOf(data.get(position).getServiceAttrib1ID());
+                    }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+            } else {
+                CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 
@@ -342,29 +358,34 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
     }
 
     private void receivedDataRang(List<ServiceAttrib4Model> data) {
-        if (data != null) {
-            EditOrderActivity.att4 = data;
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getServiceAttribTitle();
-            }
-            rangSelected = String.valueOf(data.get(0).getServiceAttrib4ID());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-            mActivityOrderBinding.colorFator.setAdapter(adapter);
-            mActivityOrderBinding.colorFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    rangSelected = String.valueOf(data.get(position).getServiceAttrib4ID());
+        try {
+            if (data != null) {
+                EditOrderActivity.att4 = data;
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getServiceAttribTitle();
                 }
+                rangSelected = String.valueOf(data.get(0).getServiceAttrib4ID());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                mActivityOrderBinding.colorFator.setAdapter(adapter);
+                mActivityOrderBinding.colorFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        rangSelected = String.valueOf(data.get(position).getServiceAttrib4ID());
+                    }
 
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+            } else {
+                CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
         }
     }
 

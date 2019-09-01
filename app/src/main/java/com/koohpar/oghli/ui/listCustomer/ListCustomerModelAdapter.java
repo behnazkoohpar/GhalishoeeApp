@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.koohpar.oghli.BuildConfig;
 import com.koohpar.oghli.R;
 import com.koohpar.oghli.data.model.api.Customer;
+import com.koohpar.oghli.utils.CommonUtils;
 
 import java.util.List;
 
@@ -19,6 +19,7 @@ public class ListCustomerModelAdapter extends RecyclerView.Adapter<ListCustomerM
     public List<Customer> stList;
     public static Context context;
     private ListCustomerModelAdapter.OnItemClickListener mListener;
+
     public ListCustomerModelAdapter(List<Customer> SlistS) {
         stList = SlistS;
     }
@@ -37,7 +38,7 @@ public class ListCustomerModelAdapter extends RecyclerView.Adapter<ListCustomerM
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView name,telnumber,numberhome,address;
+        public final TextView name, telnumber, numberhome, address;
         public final Button select;
         public CardView card_view;
 
@@ -48,7 +49,7 @@ public class ListCustomerModelAdapter extends RecyclerView.Adapter<ListCustomerM
             numberhome = (TextView) itemView.findViewById(R.id.numberhome);
             address = (TextView) itemView.findViewById(R.id.address);
             card_view = (CardView) itemView.findViewById(R.id.card_view);
-             select = (Button) itemView.findViewById(R.id.select);
+            select = (Button) itemView.findViewById(R.id.select);
 
             card_view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -109,11 +110,15 @@ public class ListCustomerModelAdapter extends RecyclerView.Adapter<ListCustomerM
 
     @Override
     public void onBindViewHolder(final ListCustomerModelAdapter.ViewHolder viewHolder, final int position) {
-
-        viewHolder.name.setText(stList.get(position).getCustName());
-        viewHolder.telnumber.setText(stList.get(position).getCollectMobile());
-        viewHolder.numberhome.setText(stList.get(position).getCollectPhone());
-        viewHolder.address.setText(stList.get(position).getCollectAddress());
+        try {
+            viewHolder.name.setText(stList.get(position).getCustName());
+            viewHolder.telnumber.setText(stList.get(position).getCollectMobile());
+            viewHolder.numberhome.setText(stList.get(position).getCollectPhone());
+            viewHolder.address.setText(stList.get(position).getCollectAddress());
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
+        }
     }
 
     public int getItemCount() {

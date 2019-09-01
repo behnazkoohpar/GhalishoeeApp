@@ -225,5 +225,6 @@
     <string name="select">انتخاب</string>
     <string name="select_date">انتخاب تاریخ</string>
     <string name="data_delete_error">برای کم کردن تعداد سفارش اقلام مورد نظر را حذف کنید.</string>
+    <string name="webservice_error">خطا در سرویس</string>
 
 </resources>
