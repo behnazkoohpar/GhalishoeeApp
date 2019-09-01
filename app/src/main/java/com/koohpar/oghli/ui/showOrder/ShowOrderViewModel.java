@@ -81,6 +81,7 @@ public class ShowOrderViewModel  extends BaseViewModel<ShowOrderNavigator> imple
     public void editOrder(){
         getNavigator().editOrder();
     }
+
     public void addOrder(){
         getNavigator().addOrder();
     }

@@ -67,6 +67,7 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     private int numberOrderSelected;
     private List<OrderDetailModel> ordersModelsList;
     private OrderDetailModel orderDetailModelCarpet;
+    private List<OrderDetailModel> ordersModelsListOld;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,7 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             mActivityShowOrderBinding.telnumber.setText(orderMissionDetail.getCollectMobile());
             mActivityShowOrderBinding.numberhome.setText(orderMissionDetail.getCollectPhone());
             mActivityShowOrderBinding.name.setText(orderMissionDetail.getCustName());
-            if(!isFromSum){
+            if (!isFromSum) {
                 mActivityShowOrderBinding.numberOrder.setEnabled(false);
                 mActivityShowOrderBinding.typeFator.setEnabled(false);
                 mActivityShowOrderBinding.typeOrder.setEnabled(false);
@@ -145,66 +146,71 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         if (data != null) {
             setParameter(data);
         } else {
+            setNumberOrder();
             CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
         }
     }
 
     private void setParameter(List<OrderDetailModel> ordersModels) {
-        if (ordersModels != null)
-            mActivityShowOrderBinding.name.setText(orderMissionDetail.getCustName());
-        ordersModelsList = ordersModels;
-        serviceSelected = ordersModels.get(0).getServiceID();
-        recyclerViewListOrderMissionDetailModel = mActivityShowOrderBinding.list;
-        layoutOrderMissionDetailModel = new LinearLayoutManager(this);
-        recyclerViewListOrderMissionDetailModel.setLayoutManager(layoutOrderMissionDetailModel);
-        mAdapter = new ListOrderDetailModelAdapter(ordersModels, att3, att2, att1, att4, isFromSum);
-        recyclerViewListOrderMissionDetailModel.setAdapter(mAdapter);
-        mAdapter.setOnitemclickListener(new ListOrderDetailModelAdapter.OnItemClickListener() {
-            @Override
-            public void onEditClick(int position, OrderDetailEdit orderDetailEdit) {
-                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.do_edit_card), null, new CommonUtils.IL() {
-                    @Override
-                    public void onSuccess() {
-                        callEditOrderDetail(orderDetailEdit);
-                    }
+        if (ordersModels.size() > 0) {
+            if (ordersModels != null)
+                mActivityShowOrderBinding.name.setText(orderMissionDetail.getCustName());
+            ordersModelsList = ordersModels;
+            ordersModelsListOld = ordersModels;
+            serviceSelected = ordersModels.get(0).getServiceID();
+            recyclerViewListOrderMissionDetailModel = mActivityShowOrderBinding.list;
+            layoutOrderMissionDetailModel = new LinearLayoutManager(this);
+            recyclerViewListOrderMissionDetailModel.setLayoutManager(layoutOrderMissionDetailModel);
+            mAdapter = new ListOrderDetailModelAdapter(ordersModels, att3, att2, att1, att4, isFromSum);
+            recyclerViewListOrderMissionDetailModel.setAdapter(mAdapter);
+            mAdapter.setOnitemclickListener(new ListOrderDetailModelAdapter.OnItemClickListener() {
+                @Override
+                public void onEditClick(int position, OrderDetailEdit orderDetailEdit) {
+                    CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.do_edit_card), null, new CommonUtils.IL() {
+                        @Override
+                        public void onSuccess() {
+                            callEditOrderDetail(orderDetailEdit);
+                        }
 
-                    @Override
-                    public void onCancel() {
+                        @Override
+                        public void onCancel() {
 
-                    }
-                });
+                        }
+                    });
 
-            }
+                }
 
-            @Override
-            public void onDeleteClick(int position, OrderDetailModel orderDetailModel) {
-                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.do_delete_card), null, new CommonUtils.IL() {
-                    @Override
-                    public void onSuccess() {
-                        callDeleteOrderDetail(orderDetailModel);
-                    }
+                @Override
+                public void onDeleteClick(int position, OrderDetailModel orderDetailModel) {
+                    CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.do_delete_card), null, new CommonUtils.IL() {
+                        @Override
+                        public void onSuccess() {
+                            callDeleteOrderDetail(orderDetailModel);
+                        }
 
-                    @Override
-                    public void onCancel() {
+                        @Override
+                        public void onCancel() {
 
-                    }
-                });
-            }
+                        }
+                    });
+                }
 
-            @Override
-            public void onAdamPakhshClick(int position, OrderDetailModel orderDetailModel) {
-                callAdamPakhshCarpet(orderDetailModel);
-            }
+                @Override
+                public void onAdamPakhshClick(int position, OrderDetailModel orderDetailModel) {
+                    callAdamPakhshCarpet(orderDetailModel);
+                }
 
-            @Override
-            public void onPakhshOkClick(int position, OrderDetailModel orderDetailModel) {
-                orderDetailModelCarpet = orderDetailModel;
-                LakeStatusModel lakeStatusModel = new LakeStatusModel();
-                lakeStatusModel.setLakeStatusCode(11);
-                updateOrderStatusPakhsh(lakeStatusModel);
-            }
-        });
-        setNumberOrder();
+                @Override
+                public void onPakhshOkClick(int position, OrderDetailModel orderDetailModel) {
+                    orderDetailModelCarpet = orderDetailModel;
+                    LakeStatusModel lakeStatusModel = new LakeStatusModel();
+                    lakeStatusModel.setLakeStatusCode(11);
+                    updateOrderStatusPakhsh(lakeStatusModel);
+                }
+            });
+            setNumberOrder();
+        } else
+            setNumberOrder();
     }
 
     private void callDeleteOrderDetail(OrderDetailModel orderDetailModel) {
@@ -257,6 +263,7 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             callAdamPakhsh();
     }
 
+
     @Override
     public void sumOrder() {
         try {
@@ -286,14 +293,11 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             OrdersModel ordersModel = new OrdersModel();
             List<OrderDetailModel> orderDetailModels = new ArrayList<>();
 
-//            for (int i = 0; i < numberOrderSelected; i++) {
-//                OrderDetailModel orderDetailModel = new OrderDetailModel();
-//                if (mActivityShowOrderBinding.price.getText().toString().isEmpty())
-//                    orderDetailModel.setUnitPrice(0f);
-//                else
-//                    orderDetailModel.setUnitPrice(Float.parseFloat(mActivityShowOrderBinding.price.getText().toString()));
-//                orderDetailModels.add(orderDetailModel);
-//            }
+            for (int i = 0; i < numberOrderSelected; i++) {
+                OrderDetailModel orderDetailModel = new OrderDetailModel();
+                orderDetailModel.setUnitPrice(0f);
+                orderDetailModels.add(orderDetailModel);
+            }
             ordersModel.setOrdersID(orderMissionDetail.getOrderID());
             ordersModel.setOrderTypeCode(Integer.parseInt(orderTypeSelected));
             ordersModel.setOrdersCount(numberOrderSelected);
@@ -737,20 +741,35 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     }
 
     public void setNumberOrder() {
-        String[] datas = new String[20];
+        String[] datas = new String[21];
         for (int i = 0; i < datas.length; i++)
-            datas[i] = String.valueOf(i + 1);
+            datas[i] = String.valueOf(i);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.spinner_text_color);
         mActivityShowOrderBinding.numberOrder.setAdapter(adapter);
-        mActivityShowOrderBinding.numberOrder.setSelection(ordersModelsList.size() - 1);
+        if (ordersModelsList != null && ordersModelsList.size() >= 1)
+            mActivityShowOrderBinding.numberOrder.setSelection(ordersModelsList.size());
+        else
+            mActivityShowOrderBinding.numberOrder.setSelection(0);
         mActivityShowOrderBinding.numberOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
+                if (ordersModelsList != null && mActivityShowOrderBinding.numberOrder.getSelectedItemPosition() < (ordersModelsList.size() - 1))
+                    CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_delete_error), null, new CommonUtils.IL() {
+                        @Override
+                        public void onSuccess() {
+                            mActivityShowOrderBinding.numberOrder.setSelection(ordersModelsList.size() - 1);
+                        }
 
-                numberOrderSelected = Integer.parseInt(datas[position]);
+                        @Override
+                        public void onCancel() {
+
+                        }
+                    });
+                else
+                    numberOrderSelected = Integer.parseInt(datas[position]);
             }
 
             @Override

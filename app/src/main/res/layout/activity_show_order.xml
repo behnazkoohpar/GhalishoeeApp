@@ -165,8 +165,8 @@
                             android:layout_centerVertical="true"
                             android:layout_marginTop="@dimen/margin_small"
                             android:layout_marginRight="@dimen/margin_small"
-                            android:lineSpacingExtra="15dp"
                             android:layout_toLeftOf="@+id/taddress"
+                            android:lineSpacingExtra="15dp"
                             android:text="@string/address" />
                     </RelativeLayout>
 
@@ -288,7 +288,7 @@
                                 android:spinnerMode="dropdown" />
                         </RelativeLayout>
 
-                         </LinearLayout>
+                    </LinearLayout>
 
                     <Button
                         android:id="@+id/editOrder"

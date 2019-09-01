@@ -29,10 +29,10 @@ import java.util.Locale;
 
 public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetailAdapter.ViewHolder> {
     private List<OrderDetailModel> stList;
-    private List<ServiceAttrib1Model> att1;
-    private List<ServiceAttrib2Model> att2;
-    private List<ServiceAttrib3Model> att3;
-    private List<ServiceAttrib4Model> att4;
+    private List<ServiceAttrib1Model> sheklList;//shekl
+    private List<ServiceAttrib2Model> jensList;//jens
+    private List<ServiceAttrib3Model> cityList;//city
+    private List<ServiceAttrib4Model> rangList;//rang
     public static Context context;
     private String citySelected;
     private String jensSelected;
@@ -49,12 +49,12 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
         mListener = onitemclickListener;
     }
 
-    public EditOrderDetailAdapter(List<OrderDetailModel> SlistS, List<ServiceAttrib3Model> att3,
-                                  List<ServiceAttrib2Model> att2, List<ServiceAttrib1Model> att1, List<ServiceAttrib4Model> att4) {
-        this.att1 = att1;
-        this.att2 = att2;
-        this.att3 = att3;
-        this.att4 = att4;
+    public EditOrderDetailAdapter(List<OrderDetailModel> SlistS, List<ServiceAttrib3Model> cityList,
+                                  List<ServiceAttrib2Model> jensList, List<ServiceAttrib1Model> sheklList, List<ServiceAttrib4Model> rangList) {
+        this.sheklList = sheklList;
+        this.jensList = jensList;
+        this.cityList = cityList;
+        this.rangList = rangList;
         stList = SlistS;
     }
 
@@ -84,124 +84,137 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
     }
 
     private void receivedDataCity(final EditOrderDetailAdapter.ViewHolder viewHolder, final int position, List<ServiceAttrib3Model> data) {
-        if (data != null) {
-            EditOrderActivity.att3 = data;
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getServiceAttribTitle();
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getServiceAttribTitle();
+                }
+//                citySelected = String.valueOf(data.get(0).getServiceAttrib3ID());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, datas);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(R.layout.spinner_text_color);
+                viewHolder.city.setAdapter(adapter);
+//                viewHolder.city.setSelection(position);
+//                viewHolder.city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        citySelected = String.valueOf(data.get(position).getServiceAttrib3ID());
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//                    }
+//                });
+            } else {
+                CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
             }
-            citySelected = String.valueOf(data.get(0).getServiceAttrib3ID());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, datas);
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(R.layout.spinner_text_color);
-            viewHolder.city.setAdapter(adapter);
-            viewHolder.city.setSelection(position);
-            viewHolder.city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    citySelected = String.valueOf(data.get(position).getServiceAttrib3ID());
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private void receivedDataJens(final EditOrderDetailAdapter.ViewHolder viewHolder, final int position, List<ServiceAttrib2Model> data) {
-        if (data != null) {
-            EditOrderActivity.att2 = data;
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getServiceAttribTitle();
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getServiceAttribTitle();
+                }
+//            jensSelected = String.valueOf(data.get(0).getServiceAttrib2ID());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, datas);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(R.layout.spinner_text_color);
+                viewHolder.jensGhali.setAdapter(adapter);
+//            viewHolder.jensGhali.setSelection(position);
+//                viewHolder.jensGhali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        jensSelected = String.valueOf(data.get(position).getServiceAttrib2ID());
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//                    }
+//                });
+            } else {
+                CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
             }
-            jensSelected = String.valueOf(data.get(0).getServiceAttrib2ID());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, datas);
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(R.layout.spinner_text_color);
-            viewHolder.jensGhali.setAdapter(adapter);
-            viewHolder.jensGhali.setSelection(position);
-            viewHolder.jensGhali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    jensSelected = String.valueOf(data.get(position).getServiceAttrib2ID());
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private void receivedDataShekl(final EditOrderDetailAdapter.ViewHolder viewHolder, final int position, List<ServiceAttrib1Model> data) {
-        if (data != null) {
-            EditOrderActivity.att1 = data;
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getServiceAttribTitle();
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getServiceAttribTitle();
+                }
+//            sheklSelected = String.valueOf(data.get(0).getServiceAttrib1ID());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, datas);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(R.layout.spinner_text_color);
+                viewHolder.form.setAdapter(adapter);
+//            viewHolder.form.setSelection(position);
+//                viewHolder.form.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        sheklSelected = String.valueOf(data.get(position).getServiceAttrib1ID());
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//                    }
+//                });
+            } else {
+                CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
             }
-            sheklSelected = String.valueOf(data.get(0).getServiceAttrib1ID());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, datas);
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(R.layout.spinner_text_color);
-            viewHolder.form.setAdapter(adapter);
-            viewHolder.form.setSelection(position);
-            viewHolder.form.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    sheklSelected = String.valueOf(data.get(position).getServiceAttrib1ID());
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     private void receivedDataRang(final EditOrderDetailAdapter.ViewHolder viewHolder, final int position, List<ServiceAttrib4Model> data) {
-        if (data != null) {
-            EditOrderActivity.att4 = data;
-            String[] datas = new String[data.size()];
-            for (int i = 0; i < data.size(); i++) {
-                datas[i] = data.get(i).getServiceAttribTitle();
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getServiceAttribTitle();
+                }
+//            rangSelected = String.valueOf(data.get(position).getServiceAttrib4ID());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, datas);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(R.layout.spinner_text_color);
+                viewHolder.colorFator.setAdapter(adapter);
+//            viewHolder.colorFator.setSelection(position);
+//                viewHolder.colorFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        rangSelected = String.valueOf(data.get(position).getServiceAttrib4ID());
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//                    }
+//                });
+            } else {
+                CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
             }
-            rangSelected = String.valueOf(data.get(position).getServiceAttrib4ID());
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, datas);
-            // Specify the layout to use when the list of choices appears
-            adapter.setDropDownViewResource(R.layout.spinner_text_color);
-            viewHolder.colorFator.setAdapter(adapter);
-            viewHolder.colorFator.setSelection(position);
-            viewHolder.colorFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                @Override
-                public void onItemSelected(AdapterView<?> parent, View view,
-                                           int position, long id) {
-                    rangSelected = String.valueOf(data.get(position).getServiceAttrib4ID());
-                }
-
-                @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-                    // TODO Auto-generated method stub
-                }
-            });
-        } else {
-            CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
 
     public EditOrderDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
@@ -212,15 +225,15 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
 
     @Override
     public void onBindViewHolder(final EditOrderDetailAdapter.ViewHolder viewHolder, final int position) {
-        receivedDataCity(viewHolder, position, att3);
-        receivedDataJens(viewHolder, position, att2);
-        receivedDataShekl(viewHolder, position, att1);
-        receivedDataRang(viewHolder, position, att4);
+        receivedDataCity(viewHolder, position, cityList);
+        receivedDataJens(viewHolder, position, jensList);
+        receivedDataShekl(viewHolder, position, sheklList);
+        receivedDataRang(viewHolder, position, rangList);
         viewHolder.editCarpet.setVisibility(View.VISIBLE);
         if (stList.get(position).getUnitPrice() == 0.0)
             viewHolder.price.setText("");
         else
-            viewHolder.price.setText(nf.format(Long.parseLong(String.valueOf(stList.get(position).getUnitPrice()))));
+            viewHolder.price.setText(nf.format(Long.parseLong(String.valueOf((int)stList.get(position).getUnitPrice()))));
         if (stList.get(position).getLenght() == 0.0)
             viewHolder.tool.setText("");
         else
@@ -232,7 +245,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
         if (stList.get(position).getOrderPrice() == 0.0)
             viewHolder.sumPrice.setText("");
         else
-            viewHolder.sumPrice.setText(nf.format(Long.parseLong(String.valueOf(stList.get(position).getOrderPrice()))));
+            viewHolder.sumPrice.setText(nf.format(Long.parseLong(String.valueOf((int)stList.get(position).getOrderPrice()))));
 
         viewHolder.clearprice.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -254,6 +267,10 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
                 orderDetailEdit.setOrderDetailID(stList.get(position).getOrderDetailID());
                 if (!viewHolder.price.getText().toString().isEmpty() && !viewHolder.price.getText().toString().equals(""))
                     orderDetailEdit.setUnitPrice(Float.parseFloat(viewHolder.price.getText().toString()));
+                sheklSelected = sheklList.get(viewHolder.form.getSelectedItemPosition()).getServiceAttrib1ID();
+                jensSelected = jensList.get(viewHolder.jensGhali.getSelectedItemPosition()).getServiceAttrib2ID();
+                citySelected = cityList.get(viewHolder.city.getSelectedItemPosition()).getServiceAttrib3ID();
+                rangSelected = rangList.get(viewHolder.colorFator.getSelectedItemPosition()).getServiceAttrib4ID();
                 orderDetailEdit.setServiceAttrib1ID(sheklSelected);
                 orderDetailEdit.setServiceAttrib2ID(jensSelected);
                 orderDetailEdit.setServiceAttrib3ID(citySelected);

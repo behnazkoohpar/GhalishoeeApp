@@ -32,10 +32,10 @@ import java.util.Locale;
 public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderDetailModelAdapter.ViewHolder> {
     private final boolean isfromSum;
     private List<OrderDetailModel> stList;
-    private List<ServiceAttrib1Model> att1;
-    private List<ServiceAttrib2Model> att2;
-    private List<ServiceAttrib3Model> att3;
-    private List<ServiceAttrib4Model> att4;
+    private List<ServiceAttrib1Model> sheklList;//shekl
+    private List<ServiceAttrib2Model> jensList;//jens
+    private List<ServiceAttrib3Model> cityList;//city
+    private List<ServiceAttrib4Model> rangList;//rang
     public static Context context;
     private String citySelected;
     private String jensSelected;
@@ -59,14 +59,14 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
         mListener = onitemclickListener;
     }
 
-    public ListOrderDetailModelAdapter(List<OrderDetailModel> SlistS, List<ServiceAttrib3Model> att3,
-                                       List<ServiceAttrib2Model> att2, List<ServiceAttrib1Model> att1,
-                                       List<ServiceAttrib4Model> att4, boolean isFromSum) {
+    public ListOrderDetailModelAdapter(List<OrderDetailModel> SlistS, List<ServiceAttrib3Model> cityList,
+                                       List<ServiceAttrib2Model> jensList, List<ServiceAttrib1Model> sheklList,
+                                       List<ServiceAttrib4Model> rangList, boolean isFromSum) {
         this.isfromSum = isFromSum;
-        this.att1 = att1;
-        this.att2 = att2;
-        this.att3 = att3;
-        this.att4 = att4;
+        this.sheklList = sheklList;
+        this.jensList = jensList;
+        this.cityList = cityList;
+        this.rangList = rangList;
         stList = SlistS;
     }
 
@@ -111,19 +111,23 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
                 // Specify the layout to use when the list of choices appears
                 adapter.setDropDownViewResource(R.layout.spinner_text_color);
                 viewHolder.city.setAdapter(adapter);
-//                viewHolder.city.setSelection(position);
-                viewHolder.city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view,
-                                               int position, long id) {
-                        citySelected = String.valueOf(data.get(position).getServiceAttrib3ID());
+                for (int j = 0; j < cityList.size(); j++) {
+                    if (stList.get(position).getServiceAttrib3ID().equalsIgnoreCase(cityList.get(j).getServiceAttrib3ID())) {
+                        viewHolder.city.setSelection(j);
                     }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // TODO Auto-generated method stub
-                    }
-                });
+                }
+//                viewHolder.city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        citySelected = String.valueOf(data.get(position).getServiceAttrib3ID());
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//                    }
+//                });
             } else {
                 CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
             }
@@ -145,18 +149,23 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
                 adapter.setDropDownViewResource(R.layout.spinner_text_color);
                 viewHolder.jensGhali.setAdapter(adapter);
 //            viewHolder.jensGhali.setSelection(position);
-                viewHolder.jensGhali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view,
-                                               int position, long id) {
-                        jensSelected = String.valueOf(data.get(position).getServiceAttrib2ID());
+                for (int j = 0; j < jensList.size(); j++) {
+                    if (stList.get(position).getServiceAttrib2ID().equalsIgnoreCase(jensList.get(j).getServiceAttrib2ID())) {
+                        viewHolder.jensGhali.setSelection(j);
                     }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // TODO Auto-generated method stub
-                    }
-                });
+                }
+//                viewHolder.jensGhali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        jensSelected = String.valueOf(data.get(position).getServiceAttrib2ID());
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//                    }
+//                });
             } else {
                 CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
             }
@@ -177,19 +186,24 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
                 // Specify the layout to use when the list of choices appears
                 adapter.setDropDownViewResource(R.layout.spinner_text_color);
                 viewHolder.form.setAdapter(adapter);
+                for (int j = 0; j < sheklList.size(); j++) {
+                    if (stList.get(position).getServiceAttrib1ID().equalsIgnoreCase(sheklList.get(j).getServiceAttrib1ID())) {
+                        viewHolder.form.setSelection(j);
+                    }
+                }
 //            viewHolder.form.setSelection(position);
-                viewHolder.form.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view,
-                                               int position, long id) {
-                        sheklSelected = String.valueOf(data.get(position).getServiceAttrib1ID());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // TODO Auto-generated method stub
-                    }
-                });
+//                viewHolder.form.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        sheklSelected = String.valueOf(data.get(position).getServiceAttrib1ID());
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//                    }
+//                });
             } else {
                 CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
             }
@@ -210,19 +224,24 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
                 // Specify the layout to use when the list of choices appears
                 adapter.setDropDownViewResource(R.layout.spinner_text_color);
                 viewHolder.colorFator.setAdapter(adapter);
+                for (int j = 0; j < rangList.size(); j++) {
+                    if (stList.get(position).getServiceAttrib4ID().equalsIgnoreCase(rangList.get(j).getServiceAttrib4ID())) {
+                        viewHolder.colorFator.setSelection(j);
+                    }
+                }
 //            viewHolder.colorFator.setSelection(position);
-                viewHolder.colorFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view,
-                                               int position, long id) {
-                        rangSelected = String.valueOf(data.get(position).getServiceAttrib4ID());
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-                        // TODO Auto-generated method stub
-                    }
-                });
+//                viewHolder.colorFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//                    @Override
+//                    public void onItemSelected(AdapterView<?> parent, View view,
+//                                               int position, long id) {
+//                        rangSelected = String.valueOf(data.get(position).getServiceAttrib4ID());
+//                    }
+//
+//                    @Override
+//                    public void onNothingSelected(AdapterView<?> parent) {
+//                        // TODO Auto-generated method stub
+//                    }
+//                });
             } else {
                 CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
             }
@@ -240,10 +259,10 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
 
     @Override
     public void onBindViewHolder(final ListOrderDetailModelAdapter.ViewHolder viewHolder, final int position) {
-        receivedDataCity(viewHolder, position, att3);
-        receivedDataJens(viewHolder, position, att2);
-        receivedDataShekl(viewHolder, position, att1);
-        receivedDataRang(viewHolder, position, att4);
+        receivedDataCity(viewHolder, position, cityList);//city
+        receivedDataJens(viewHolder, position, jensList);//jens
+        receivedDataShekl(viewHolder, position, sheklList);//shekl
+        receivedDataRang(viewHolder, position, rangList);//rang
         if (!this.isfromSum) {
             viewHolder.city.setEnabled(false);
             viewHolder.colorFator.setEnabled(false);
@@ -257,7 +276,7 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
         if (stList.get(position).getUnitPrice() == 0.0)
             viewHolder.price.setText("");
         else
-            viewHolder.price.setText(nf.format(Long.parseLong(String.valueOf(stList.get(position).getUnitPrice()))));
+            viewHolder.price.setText(nf.format(Long.parseLong(String.valueOf((int) stList.get(position).getUnitPrice()))));
         if (stList.get(position).getLenght() == 0.0)
             viewHolder.tool.setText("");
         else
@@ -269,7 +288,7 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
         if (stList.get(position).getOrderPrice() == 0.0)
             viewHolder.sumPrice.setText("");
         else
-            viewHolder.sumPrice.setText(nf.format(Long.parseLong(String.valueOf(stList.get(position).getOrderPrice()))));
+            viewHolder.sumPrice.setText(nf.format(Long.parseLong(String.valueOf((int) stList.get(position).getOrderPrice()))));
 
         if (stList.get(position).getOrderStatusID() == 3 || stList.get(position).getOrderStatusID() == 11)
             viewHolder.card_view.setCardBackgroundColor(Color.rgb(186, 236, 164));
@@ -310,6 +329,10 @@ public class ListOrderDetailModelAdapter extends RecyclerView.Adapter<ListOrderD
                 orderDetailEdit.setOrderDetailID(stList.get(position).getOrderDetailID());
                 if (!viewHolder.price.getText().toString().isEmpty() && !viewHolder.price.getText().toString().equals(""))
                     orderDetailEdit.setUnitPrice(Float.parseFloat(viewHolder.price.getText().toString()));
+                sheklSelected = sheklList.get(viewHolder.form.getSelectedItemPosition()).getServiceAttrib1ID();
+                jensSelected = jensList.get(viewHolder.jensGhali.getSelectedItemPosition()).getServiceAttrib2ID();
+                citySelected = cityList.get(viewHolder.city.getSelectedItemPosition()).getServiceAttrib3ID();
+                rangSelected = rangList.get(viewHolder.colorFator.getSelectedItemPosition()).getServiceAttrib4ID();
                 orderDetailEdit.setServiceAttrib1ID(sheklSelected);
                 orderDetailEdit.setServiceAttrib2ID(jensSelected);
                 orderDetailEdit.setServiceAttrib3ID(citySelected);

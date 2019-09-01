@@ -59,6 +59,7 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
     private String serviceSelected;
     private String orderTypeSelected;
     private int numberOrderSelected;
+    private List<OrderDetailModel> ordersModelsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +74,6 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
             callListTypeFactor();
             callListService();
             setNumberOrder();
-            //  callEditOrderDetail();
             if (isFromCustomer) {
                 mActivityEditOrderBinding.address.setText(customerModel.getCollectAddress());
                 mActivityEditOrderBinding.telnumber.setText(customerModel.getCollectMobile());
@@ -118,8 +118,23 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
     public void callEditOrderDetail() {
         try {
             if (orderID != null) {
-                mEditOrderViewModel.callEditOrder(orderID, AppConstants.REQUEST_OOGHLI);
-                mEditOrderViewModel.getOrdersModelMutableLiveData().observe(this, this::receivedDataEdit);
+                int number = mActivityEditOrderBinding.numberOrder.getSelectedItemPosition();
+                OrdersModel ordersModel = new OrdersModel();
+                List<OrderDetailModel> orderDetailModels = new ArrayList<>();
+
+                for (int i = 0; i <number; i++) {
+                    OrderDetailModel orderDetailModel = new OrderDetailModel();
+                    orderDetailModel.setUnitPrice(0f);
+                    orderDetailModels.add(orderDetailModel);
+                }
+                ordersModel.setOrdersID(orderID);
+                ordersModel.setOrderTypeCode(Integer.parseInt(orderTypeSelected));
+                ordersModel.setOrdersCount(number);
+                ordersModel.setLastUpdatedBy(mEditOrderViewModel.getDataManager().getServiceManId());
+                ordersModel.setLstOrderDetail(orderDetailModels);
+
+                mEditOrderViewModel.callEditOrder( AppConstants.REQUEST_OOGHLI,ordersModel);
+                mEditOrderViewModel.getEditDetailMutableLiveData().observe(this, this::receivedDataEdit);
             }else{
                 addOrder();
             }
@@ -129,59 +144,93 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
         }
     }
 
-    private void receivedDataEdit(List<OrderDetailModel> data) {
-        if (data != null) {
-            setParameter(data);
+    private void receivedDataEdit(Boolean data) {
+//        if (data != null) {
+//            setParameter(data);
+//        } else {
+//            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+//        }
+
+        if (data) {
+            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_chaged), null, new CommonUtils.IL() {
+                @Override
+                public void onSuccess() {
+                    callRetriveOrder();
+                }
+
+                @Override
+                public void onCancel() {
+                    callRetriveOrder();
+                }
+            });
+
         } else {
-            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_receive_error), null, null);
+
         }
     }
 
     private void setParameter(List<OrderDetailModel> ordersModels) {
-        if (ordersModels != null) {
-            if (isFromCustomer)
-                mActivityEditOrderBinding.name.setText(customerModel.getCustName());
-            else
-                mActivityEditOrderBinding.name.setText(orderMissionDetail.getCustName());
-        }
-        mAdapter = null;
-        mAdapter = new EditOrderDetailAdapter(ordersModels, att3, att2, att1, att4);
-        recyclerViewListOrderMissionDetailModel.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-
-        mAdapter.setOnitemclickListener(new EditOrderDetailAdapter.OnItemClickListener() {
-            @Override
-            public void onEditClick(int position, OrderDetailEdit orderDetailEdit) {
-                CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.do_edit_card), null, new CommonUtils.IL() {
-                    @Override
-                    public void onSuccess() {
-                        callEditDetail(orderDetailEdit);
-                    }
-
-                    @Override
-                    public void onCancel() {
-
-                    }
-                });
+        if (ordersModels.size()>0) {
+            if (ordersModels != null) {
+                if (isFromCustomer)
+                    mActivityEditOrderBinding.name.setText(customerModel.getCustName());
+                else
+                    mActivityEditOrderBinding.name.setText(orderMissionDetail.getCustName());
             }
-        });
+            mAdapter = null;
+            mAdapter = new EditOrderDetailAdapter(ordersModels, att3, att2, att1, att4);
+            recyclerViewListOrderMissionDetailModel.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
+
+            mAdapter.setOnitemclickListener(new EditOrderDetailAdapter.OnItemClickListener() {
+                @Override
+                public void onEditClick(int position, OrderDetailEdit orderDetailEdit) {
+                    CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.do_edit_card), null, new CommonUtils.IL() {
+                        @Override
+                        public void onSuccess() {
+                            callEditDetail(orderDetailEdit);
+                        }
+
+                        @Override
+                        public void onCancel() {
+
+                        }
+                    });
+                }
+            });
+        }
     }
 
     private void callEditDetail(OrderDetailEdit orderDetailEdit) {
         try {
             mEditOrderViewModel.callEditDetail(orderDetailEdit, AppConstants.REQUEST_OOGHLI);
-            mEditOrderViewModel.getEditDetailMutableLiveData().observe(this, this::receivedDataEdit);
+            mEditOrderViewModel.getEditDetail2MutableLiveData().observe(this, this::receivedDataEditDetail);
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
         }
     }
 
-    private void receivedDataEdit(boolean data) {
-        if (data) {
-            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_chaged), null, null);
+    private void receivedDataEditDetail(boolean aBoolean) {
+        if (aBoolean) {
+            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_chaged), null, new CommonUtils.IL() {
+                @Override
+                public void onSuccess() {
+
+//                    callRetriveOrder();
+                }
+
+                @Override
+                public void onCancel() {
+
+//                    callRetriveOrder();
+                }
+            });
+
         } else {
-            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_receive_error), null, null);
+
         }
     }
 
@@ -272,11 +321,12 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.spinner_text_color);
         mActivityEditOrderBinding.numberOrder.setAdapter(adapter);
+        mActivityEditOrderBinding.numberOrder.setSelection(ordersModelsList.size());
         mActivityEditOrderBinding.numberOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                numberOrderSelected = Integer.parseInt(datas[position]);
+                    numberOrderSelected = Integer.parseInt(datas[position]);
             }
 
             @Override
@@ -289,12 +339,12 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
     public void addOrder() {
         try {
             List<OrderDetailModel> orderDetailModels = new ArrayList<>();
-
-            for (int i = 0; i < numberOrderSelected; i++) {
+            int number = mActivityEditOrderBinding.numberOrder.getSelectedItemPosition();
+            for (int i = 0; i < number; i++) {
                 OrderDetailModel orderDetailModel = new OrderDetailModel();
 //                orderDetailModel.setLenght(Integer.parseInt(mActivityOrderBinding.tool.getText().toString()));
 //                orderDetailModel.setWidth(Integer.parseInt(mActivityOrderBinding.arz.getText().toString()));
-//                orderDetailModel.setUnitPrice(Float.parseFloat(mActivityEditOrderBinding.price.getText().toString()));
+                orderDetailModel.setUnitPrice(0f);
 //                orderDetailModel.setServiceAttrib1ID(sheklSelected);
 //                orderDetailModel.setServiceAttrib2ID(jensSelected);
 //                orderDetailModel.setServiceAttrib3ID(citySelected);
@@ -302,15 +352,16 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
                 orderDetailModels.add(orderDetailModel);
             }
 
-            PersianCalendar persianCalendar = new PersianCalendar();
-            String mYear = String.valueOf(persianCalendar.getPersianYear());
-            String mMonth = String.valueOf(persianCalendar.getPersianMonth() + 1);
-            String mDay = String.valueOf(persianCalendar.getPersianDay());
-            if (Integer.parseInt(mMonth) < 10)
-                mMonth = "0" + mMonth;
-            if (Integer.parseInt(mDay) < 10)
-                mDay = "0" + mDay;
-            String date = mYear + "/" + mMonth + "/" + mDay;
+//            PersianCalendar persianCalendar = new PersianCalendar();
+//            String mYear = String.valueOf(persianCalendar.getPersianYear());
+//            String mMonth = String.valueOf(persianCalendar.getPersianMonth() + 1);
+//            String mDay = String.valueOf(persianCalendar.getPersianDay());
+//            if (Integer.parseInt(mMonth) < 10)
+//                mMonth = "0" + mMonth;
+//            if (Integer.parseInt(mDay) < 10)
+//                mDay = "0" + mDay;
+//            String date = mYear + "/" + mMonth + "/" + mDay;
+
             OrdersModel ordersModel = new OrdersModel();
             if (isFromCustomer)
                 ordersModel.setCustomerID(customerModel.getCustomerID());
@@ -321,7 +372,7 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
 
             ordersModel.setCreatedBy(mEditOrderViewModel.getDataManager().getServiceManId());
             ordersModel.setLstOrderDetail(orderDetailModels);
-            ordersModel.setOrdersCount(numberOrderSelected);
+            ordersModel.setOrdersCount(number);
             ordersModel.setOrderTypeCode(Integer.parseInt(orderTypeSelected));
             mEditOrderViewModel.addNewOrder(AppConstants.REQUEST_OOGHLI, ordersModel);
             mEditOrderViewModel.getInsertOrderMutableLiveData().observe(this, this::receivedDataInsertOrder);
@@ -338,16 +389,34 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
                 @Override
                 public void onSuccess() {
                     orderID = s;
-                    callEditOrderDetail();
+                    callRetriveOrder();
                 }
 
                 @Override
                 public void onCancel() {
                     orderID = s;
-                    callEditOrderDetail();
+                    callRetriveOrder();
                 }
             });
 
+        } else {
+            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+        }
+    }
+
+    private void callRetriveOrder() {
+        try {
+            mEditOrderViewModel.callRetriveOrder(orderID, AppConstants.REQUEST_OOGHLI);
+            mEditOrderViewModel.getOrdersModelMutableLiveData().observe(this, this::receivedRetrived);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    private void receivedRetrived(List<OrderDetailModel> orderDetailModels) {
+        if (orderDetailModels != null) {
+            setParameter(orderDetailModels);
         } else {
             CommonUtils.showSingleButtonAlert(EditOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
         }
