@@ -7,6 +7,7 @@ import com.koohpar.oghli.data.model.api.MantagheResponse;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
+import com.koohpar.oghli.data.model.api.RofuAttribModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
@@ -126,6 +127,9 @@ public interface ICallApi {
 
     @POST("Insert_CustomerReleasePhone")
     Observable<String> insertNewRealesePhone(@Body NewRealesePhoneBody newRealesePhoneBody);
+
+    @POST("Retrive_RofuAttribute_List")
+    Observable<List<RofuAttribModel>> listRofu(@Body ListBaseRequestBody listBaseRequestBody);
 
 
 //    @GET

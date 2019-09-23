@@ -7,6 +7,7 @@ import com.koohpar.oghli.data.model.api.MantagheResponse;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
+import com.koohpar.oghli.data.model.api.RofuAttribModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
@@ -185,5 +186,10 @@ public class AppRestManager implements RestManager {
     @Override
     public Observable<String> insertNewRealesePhone(NewRealesePhoneBody newRealesePhoneBody) {
         return iCallApi.insertNewRealesePhone(newRealesePhoneBody);
+    }
+
+    @Override
+    public Observable<List<RofuAttribModel>> listRofu(ListBaseRequestBody listBaseRequestBody) {
+        return iCallApi.listRofu(listBaseRequestBody);
     }
 }

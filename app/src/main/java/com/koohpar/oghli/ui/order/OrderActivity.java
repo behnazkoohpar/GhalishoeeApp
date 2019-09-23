@@ -21,6 +21,7 @@ import com.koohpar.oghli.data.model.api.CustomerReleaseMobileModel;
 import com.koohpar.oghli.data.model.api.CustomerReleasePhoneModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
+import com.koohpar.oghli.data.model.api.RofuAttribModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
@@ -150,9 +151,7 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
             mActivityOrderBinding.typeOrder.setAdapter(adapter);
 
             callCity();
-            callJens();
-            callShekl();
-            callRang();
+
 
             mActivityOrderBinding.typeOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
@@ -160,9 +159,7 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
                                            int position, long id) {
                     serviceSelected = data.get(position).getServiceID();
                     callCity();
-                    callJens();
-                    callShekl();
-                    callRang();
+
                 }
 
                 @Override
@@ -251,6 +248,8 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
                         // TODO Auto-generated method stub
                     }
                 });
+                callJens();
+
             } else {
                 CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
             }
@@ -294,6 +293,8 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
                         // TODO Auto-generated method stub
                     }
                 });
+                callShekl();
+
             } else {
                 CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
             }
@@ -337,6 +338,7 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
                         // TODO Auto-generated method stub
                     }
                 });
+                callRang();
             } else {
                 CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
             }
@@ -380,6 +382,49 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
                         // TODO Auto-generated method stub
                     }
                 });
+                callRofu();
+            } else {
+                CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    private void callRofu() {
+        try {
+            mOrderViewModel.callRofu(AppConstants.REQUEST_OOGHLI);
+            mOrderViewModel.getRofuModelMutableLiveData().observe(this, this::receivedDataRofu);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    private void receivedDataRofu(List<RofuAttribModel> data) {
+        try {
+            if (data != null) {
+                EditOrderActivity.rofulist = data;
+                String[] datas = new String[data.size()];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[i] = data.get(i).getRofuAttribTitle();
+                }
+                rangSelected = String.valueOf(data.get(0).getRofuAttribID());
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
+                mActivityOrderBinding.colorFator.setAdapter(adapter);
+                mActivityOrderBinding.colorFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view,
+                                               int position, long id) {
+                        rangSelected = String.valueOf(data.get(position).getRofuAttribID());
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                        // TODO Auto-generated method stub
+                    }
+                });
+                callRofu();
             } else {
                 CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
             }

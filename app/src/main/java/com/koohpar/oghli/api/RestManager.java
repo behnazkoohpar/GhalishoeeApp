@@ -7,6 +7,7 @@ import com.koohpar.oghli.data.model.api.MantagheResponse;
 import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
+import com.koohpar.oghli.data.model.api.RofuAttribModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
@@ -94,4 +95,7 @@ public interface RestManager {
     Observable<String> insertNewRealeseMobile(NewRealeseMobileBody newRealeseMobileBody);
 
     Observable<String> insertNewRealesePhone(NewRealesePhoneBody newRealesePhoneBody);
+
+    Observable<List<RofuAttribModel>> listRofu(ListBaseRequestBody listBaseRequestBody);
+
 }

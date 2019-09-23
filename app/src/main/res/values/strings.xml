@@ -226,5 +226,7 @@
     <string name="select_date">انتخاب تاریخ</string>
     <string name="data_delete_error">برای کم کردن تعداد سفارش اقلام مورد نظر را حذف کنید.</string>
     <string name="webservice_error">خطا در سرویس</string>
+    <string name="priceRofu">قیمت رفوئی</string>
+    <string name="rofuDesc">توضیحات رفویی</string>
 
 </resources>

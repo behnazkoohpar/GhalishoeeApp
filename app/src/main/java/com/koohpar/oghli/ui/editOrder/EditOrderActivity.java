@@ -2,7 +2,6 @@ package com.koohpar.oghli.ui.editOrder;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,6 +18,7 @@ import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
 import com.koohpar.oghli.data.model.api.OrdersModel;
+import com.koohpar.oghli.data.model.api.RofuAttribModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
@@ -27,12 +27,8 @@ import com.koohpar.oghli.data.model.api.ServicesModel;
 import com.koohpar.oghli.databinding.ActivityEditOrderBinding;
 import com.koohpar.oghli.ui.base.BaseActivity;
 import com.koohpar.oghli.ui.main.MainActivity;
-import com.koohpar.oghli.ui.order.OrderActivity;
 import com.koohpar.oghli.utils.AppConstants;
 import com.koohpar.oghli.utils.CommonUtils;
-import com.mojtaba.materialdatetimepicker.utils.PersianCalendar;
-
-import org.simpleframework.xml.Order;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +48,7 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
     public static List<ServiceAttrib4Model> att4;
     public static List<ServiceAttrib2Model> att2;
     public static List<ServiceAttrib1Model> att1;
+    public static List<RofuAttribModel> rofulist;
     ActivityEditOrderBinding mActivityEditOrderBinding;
     private RecyclerView recyclerViewListOrderMissionDetailModel;
     private LinearLayoutManager layoutOrderMissionDetailModel;
@@ -122,7 +119,7 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
                 OrdersModel ordersModel = new OrdersModel();
                 List<OrderDetailModel> orderDetailModels = new ArrayList<>();
 
-                for (int i = 0; i <number; i++) {
+                for (int i = 0; i < number; i++) {
                     OrderDetailModel orderDetailModel = new OrderDetailModel();
                     orderDetailModel.setUnitPrice(0f);
                     orderDetailModels.add(orderDetailModel);
@@ -133,9 +130,9 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
                 ordersModel.setLastUpdatedBy(mEditOrderViewModel.getDataManager().getServiceManId());
                 ordersModel.setLstOrderDetail(orderDetailModels);
 
-                mEditOrderViewModel.callEditOrder( AppConstants.REQUEST_OOGHLI,ordersModel);
+                mEditOrderViewModel.callEditOrder(AppConstants.REQUEST_OOGHLI, ordersModel);
                 mEditOrderViewModel.getEditDetailMutableLiveData().observe(this, this::receivedDataEdit);
-            }else{
+            } else {
                 addOrder();
             }
         } catch (Exception e) {
@@ -171,7 +168,7 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
     }
 
     private void setParameter(List<OrderDetailModel> ordersModels) {
-        if (ordersModels.size()>0) {
+        if (ordersModels.size() > 0) {
             if (ordersModels != null) {
                 if (isFromCustomer)
                     mActivityEditOrderBinding.name.setText(customerModel.getCustName());
@@ -179,7 +176,7 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
                     mActivityEditOrderBinding.name.setText(orderMissionDetail.getCustName());
             }
             mAdapter = null;
-            mAdapter = new EditOrderDetailAdapter(ordersModels, att3, att2, att1, att4);
+            mAdapter = new EditOrderDetailAdapter(ordersModels, att3, rofulist, att2, att1, att4);
             recyclerViewListOrderMissionDetailModel.setAdapter(mAdapter);
             mAdapter.notifyDataSetChanged();
 
@@ -326,7 +323,7 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                    numberOrderSelected = Integer.parseInt(datas[position]);
+                numberOrderSelected = Integer.parseInt(datas[position]);
             }
 
             @Override

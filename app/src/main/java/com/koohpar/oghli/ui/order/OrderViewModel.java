@@ -12,6 +12,7 @@ import com.koohpar.oghli.data.model.api.CustomerReleaseMobileModel;
 import com.koohpar.oghli.data.model.api.CustomerReleasePhoneModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
 import com.koohpar.oghli.data.model.api.OrdersModel;
+import com.koohpar.oghli.data.model.api.RofuAttribModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
@@ -40,6 +41,7 @@ public class OrderViewModel extends BaseViewModel<OrderNavigator> implements App
     private final MutableLiveData<List<ServiceAttrib1Model>> sheklModelMutableLiveData = new SingleLiveData<>();
     private final MutableLiveData<List<ServiceAttrib4Model>> rangModelMutableLiveData = new SingleLiveData<>();
     private final MutableLiveData<String> insertOrderMutableLiveData = new SingleLiveData<>();
+    private final MutableLiveData<List<RofuAttribModel>> rofuModelMutableLiveData = new SingleLiveData<>();
 
     public MutableLiveData<List<ServicesModel>> getServicesModelMutableLiveData() {
         return servicesModelMutableLiveData;
@@ -61,6 +63,9 @@ public class OrderViewModel extends BaseViewModel<OrderNavigator> implements App
     }
     public MutableLiveData<String> getInsertOrderMutableLiveData() {
         return insertOrderMutableLiveData;
+    }
+    public MutableLiveData<List<RofuAttribModel>> getRofuModelMutableLiveData() {
+        return rofuModelMutableLiveData;
     }
 
     public OrderViewModel(DataManager dataManager, RestManager mRestManager, SchedulersFacade mSchedulersFacade, SingleLiveData<Integer> mToastLiveData, CompositeDisposable mCompositeDisposable) {
@@ -313,5 +318,23 @@ public class OrderViewModel extends BaseViewModel<OrderNavigator> implements App
                 });
         mCompositeDisposable.add(disposable);
 
+    }
+
+    public void callRofu(String requestOoghli) {
+        Disposable disposable = mRestManager.listRofu(new ListBaseRequestBody(requestOoghli))
+                .subscribeOn(mSchedulersFacade.io())
+                .observeOn(mSchedulersFacade.ui())
+                .subscribe(r -> {
+                    rofuModelMutableLiveData.setValue(r);
+                    Timber.i("data login : " + r);
+                    Timber.d("result response : " + r);
+                }, new RxRetrofitErrorConsumer() {
+                    @Override
+                    public void handleError(Throwable throwable, int id) {
+                        mToastLiveData.postValue(id);
+                        Timber.e("error in login view model response : " + throwable.getMessage());
+                    }
+                });
+        mCompositeDisposable.add(disposable);
     }
 }

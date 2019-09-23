@@ -20,6 +20,7 @@ import com.koohpar.oghli.data.model.api.OrderDetailModel;
 import com.koohpar.oghli.data.model.api.OrderMissionDetailModel;
 import com.koohpar.oghli.data.model.api.OrderTypeModel;
 import com.koohpar.oghli.data.model.api.OrdersModel;
+import com.koohpar.oghli.data.model.api.RofuAttribModel;
 import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
@@ -53,6 +54,7 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
     public List<ServiceAttrib4Model> att4;
     public List<ServiceAttrib2Model> att2;
     public List<ServiceAttrib1Model> att1;
+    public List<RofuAttribModel> rofulist;
     private String serviceSelected;
     private String orderTypeSelected;
     private String citySelected;
@@ -156,7 +158,7 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
             recyclerViewListOrderMissionDetailModel = mActivityShowOrderBinding.list;
             layoutOrderMissionDetailModel = new LinearLayoutManager(this);
             recyclerViewListOrderMissionDetailModel.setLayoutManager(layoutOrderMissionDetailModel);
-            mAdapter = new ListOrderDetailModelAdapter(ordersModels, att3, att2, att1, att4, isFromSum);
+            mAdapter = new ListOrderDetailModelAdapter(ordersModels, att3,rofulist, att2, att1, att4, isFromSum);
             recyclerViewListOrderMissionDetailModel.setAdapter(mAdapter);
             mAdapter.setOnitemclickListener(new ListOrderDetailModelAdapter.OnItemClickListener() {
                 @Override
@@ -611,25 +613,6 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         try {
             if (data != null) {
                 att3 = data;
-//            String[] datas = new String[data.size()];
-//            for (int i = 0; i < data.size(); i++) {
-//                datas[i] = data.get(i).getServiceAttribTitle();
-//            }
-//            citySelected = String.valueOf(data.get(0).getServiceAttrib3ID());
-//            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-//            mActivityShowOrderBinding.city.setAdapter(adapter);
-//            mActivityShowOrderBinding.city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view,
-//                                           int position, long id) {
-//                    citySelected = String.valueOf(data.get(position).getServiceAttrib3ID());
-//                }
-//
-//                @Override
-//                public void onNothingSelected(AdapterView<?> parent) {
-//                    // TODO Auto-generated method stub
-//                }
-//            });
                 callJens();
 
             } else {
@@ -656,27 +639,7 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         try {
             if (data != null) {
                 att2 = data;
-//            String[] datas = new String[data.size()];
-//            for (int i = 0; i < data.size(); i++) {
-//                datas[i] = data.get(i).getServiceAttribTitle();
-//            }
-//            jensSelected = String.valueOf(data.get(0).getServiceAttrib2ID());
-//            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-//            mActivityShowOrderBinding.jensGhali.setAdapter(adapter);
-//            mActivityShowOrderBinding.jensGhali.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view,
-//                                           int position, long id) {
-//                    jensSelected = String.valueOf(data.get(position).getServiceAttrib2ID());
-//                }
-//
-//                @Override
-//                public void onNothingSelected(AdapterView<?> parent) {
-//                    // TODO Auto-generated method stub
-//                }
-//            });
                 callShekl();
-
             } else {
                 CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
             }
@@ -690,7 +653,6 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         try {
             mShowOrderViewModel.callShekl(AppConstants.REQUEST_OOGHLI, serviceSelected);
             mShowOrderViewModel.getSheklModelMutableLiveData().observe(this, this::receivedDataShekl);
-
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -701,27 +663,7 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         try {
             if (data != null) {
                 att1 = data;
-//            String[] datas = new String[data.size()];
-//            for (int i = 0; i < data.size(); i++) {
-//                datas[i] = data.get(i).getServiceAttribTitle();
-//            }
-//            sheklSelected = String.valueOf(data.get(0).getServiceAttrib1ID());
-//            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-//            mActivityShowOrderBinding.form.setAdapter(adapter);
-//            mActivityShowOrderBinding.form.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view,
-//                                           int position, long id) {
-//                    sheklSelected = String.valueOf(data.get(position).getServiceAttrib1ID());
-//                }
-//
-//                @Override
-//                public void onNothingSelected(AdapterView<?> parent) {
-//                    // TODO Auto-generated method stub
-//                }
-//            });
                 callRang();
-
             } else {
                 CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
             }
@@ -735,7 +677,6 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         try {
             mShowOrderViewModel.callRang(AppConstants.REQUEST_OOGHLI, serviceSelected);
             mShowOrderViewModel.getRangModelMutableLiveData().observe(this, this::receivedDataRang);
-
         } catch (Exception e) {
             CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
             e.printStackTrace();
@@ -746,25 +687,30 @@ public class ShowOrderActivity extends BaseActivity<ActivityShowOrderBinding, Sh
         try {
             if (data != null) {
                 att4 = data;
-//            String[] datas = new String[data.size()];
-//            for (int i = 0; i < data.size(); i++) {
-//                datas[i] = data.get(i).getServiceAttribTitle();
-//            }
-//            rangSelected = String.valueOf(data.get(0).getServiceAttrib4ID());
-//            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
-//            mActivityShowOrderBinding.colorFator.setAdapter(adapter);
-//            mActivityShowOrderBinding.colorFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view,
-//                                           int position, long id) {
-//                    rangSelected = String.valueOf(data.get(position).getServiceAttrib4ID());
-//                }
-//
-//                @Override
-//                public void onNothingSelected(AdapterView<?> parent) {
-//                    // TODO Auto-generated method stub
-//                }
-//            });
+                callRofu();
+            } else {
+                CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.webservice_error), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    private void callRofu() {
+        try {
+            mShowOrderViewModel.callRofu(AppConstants.REQUEST_OOGHLI);
+            mShowOrderViewModel.getRofuModelMutableLiveData().observe(this, this::receivedDataRofu);
+        } catch (Exception e) {
+            CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.data_incorrect), null, null);
+            e.printStackTrace();
+        }
+    }
+
+    private void receivedDataRofu(List<RofuAttribModel> data) {
+        try {
+            if (data != null) {
+                rofulist = data;
                 callShowOrderDetail();
             } else {
                 CommonUtils.showSingleButtonAlert(ShowOrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);

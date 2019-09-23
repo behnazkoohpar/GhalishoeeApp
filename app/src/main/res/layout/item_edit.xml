@@ -5,7 +5,10 @@
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_mini_mini_small"
+    android:layout_marginLeft="@dimen/margin_mini_mini_small"
+    android:layout_marginTop="@dimen/margin_normal"
+    android:layout_marginRight="@dimen/margin_mini_mini_small"
+    android:layout_marginBottom="@dimen/margin_normal"
     card_view:cardBackgroundColor="@color/backgroundPage2"
     card_view:cardCornerRadius="5dp"
     card_view:cardUseCompatPadding="true"
@@ -132,172 +135,292 @@
             </RelativeLayout>
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/textLayoutPrice"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="@dimen/margin_normal"
-                android:layout_marginRight="4dp"
-                android:layout_toRightOf="@+id/clearprice"
-                android:fontFamily="@font/iran_sans"
-                android:hint="@string/priceOne"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:counterEnabled="false"
-                app:counterMaxLength="10"
-                app:errorEnabled="false"
-                app:helperTextEnabled="true">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/price"
-                    style="@style/AppTheme.TextViewTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLength="10"
-                    android:textAlignment="center" />
-            </android.support.design.widget.TextInputLayout>
-
-            <ImageView
-                android:id="@+id/clearprice"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_clear" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_small">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tAbad"
-                style="@style/AppTheme.TextViewDetail"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_margin="@dimen/margin_small"
-                android:text="ابعاد قالی:" />
+                android:layout_weight="1">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/textLayoutTool"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="80dp"
+                <TextView
+                    android:id="@+id/tAbad"
+                    style="@style/AppTheme.TextViewDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    android:layout_marginRight="@dimen/margin_small"
+                    android:text="ابعاد قالی:" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textLayoutTool"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/tAbad"
+                    android:fontFamily="@font/iran_sans"
+                    android:hint="@string/tool"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="3"
+                    app:errorEnabled="false"
+                    app:helperTextEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/tool"
+                        style="@style/AppTheme.TextViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="3"
+                        android:textAlignment="center" />
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/tZarb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/textLayoutTool"
+                    android:src="@drawable/ic_zarb" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textLayoutArz"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/tZarb"
+                    android:fontFamily="@font/iran_sans"
+                    android:hint="@string/arz"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="3"
+                    app:errorEnabled="false"
+                    app:helperTextEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/arz"
+                        style="@style/AppTheme.TextViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="3"
+                        android:textAlignment="center" />
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_marginRight="@dimen/margin_large"
-                android:layout_toRightOf="@+id/tZarb"
-                android:fontFamily="@font/iran_sans"
-                android:hint="@string/tool"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:counterEnabled="false"
-                app:counterMaxLength="3"
-                app:errorEnabled="false"
-                app:helperTextEnabled="true">
+                android:layout_weight="1">
 
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/tool"
-                    style="@style/AppTheme.TextViewTitle"
+                <TextView
+                    android:id="@+id/trofu"
+                    style="@style/AppTheme.TextViewDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/margin_small"
+                    android:text="رفویی:" />
+
+                <android.support.v7.widget.AppCompatSpinner
+                    android:id="@+id/rofu"
+                    style="@style/AppTheme.font"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLength="3"
-                    android:textAlignment="center" />
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/trofu"
+                    android:background="@android:drawable/btn_dropdown"
+                    android:spinnerMode="dropdown" />
+            </RelativeLayout>
+        </LinearLayout>
 
-            <ImageView
-                android:id="@+id/tZarb"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="@dimen/margin_normal"
-                android:layout_marginRight="@dimen/margin_normal"
-                android:layout_toRightOf="@+id/textLayoutArz"
-                android:src="@drawable/ic_zarb" />
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/textLayoutArz"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_margin="4dp"
-                android:fontFamily="@font/iran_sans"
-                android:hint="@string/arz"
-                app:boxBackgroundMode="outline"
-                app:boxStrokeColor="@color/colorPrimary"
-                app:counterEnabled="false"
-                app:counterMaxLength="3"
-                app:errorEnabled="false"
-                app:helperTextEnabled="true">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/arz"
-                    style="@style/AppTheme.TextViewTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLength="3"
-                    android:textAlignment="center" />
-            </android.support.design.widget.TextInputLayout>
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textLayoutRofuPrice"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginRight="4dp"
+
+                    android:layout_toRightOf="@+id/clearrofuprice"
+                    android:fontFamily="@font/iran_sans"
+                    android:hint="@string/priceRofu"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="10"
+                    app:errorEnabled="false"
+                    app:helperTextEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/rofuprice"
+                        style="@style/AppTheme.TextViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:textAlignment="center" />
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/clearrofuprice"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_clear" />
+
+            </RelativeLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/textLayoutSumPrice"
+                android:id="@+id/textLayoutdesc"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_margin="4dp"
-                android:layout_toRightOf="@+id/clearsumprice"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
                 android:fontFamily="@font/iran_sans"
-                android:hint="@string/sumPrice"
+                android:hint="@string/rofuDesc"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/colorPrimary"
                 app:counterEnabled="false"
-                app:counterMaxLength="60"
+                app:counterMaxLength="200"
                 app:errorEnabled="false"
                 app:helperTextEnabled="true">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/sumPrice"
+                    android:id="@+id/desc"
                     style="@style/AppTheme.TextViewTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:imeOptions="actionDone"
-                    android:inputType="phone"
-                    android:maxLength="11"
+                    android:layout_height="80dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLength="500"
                     android:textAlignment="center" />
             </android.support.design.widget.TextInputLayout>
 
-            <ImageView
-                android:id="@+id/clearsumprice"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_clear" />
-        </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textLayoutPrice"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginRight="4dp"
+                    android:layout_toRightOf="@+id/clearprice"
+                    android:fontFamily="@font/iran_sans"
+                    android:hint="@string/priceOne"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="10"
+                    app:errorEnabled="false"
+                    app:helperTextEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/price"
+                        style="@style/AppTheme.TextViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:textAlignment="center" />
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/clearprice"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_clear" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textLayoutSumPrice"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="4dp"
+                    android:layout_toRightOf="@+id/clearsumprice"
+                    android:fontFamily="@font/iran_sans"
+                    android:hint="@string/sumPrice"
+                    app:boxBackgroundMode="outline"
+                    app:boxStrokeColor="@color/colorPrimary"
+                    app:counterEnabled="false"
+                    app:counterMaxLength="60"
+                    app:errorEnabled="false"
+                    app:helperTextEnabled="true">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/sumPrice"
+                        style="@style/AppTheme.TextViewTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:textAlignment="center" />
+                </android.support.design.widget.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/clearsumprice"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_clear" />
+            </RelativeLayout>
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
