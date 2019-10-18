@@ -93,7 +93,18 @@
                 android:onClick="@{()->viewModel.openCalendar()}"
                 android:text="@string/select_date" />
 
+            <android.support.v7.widget.AppCompatSpinner
+                android:id="@+id/listServiceMan"
+                style="@style/MySpinnerLook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/cal"
+                android:layout_marginRight="@dimen/margin_small"
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown" />
             <Button
+                android:id="@+id/search"
                 style="@style/AppTheme.ButtonPrimary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

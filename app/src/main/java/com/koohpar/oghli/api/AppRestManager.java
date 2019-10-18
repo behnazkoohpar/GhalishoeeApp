@@ -12,6 +12,7 @@ import com.koohpar.oghli.data.model.api.ServiceAttrib1Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib2Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib3Model;
 import com.koohpar.oghli.data.model.api.ServiceAttrib4Model;
+import com.koohpar.oghli.data.model.api.ServiceManModel;
 import com.koohpar.oghli.data.model.api.ServicesModel;
 import com.koohpar.oghli.data.model.api.UserModel;
 import com.koohpar.oghli.data.model.api.requestBody.ListSumRequestBody;
@@ -191,5 +192,10 @@ public class AppRestManager implements RestManager {
     @Override
     public Observable<List<RofuAttribModel>> listRofu(ListBaseRequestBody listBaseRequestBody) {
         return iCallApi.listRofu(listBaseRequestBody);
+    }
+
+    @Override
+    public Observable<List<ServiceManModel>> listServiceMan(ListBaseRequestBody listBaseRequestBody) {
+        return iCallApi.listServiceMan(listBaseRequestBody);
     }
 }
