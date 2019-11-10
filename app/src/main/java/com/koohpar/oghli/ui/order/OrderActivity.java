@@ -53,6 +53,7 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
     private String jensSelected;
     private String sheklSelected;
     private String rangSelected;
+    private String rofuSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -410,7 +411,7 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
                 for (int i = 0; i < data.size(); i++) {
                     datas[i] = data.get(i).getRofuAttribTitle();
                 }
-                rangSelected = String.valueOf(data.get(0).getRofuAttribID());
+                rofuSelected = String.valueOf(data.get(0).getRofuAttribID());
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, datas);
                 mActivityOrderBinding.colorFator.setAdapter(adapter);
                 mActivityOrderBinding.colorFator.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -424,7 +425,7 @@ public class OrderActivity extends BaseActivity<ActivityOrderBinding, OrderViewM
                         // TODO Auto-generated method stub
                     }
                 });
-                callRofu();
+//                callRofu();
             } else {
                 CommonUtils.showSingleButtonAlert(OrderActivity.this, getString(R.string.text_attention), getString(R.string.problem), null, null);
             }

@@ -10,16 +10,33 @@ public class OrderDetailEdit {
     private float Width ;//= 0;
     private float Quantity;// = 0;
     private float UnitPrice;
+    private float UnitPrice2;
 
     private float DiscountPrice ;//= 0;
     private float DiscountPercent;// = 0;
     private float RofuPrice ;//= 0;
-    private boolean IsRofu;//				= False / True
+    private boolean IsRofu = false;//				= False / True
     private String RofuAttrib1ID;// = "00000000-0000-0000-0000-000000000000";
     private String RofuAttrib2ID ;//= "00000000-0000-0000-0000-000000000000";
     private String RofuDesc;// = "";
     private String OrderStatusID;
+    private String Descript;
 
+    public String getDescript() {
+        return Descript;
+    }
+
+    public void setDescript(String descript) {
+        Descript = descript;
+    }
+
+    public float getUnitPrice2() {
+        return UnitPrice2;
+    }
+
+    public void setUnitPrice2(float unitPrice2) {
+        UnitPrice2 = unitPrice2;
+    }
 
     public float getDiscountPrice() {
         return DiscountPrice;

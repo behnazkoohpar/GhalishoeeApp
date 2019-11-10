@@ -318,7 +318,10 @@ public class EditOrderActivity extends BaseActivity<ActivityEditOrderBinding, Ed
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(R.layout.spinner_text_color);
         mActivityEditOrderBinding.numberOrder.setAdapter(adapter);
-        mActivityEditOrderBinding.numberOrder.setSelection(ordersModelsList.size());
+        if (ordersModelsList != null && ordersModelsList.size() > 0)
+            mActivityEditOrderBinding.numberOrder.setSelection(ordersModelsList.size());
+        else
+            mActivityEditOrderBinding.numberOrder.setSelection(0);
         mActivityEditOrderBinding.numberOrder.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,

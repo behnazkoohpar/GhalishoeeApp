@@ -35,6 +35,15 @@ public class OrderDetailModel {
     private float DiscountPercent;
     private float DiscountPrice;
     private float _OrderPrice;
+    private String Descript;
+
+    public String getDescript() {
+        return Descript;
+    }
+
+    public void setDescript(String descript) {
+        Descript = descript;
+    }
 
     public OrderDetailModel() {
 

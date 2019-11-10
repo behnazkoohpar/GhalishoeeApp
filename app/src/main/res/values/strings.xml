@@ -228,5 +228,9 @@
     <string name="webservice_error">خطا در سرویس</string>
     <string name="priceRofu">قیمت رفوئی</string>
     <string name="rofuDesc">توضیحات رفویی</string>
+    <string name="okprice">تایید مبلغ</string>
+    <string name="priceOnes1">قیمت هر مترمربع(سرویسکار)</string>
+    <string name="price2">قیمت هر مترمربع(کارشناس)</string>
+    <string name="desc">توضیحات</string>
 
 </resources>

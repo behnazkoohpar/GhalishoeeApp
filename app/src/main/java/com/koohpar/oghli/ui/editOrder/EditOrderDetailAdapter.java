@@ -36,12 +36,14 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
     private List<ServiceAttrib3Model> cityList;//city
     private List<ServiceAttrib4Model> rangList;//rang
     private List<RofuAttribModel> rofuList;//rang
+    private List<RofuAttribModel> rofuList2;//rang
     public static Context context;
     private String citySelected;
     private String jensSelected;
     private String sheklSelected;
     private String rangSelected;
     private String rofuSelected;
+    private String rofuSelected2;
     private EditOrderDetailAdapter.OnItemClickListener mListener;
     NumberFormat nf = NumberFormat.getInstance(Locale.ENGLISH);
 
@@ -59,15 +61,16 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
         this.jensList = jensList;
         this.cityList = cityList;
         this.rofuList = rofuList;
+        this.rofuList2 = rofuList;
         this.rangList = rangList;
         stList = SlistS;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        public final Spinner typeOrder, city, jensGhali, form, colorFator, rofu;
-        public final EditText price, desc, rofuprice, tool, arz, sumPrice;
-        private final Button editCarpet;
+        public final Spinner typeOrder, city, jensGhali, form, colorFator, rofu,rofu2;
+        public final EditText price, desc, rofuprice, tool, arz, price2,descRofu;
+        private final Button editCarpet,okPrice;
         private final ImageView clearprice, clearrofuprice, clearsumprice;
 
         public ViewHolder(final View itemView) {
@@ -75,15 +78,18 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
             typeOrder = (Spinner) itemView.findViewById(R.id.typeOrder);
             city = (Spinner) itemView.findViewById(R.id.city);
             rofu = (Spinner) itemView.findViewById(R.id.rofu);
+            rofu2 = (Spinner) itemView.findViewById(R.id.rofu2);
             jensGhali = (Spinner) itemView.findViewById(R.id.jensGhali);
             form = (Spinner) itemView.findViewById(R.id.form);
             colorFator = (Spinner) itemView.findViewById(R.id.colorFator);
             price = (EditText) itemView.findViewById(R.id.price);
             rofuprice = (EditText) itemView.findViewById(R.id.rofuprice);
             desc = (EditText) itemView.findViewById(R.id.desc);
+            descRofu = (EditText) itemView.findViewById(R.id.descRofu);
             tool = (EditText) itemView.findViewById(R.id.tool);
             arz = (EditText) itemView.findViewById(R.id.arz);
-            sumPrice = (EditText) itemView.findViewById(R.id.sumPrice);
+            price2 = (EditText) itemView.findViewById(R.id.price2);
+            okPrice = (Button) itemView.findViewById(R.id.okPrice);
             editCarpet = (Button) itemView.findViewById(R.id.editCarpet);
             clearprice = (ImageView) itemView.findViewById(R.id.clearprice);
             clearrofuprice = (ImageView) itemView.findViewById(R.id.clearrofuprice);
@@ -217,6 +223,31 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
         }
     }
 
+    private void receivedDataRofu2(final EditOrderDetailAdapter.ViewHolder viewHolder, final int position, List<RofuAttribModel> data) {
+        try {
+            if (data != null) {
+                String[] datas = new String[data.size() + 1];
+                for (int i = 0; i < data.size(); i++) {
+                    datas[0] = "-----";
+                    datas[i + 1] = data.get(i).getRofuAttribTitle();
+                }
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_dropdown_item, datas);
+                // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(R.layout.spinner_text_color);
+                viewHolder.rofu2.setAdapter(adapter);
+                viewHolder.rofu2.setSelection(0);
+                for (int j = 0; j < rofuList2.size(); j++) {
+                    if (stList.get(position).getRofuAttrib2ID().equalsIgnoreCase(rofuList2.get(j).getRofuAttribID()))
+                        viewHolder.rofu2.setSelection(j + 1);
+                }
+            } else {
+                CommonUtils.showSingleButtonAlert(context, context.getString(R.string.text_attention), context.getString(R.string.problem), null, null);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public EditOrderDetailAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         View itemLayoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_edit, parent, false);
@@ -232,6 +263,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
             receivedDataShekl(viewHolder, position, sheklList);
             receivedDataRang(viewHolder, position, rangList);
             receivedDataRofu(viewHolder, position, rofuList);
+            receivedDataRofu2(viewHolder, position, rofuList2);//rofu2
 
             viewHolder.editCarpet.setVisibility(View.VISIBLE);
             if (stList.get(position).getUnitPrice() == 0.0)
@@ -246,17 +278,19 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
                 viewHolder.arz.setText("");
             else
                 viewHolder.arz.setText(String.valueOf(stList.get(position).getWidth()));
-            if (stList.get(position).getOrderPrice() == 0.0)
-                viewHolder.sumPrice.setText("");
+
+            if (stList.get(position).getUnitPrice2() == 0.0)
+                viewHolder.price2.setText("");
             else
-                viewHolder.sumPrice.setText(nf.format(Long.parseLong(String.valueOf((int) stList.get(position).getOrderPrice()))));
+                viewHolder.price2.setText(nf.format(Long.parseLong(String.valueOf((int) stList.get(position).getUnitPrice2()))));
 
             if (stList.get(position).getRofuPrice() == 0.0)
                 viewHolder.rofuprice.setText("");
             else
                 viewHolder.rofuprice.setText(nf.format(Long.parseLong(String.valueOf((int) stList.get(position).getRofuPrice()))));
 
-            viewHolder.desc.setText(stList.get(position).getRofuDesc());
+            viewHolder.descRofu.setText(stList.get(position).getRofuDesc());
+            viewHolder.desc.setText(stList.get(position).getDescript());
 
             viewHolder.clearprice.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -273,7 +307,13 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
             viewHolder.clearsumprice.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    viewHolder.sumPrice.setText("");
+                    viewHolder.price2.setText("");
+                }
+            });
+            viewHolder.okPrice.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    viewHolder.price2.setText(viewHolder.price.getText());
                 }
             });
             viewHolder.editCarpet.setOnClickListener(new View.OnClickListener() {
@@ -310,10 +350,25 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
 
                     if (!rofuSelected.equals("00000000-0000-0000-0000-000000000000"))
                         orderDetailEdit.setRofu(true);
+//                    else
+//                        orderDetailEdit.setRofu(false);
+
+                    if (viewHolder.rofu2.getSelectedItemPosition() == 0)
+                        rofuSelected2 = "00000000-0000-0000-0000-000000000000";
                     else
-                        orderDetailEdit.setRofu(false);
+                        rofuSelected2 = rofuList2.get(viewHolder.rofu2.getSelectedItemPosition() - 1).getRofuAttribID();
+
+                    if (!rofuSelected2.equals("00000000-0000-0000-0000-000000000000"))
+                        orderDetailEdit.setRofu(true);
+//                    else
+//                        orderDetailEdit.setRofu(false);
+
                     orderDetailEdit.setRofuAttrib1ID(rofuSelected);
-                    orderDetailEdit.setRofuDesc(viewHolder.desc.getText().toString());
+                    orderDetailEdit.setRofuAttrib2ID(rofuSelected2);
+
+                    orderDetailEdit.setRofuDesc(viewHolder.descRofu.getText().toString());
+                    orderDetailEdit.setDescript(viewHolder.desc.getText().toString());
+
                     if (!viewHolder.rofuprice.getText().toString().isEmpty() &&
                             !viewHolder.rofuprice.getText().toString().equals(""))
                         orderDetailEdit.setRofuPrice(Float.parseFloat(viewHolder.rofuprice.getText().toString().replaceAll(",", "")));
@@ -330,7 +385,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
                     mListener.onEditClick(position, orderDetailEdit);
                 }
             });
-            viewHolder.sumPrice.addTextChangedListener(new TextWatcher() {
+            viewHolder.price.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 }
@@ -350,11 +405,11 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
                         processed = nf.format(Long.parseLong(processed));
                     }
                     //Remove the listener
-                    viewHolder.sumPrice.removeTextChangedListener(this);
+                    viewHolder.price.removeTextChangedListener(this);
                     //Assign processed text
-                    viewHolder.sumPrice.setText(processed);
-                    viewHolder.sumPrice.setSelection(processed.length());
-                    viewHolder.sumPrice.addTextChangedListener(this);
+                    viewHolder.price.setText(processed);
+                    viewHolder.price.setSelection(processed.length());
+                    viewHolder.price.addTextChangedListener(this);
                 }
             });
             viewHolder.rofuprice.addTextChangedListener(new TextWatcher() {
@@ -384,7 +439,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
                     viewHolder.rofuprice.addTextChangedListener(this);
                 }
             });
-            viewHolder.price.addTextChangedListener(new TextWatcher() {
+            viewHolder.price2.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -392,6 +447,7 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
+
                 }
 
                 @Override
@@ -405,12 +461,11 @@ public class EditOrderDetailAdapter extends RecyclerView.Adapter<EditOrderDetail
                         processed = nf.format(Long.parseLong(processed));
                     }
                     //Remove the listener
-                    viewHolder.price.removeTextChangedListener(this);
+                    viewHolder.price2.removeTextChangedListener(this);
                     //Assign processed text
-                    viewHolder.price.setText(processed);
-                    viewHolder.price.setSelection(processed.length());
-                    viewHolder.price.addTextChangedListener(this);
-
+                    viewHolder.price2.setText(processed);
+                    viewHolder.price2.setSelection(processed.length());
+                    viewHolder.price2.addTextChangedListener(this);
                 }
             });
         } catch (Exception e) {
